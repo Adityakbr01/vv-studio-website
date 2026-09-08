@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 import { Button } from '@/components/ui/Button';
@@ -11,6 +11,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,13 +65,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
 
   return (
     <header
-      className={`fixed py-5 left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#3D003D]/90 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.25)]'
-          : 'bg-transparent'
+          ? 'bg-[#3D003D]/95 backdrop-blur-md py-3.5 shadow-[0_4px_25px_rgba(0,0,0,0.3)] border-b border-white/10'
+          : 'bg-transparent py-5 sm:py-6'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between">
           {/* Brand Logo */}
           <Logo theme="dark" size="md" />
@@ -78,56 +79,76 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           {/* Desktop Navigation Links */}
           <nav
             aria-label="Main Navigation"
-            className="hidden lg:flex items-center gap-8 text-sm font-medium tracking-wide text-white/90"
+            className="hidden lg:flex items-center gap-7 text-[13px] font-medium tracking-wide text-white/90"
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.to}
-                onClick={() => handleNavClick(link.to)}
-                className="relative py-1 hover:text-[#F8C1DE] transition-colors duration-200 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#D91A8A] hover:after:w-full after:transition-all after:duration-300"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isHomeActive = link.name === 'Home' && location.pathname === '/' && !location.hash;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.to}
+                  onClick={() => handleNavClick(link.to)}
+                  className={`relative py-1 transition-colors duration-200 hover:text-white ${
+                    isHomeActive ? 'text-white font-semibold' : 'text-white/85'
+                  }`}
+                >
+                  <span>{link.name}</span>
+                  {/* Pink underline active indicator matching reference */}
+                  <span
+                    className={`absolute -bottom-1 left-0 right-0 h-[2px] bg-[#E8329D] rounded-full transition-all duration-300 ${
+                      isHomeActive ? 'opacity-100' : 'opacity-0 hover:opacity-100'
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Contact Numbers & Book Appointment CTA */}
-          <div className="hidden sm:flex items-center gap-5">
-            <div className="hidden xl:flex items-center gap-2 text-xs font-medium text-white/80">
-              <Phone className="w-3.5 h-3.5 text-[#F06AB9]" />
+          {/* Contact Numbers & Book Appointment CTA on Right */}
+          <div className="hidden lg:flex items-center gap-6">
+            {/* Phone & WhatsApp Contacts */}
+            <div className="flex items-center gap-2 text-[12px] font-medium text-white/90">
+              <Phone className="w-3.5 h-3.5 text-white/90 shrink-0" />
               <a
-                href="tel:08048531909"
-                className="hover:text-white transition-colors duration-200"
+                href="tel:08046531999"
+                className="hover:text-white transition-colors duration-200 tracking-wider"
               >
-                080-48531909
+                080-46531999
               </a>
-              <span className="text-white/40">|</span>
+
+              <span className="text-white/30 mx-1.5">|</span>
+
+              {/* WhatsApp Icon */}
+              <svg className="w-3.5 h-3.5 fill-current text-white/90 shrink-0" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.586 1.83.899 2.796.899 3.183 0 5.769-2.586 5.77-5.766.001-3.18-2.585-5.766-5.77-5.766zm3.385 8.163c-.143.402-.832.748-1.161.797-.306.046-.693.076-2.18-.541-1.897-.788-3.116-2.73-3.21-2.857-.095-.127-.768-1.021-.768-1.947 0-.927.487-1.381.66-1.571.173-.19.378-.238.504-.238.127 0 .254.002.365.007.117.006.273-.044.427.327.159.381.54 1.317.587 1.412.048.096.079.207.016.334-.064.127-.096.206-.191.317-.095.111-.2.248-.286.334-.095.095-.195.198-.083.39.111.191.494.814 1.059 1.318.729.649 1.343.85 1.534.945.191.095.302.079.413-.048.111-.127.476-.556.603-.746.127-.19.254-.159.428-.095.175.063 1.111.524 1.302.619.19.095.317.143.365.222.048.079.048.46-.095.862z" />
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.965-1.397A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.25c-1.637 0-3.167-.47-4.464-1.282l-.32-.2-3.272.921.936-3.2-.213-.339A8.212 8.212 0 0 1 3.75 12c0-4.549 3.701-8.25 8.25-8.25 4.549 0 8.25 3.701 8.25 8.25 0 4.549-3.701 8.25-8.25 8.25z" />
+              </svg>
               <a
                 href="tel:8310782820"
-                className="hover:text-white transition-colors duration-200"
+                className="hover:text-white transition-colors duration-200 tracking-wider"
               >
                 8310782820
               </a>
             </div>
 
+            {/* Book Appointment CTA Button */}
             <Button
               variant="primary"
               size="sm"
               withArrow
               onClick={onOpenBooking}
-              className="shadow-sm"
+              className="!px-5 !py-2.5 !text-[13px] bg-[#E8329D] hover:bg-[#D91A8A] shadow-[0_8px_20px_-5px_rgba(232,50,157,0.55)] cursor-pointer"
             >
               Book Appointment
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex sm:hidden items-center gap-3">
+          {/* Mobile Menu & Quick Book Button */}
+          <div className="flex lg:hidden items-center gap-3">
             <button
               type="button"
               onClick={onOpenBooking}
-              className="text-xs bg-[#D91A8A] text-white px-3.5 py-1.5 rounded-full font-medium active:scale-95 transition-transform"
+              className="text-xs bg-[#E8329D] hover:bg-[#D91A8A] text-white px-3.5 py-1.5 rounded-full font-medium active:scale-95 transition-transform"
             >
               Book
             </button>
@@ -138,11 +159,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -175,7 +192,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             <div className="flex items-center gap-3 text-sm text-white/80">
               <Phone className="w-4 h-4 text-[#F06AB9]" />
               <div className="flex flex-col">
-                <a href="tel:08048531909">080-48531909</a>
+                <a href="tel:08046531999">080-46531999</a>
                 <a href="tel:8310782820">8310782820</a>
               </div>
             </div>
@@ -188,7 +205,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                 setMobileMenuOpen(false);
                 onOpenBooking();
               }}
-              className="w-full justify-center"
+              className="w-full justify-center bg-[#E8329D]"
             >
               Book Appointment Now
             </Button>
