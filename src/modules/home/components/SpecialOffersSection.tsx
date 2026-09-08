@@ -42,7 +42,7 @@ export const SpecialOffersSection: React.FC<SpecialOffersProps> = ({ onOpenBooki
       <Container className="relative z-20 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           {/* Left Editorial Content */}
-          <div className="w-full lg:max-w-[540px] xl:max-w-[580px] text-left py-6 lg:py-12">
+          <div className="w-full lg:max-w-[540px] xl:max-w-[580px] text-left pt-6 pb-4 sm:pb-5 lg:py-12">
             <p className="text-xs sm:text-[13px] font-semibold tracking-[0.28em] uppercase text-[#F8C1DE] mb-2 sm:mb-3">
               SPECIAL OFFERS
             </p>
@@ -52,7 +52,7 @@ export const SpecialOffersSection: React.FC<SpecialOffersProps> = ({ onOpenBooki
             </h2>
 
             {/* Tags Ribbon */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-white/90 font-light mb-6 sm:mb-8">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-white/90 font-light mb-5 sm:mb-8">
               {offerTags.map((tag, index) => (
                 <React.Fragment key={tag}>
                   <span className="hover:text-white transition-colors">
@@ -91,20 +91,18 @@ export const SpecialOffersSection: React.FC<SpecialOffersProps> = ({ onOpenBooki
           </div>
         </div>
 
-        {/* Mobile-only model view */}
-        <div className="md:hidden relative w-full h-[220px] sm:h-[260px] mt-2 overflow-hidden pointer-events-none select-none">
+        {/* Mobile-only model view — script left, model right, no empty void */}
+        <div className="md:hidden relative w-full h-[170px] sm:h-[200px] overflow-hidden pointer-events-none select-none">
           <img
             src="/images/home/special_offer_image.webp"
             alt="VV Studio Special Offers"
-            className="absolute bottom-0 right-0 h-full w-auto object-contain object-right-bottom"
+            className="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain object-right-bottom"
           />
-          <div className="absolute top-2 right-2 text-right">
-            <p className="font-script text-2xl text-white/90 leading-tight drop-shadow-md">
-              Because <br />
-              <span className="text-[#F8C1DE]">You Deserve</span> <br />
-              More
-            </p>
-          </div>
+          <p className="absolute left-1 top-1/2 -translate-y-1/2 font-script text-[26px] sm:text-3xl text-white/90 leading-[1.15] drop-shadow-md">
+            Because <br />
+            <span className="text-[#F8C1DE]">You Deserve</span> <br />
+            More
+          </p>
         </div>
       </Container>
     </section>

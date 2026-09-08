@@ -147,10 +147,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
           className="absolute bottom-0 left-1/2 -translate-x-1/2 h-full w-auto max-w-none object-contain object-bottom"
         />
         <div
-          className="absolute top-[6%] right-4 rotate-[5deg] pointer-events-none select-none text-right"
+          className="absolute top-[8%] left-4 rotate-[-4deg] pointer-events-none select-none text-left"
           aria-hidden="true"
         >
-          <p className="font-script text-3xl text-white/95 leading-[1.1] drop-shadow-[0_3px_12px_rgba(0,0,0,0.7)]">
+          <p className="font-script text-2xl sm:text-3xl text-white/95 leading-[1.1] drop-shadow-[0_3px_12px_rgba(0,0,0,0.7)]">
             Look Good <br />
             <span className="text-[#F8C1DE]">Feel Good</span> <br />
             Be You
