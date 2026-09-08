@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Container } from '@/components/ui/Container';
 
 interface HeroProps {
   onOpenBooking: () => void;
@@ -42,7 +43,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
       </button>
 
       {/* Main Grid Content */}
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full h-full flex flex-col lg:flex-row items-center justify-between z-20">
+      <Container className="relative w-full h-full flex flex-col lg:flex-row items-center justify-between z-20">
         {/* Left Editorial Content */}
         <div className="w-full lg:w-[55%] pt-4 lg:pt-14 text-left">
           {/* Eyebrow */}
@@ -154,7 +155,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
             </p>
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Carousel Dots Indicators at Bottom */}
       <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sparkles, Gift } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
 
 interface SpecialOffersProps {
   onOpenBooking: () => void;
@@ -26,7 +27,7 @@ export const SpecialOffersSection: React.FC<SpecialOffersProps> = ({ onOpenBooki
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 z-10">
+      <Container className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Offer Details */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
@@ -101,7 +102,7 @@ export const SpecialOffersSection: React.FC<SpecialOffersProps> = ({ onOpenBooki
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

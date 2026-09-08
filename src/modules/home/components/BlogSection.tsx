@@ -1,5 +1,6 @@
 import React from 'react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { Container } from '@/components/ui/Container';
 import { BlogCard } from './BlogCard';
 import { BLOG_DATA } from '@/data/salonData';
 
@@ -10,7 +11,7 @@ interface BlogSectionProps {
 export const BlogSection: React.FC<BlogSectionProps> = ({ onOpenBooking }) => {
   return (
     <section id="blog" className="py-16 sm:py-20 lg:py-24 bg-[#FAF7F9] relative">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+      <Container>
         <SectionHeading
           eyebrow="OUR BLOG"
           title="Beauty Tips, Trends & More"
@@ -25,7 +26,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onOpenBooking }) => {
             <BlogCard key={blog.id} blog={blog} />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

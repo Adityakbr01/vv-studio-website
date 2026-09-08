@@ -1,5 +1,6 @@
 import React from 'react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { Container } from '@/components/ui/Container';
 import { ServiceCard } from './ServiceCard';
 import { SERVICES_DATA, type ServiceItem } from '@/data/salonData';
 
@@ -14,7 +15,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 }) => {
   return (
     <section id="services" className="py-16 sm:py-20 lg:py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+      <Container>
         <SectionHeading
           eyebrow="OUR SERVICES"
           title="Beauty Services for Every You"
@@ -33,7 +34,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

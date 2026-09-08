@@ -8,6 +8,7 @@ import {
   Navigation,
 } from 'lucide-react';
 import { Logo } from './Logo';
+import { Container } from '@/components/ui/Container';
 import { CONTACT_INFO } from '@/data/salonData';
 
 export const Footer: React.FC = () => {
@@ -31,7 +32,7 @@ export const Footer: React.FC = () => {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 z-10">
+      <Container className="relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-white/10">
           {/* Column 1: Logo & Socials (4 cols) */}
           <div className="lg:col-span-4 flex flex-col justify-between">
@@ -206,7 +207,7 @@ export const Footer: React.FC = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };

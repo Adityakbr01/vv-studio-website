@@ -1,6 +1,7 @@
 import React from 'react';
 import { Trophy, Users, Gem } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
 
 interface AboutSectionProps {
   onOpenBooking: () => void;
@@ -9,7 +10,7 @@ interface AboutSectionProps {
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => {
   return (
     <section id="about" className="py-16 sm:py-20 lg:py-28 bg-[#FAF7F9] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+      <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Brand Story & Philosophy */}
           <div className="lg:col-span-6 flex flex-col justify-center">
@@ -32,9 +33,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
               <p>
                 Our master artisans and licensed aestheticians offer a comprehensive sanctuary of hair, skin, and bridal rituals using the world’s finest dermatological formulations and tailored attention.
               </p>
-              <p>
-                Step into a serene space designed to slow down time, revitalize your glow, and celebrate the unique elegance that is unmistakably you.
-              </p>
+
             </div>
 
             {/* CTA Button */}
@@ -91,20 +90,14 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
 
           {/* Right Column: 3-Image Collage */}
           <div className="lg:col-span-6 grid grid-cols-12 gap-3 sm:gap-4">
-            {/* Main Salon Reception with Neon Glow Sign ("Beauty Self Care Happiness") */}
+            {/* Main Salon Reception with Real Neon Glow Sign ("Beauty Self Care Happiness") */}
             <div className="col-span-7 relative rounded-2xl overflow-hidden shadow-card border border-[#E8DCE5] group aspect-[4/5] sm:aspect-auto sm:h-full">
               <img
-                src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=85"
-                alt="VV Studio modern salon reception and ambience"
+                src="/images/home/about_salon_reception.png"
+                alt="VV Studio modern salon reception and lounge"
                 className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              {/* Neon Glow Sign Overlay Representation */}
-              <div className="absolute top-4 left-4 right-4 bg-[#3D003D]/75 backdrop-blur-md rounded-xl p-3 border border-[#F06AB9]/30 text-center shadow-lg">
-                <p className="font-serif italic text-white text-xs sm:text-sm tracking-wider drop-shadow-[0_0_8px_rgba(232,50,157,0.8)]">
-                  Beauty • Self Care • Happiness
-                </p>
-              </div>
-              <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-xs px-3 py-1 rounded-full text-[11px] font-medium text-[#3D003D]">
+              <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-xs px-3 py-1 rounded-full text-[11px] font-medium text-[#3D003D] shadow-xs">
                 VV Studio Lounge
               </div>
             </div>
@@ -114,7 +107,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
               {/* Top: Facial Treatment */}
               <div className="relative rounded-2xl overflow-hidden shadow-card border border-[#E8DCE5] aspect-square group">
                 <img
-                  src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80"
+                  src="/images/home/about_facial_treatment.png"
                   alt="Dermatological facial renewal at VV Studio"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
@@ -126,7 +119,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
               {/* Bottom: Dimensional Hair Styling */}
               <div className="relative rounded-2xl overflow-hidden shadow-card border border-[#E8DCE5] aspect-square group">
                 <img
-                  src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80"
+                  src="/images/home/about_hair_styling.png"
                   alt="Glossy balayage waves hairstyle at VV Studio"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
@@ -137,7 +130,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

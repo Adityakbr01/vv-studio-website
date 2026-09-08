@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
 
 interface CTABannerProps {
   onOpenBooking: () => void;
@@ -19,7 +20,7 @@ export const CTABanner: React.FC<CTABannerProps> = ({ onOpenBooking }) => {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 z-10">
+      <Container className="relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
           {/* Left: Icon & Headline */}
           <div className="flex flex-col sm:flex-row items-center gap-5 max-w-2xl">
@@ -54,7 +55,7 @@ export const CTABanner: React.FC<CTABannerProps> = ({ onOpenBooking }) => {
             </Button>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

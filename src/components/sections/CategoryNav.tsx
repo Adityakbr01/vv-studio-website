@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sparkles, Scissors, Feather, Crown, HeartHandshake, Droplets } from 'lucide-react';
+import { Container } from '@/components/ui/Container';
 import { CATEGORIES_DATA } from '@/data/salonData';
 
 interface CategoryNavProps {
@@ -35,7 +36,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
       aria-label="Salon Service Categories"
       className="relative z-20 bg-white border-y border-[#E8DCE5] shadow-[0_4px_25px_rgba(61,0,61,0.03)]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Container>
         <div className="flex items-center justify-between overflow-x-auto no-scrollbar py-4 sm:py-6 gap-6 sm:gap-8">
           {CATEGORIES_DATA.map((cat) => {
             const isActive = activeCategory === cat.id;
@@ -75,7 +76,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
             );
           })}
         </div>
-      </div>
+      </Container>
     </nav>
   );
 };

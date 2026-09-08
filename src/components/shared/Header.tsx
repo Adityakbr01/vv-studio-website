@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
 
 interface HeaderProps {
   onOpenBooking: () => void;
@@ -65,13 +66,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed top-0 left-0 py-5 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#3D003D]/95 backdrop-blur-md py-3.5 shadow-[0_4px_25px_rgba(0,0,0,0.3)] border-b border-white/10'
-          : 'bg-transparent py-5 sm:py-6'
+          ? 'bg-[#3D003D]/95 backdrop-blur-md  shadow-[0_4px_25px_rgba(0,0,0,0.3)]'
+          : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <Container>
         <div className="flex items-center justify-between">
           {/* Brand Logo */}
           <Logo theme="dark" size="md" />
@@ -95,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                   <span>{link.name}</span>
                   {/* Pink underline active indicator matching reference */}
                   <span
-                    className={`absolute -bottom-1 left-0 right-0 h-[2px] bg-[#E8329D] rounded-full transition-all duration-300 ${
+                    className={`absolute bottom-[-2px] left-0 right-0 h-[2px] bg-[#E8329D] rounded-full transition-all duration-300 ${
                       isHomeActive ? 'opacity-100' : 'opacity-0 hover:opacity-100'
                     }`}
                   />
@@ -163,7 +164,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             </button>
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (

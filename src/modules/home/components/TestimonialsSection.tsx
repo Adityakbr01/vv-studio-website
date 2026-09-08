@@ -1,5 +1,6 @@
 import React from 'react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { Container } from '@/components/ui/Container';
 import { TestimonialCard } from './TestimonialCard';
 import { TESTIMONIALS_DATA } from '@/data/salonData';
 
@@ -10,7 +11,7 @@ interface TestimonialsSectionProps {
 export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onOpenBooking }) => {
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+      <Container>
         <SectionHeading
           eyebrow="TESTIMONIALS"
           title="What Our Clients Say"
@@ -25,7 +26,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onOpen
             <TestimonialCard key={item.id} testimonial={item} />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

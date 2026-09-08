@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Container } from '@/components/ui/Container';
 
 interface HeroProps {
   onOpenBooking: () => void;
@@ -10,7 +11,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
   return (
     <section
       id="home"
-      className="relative bg-[#3D003D] text-white overflow-hidden pt-[104px] lg:pt-[92px] pb-0 lg:h-[600px] xl:h-[630px] flex flex-col lg:block"
+      className="relative bg-[#3D003D] text-white overflow-hidden pt-[104px] lg:pt-[92px] pb-0 lg:h-[600px] xl:h-[610px] flex flex-col lg:block"
       style={{
         background: `radial-gradient(circle at 72% 42%, rgba(217, 26, 138, 0.45) 0%, rgba(104, 0, 95, 0.3) 35%, transparent 68%),
                      radial-gradient(circle at 18% 65%, rgba(133, 0, 111, 0.35) 0%, transparent 55%),
@@ -19,11 +20,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
     >
       {/* Background Diamond Geometry — parked behind the model, clear of the headline */}
       <div
-        className="absolute left-[62%] lg:left-[64%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] sm:w-[480px] lg:w-[560px] aspect-square rotate-45 border border-white/[0.07] bg-gradient-to-br from-white/[0.05] via-[#D91A8A]/[0.07] to-transparent pointer-events-none rounded-3xl"
+        className="absolute left-[62%] lg:left-[84%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] sm:w-[480px] lg:w-[560px] aspect-square rotate-45 border border-white/[0.07] bg-gradient-to-br from-white/[0.05] via-[#D91A8A]/[0.07] to-transparent pointer-events-none rounded-3xl"
         aria-hidden="true"
       />
       <div
-        className="absolute left-[62%] lg:left-[64%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] sm:w-[350px] lg:w-[420px] aspect-square rotate-45 border border-[#F06AB9]/10 bg-white/[0.02] pointer-events-none rounded-2xl"
+        className="absolute left-[62%] lg:left-[74%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] sm:w-[350px] lg:w-[420px] aspect-square rotate-45 border border-[#F06AB9]/10 bg-white/[0.02] pointer-events-none rounded-2xl"
         aria-hidden="true"
       />
       {/* Soft full-bleed readability shade for the left copy — no hard stops, no seam */}
@@ -47,24 +48,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
           src="/images/home/home_top_banner.webp"
           alt=""
           draggable={false}
-          className="absolute bottom-0 right-0 h-[88%] w-auto max-w-none object-contain object-right-bottom"
+          className="absolute bottom-0 right-0 h-[85%] w-auto max-w-none object-contain object-right-bottom"
         />
       </div>
 
-      {/* Desktop floating script — docked right of the face, not over it */}
-      <div
-        className="hidden lg:block absolute right-[3.5%] xl:right-[4.5%] top-[34%] z-20 rotate-[5deg] pointer-events-none select-none text-right"
-        aria-hidden="true"
-      >
-        <p className="font-script text-[40px] xl:text-[44px] text-white/95 leading-[1.12] drop-shadow-[0_3px_12px_rgba(0,0,0,0.7)]">
-          Look Good <br />
-          <span className="text-[#F8C1DE]">Feel Good</span> <br />
-          Be You
-        </p>
-      </div>
-
       {/* Main Content */}
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full z-20 flex-1 flex flex-col justify-center lg:h-full lg:pb-10">
+      <Container className="relative w-full z-20 flex-1 flex flex-col justify-center lg:h-full lg:pb-10">
         <div className="w-full lg:max-w-[560px] pt-6 lg:pt-8 text-left">
           {/* Eyebrow */}
           <p className="text-xs sm:text-[13px] font-semibold tracking-[0.3em] uppercase text-[#F8C1DE] mb-3 sm:mb-4">
@@ -147,7 +136,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
             </div>
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Mobile model — fixed height strip pinned to bottom, no float gap */}
       <div className="lg:hidden relative w-full h-[300px] sm:h-[360px] mt-8 overflow-hidden pointer-events-none select-none">
