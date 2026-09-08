@@ -10,7 +10,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onSelect }) =
   return (
     <article
       onClick={() => onSelect(service)}
-      className="group cursor-pointer bg-white rounded-[12px] overflow-hidden border border-[#F1E4EE] shadow-[0_2px_14px_rgba(90,20,80,0.08)] hover:shadow-[0_10px_28px_rgba(90,20,80,0.14)] hover:-translate-y-1 transition-all duration-300 text-center flex flex-col"
+      className="group cursor-pointer bg-white rounded-[12px] overflow-hidden border border-[#F1E4EE] shadow-[0_2px_14px_rgba(90,20,80,0.08)] hover:shadow-[0_10px_28px_rgba(90,20,80,0.14)] hover:-translate-y-1 transition-all duration-300 text-center flex flex-col h-full"
     >
       {/* Image — square-ish top, rounded via card overflow */}
       <div className="relative aspect-square w-full overflow-hidden bg-[#FAF0F6]">

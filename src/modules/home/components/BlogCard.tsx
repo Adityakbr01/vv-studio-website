@@ -9,7 +9,7 @@ interface BlogCardProps {
 
 export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   return (
-    <article className="group flex flex-col bg-white rounded-[14px] border border-[#F1E4EE] shadow-[0_2px_14px_rgba(90,20,80,0.08)] hover:shadow-[0_10px_28px_rgba(90,20,80,0.14)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+    <article className="group flex flex-col h-full bg-white rounded-[14px] border border-[#F1E4EE] shadow-[0_2px_14px_rgba(90,20,80,0.08)] hover:shadow-[0_10px_28px_rgba(90,20,80,0.14)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
       {/* Image — flush top, rounded via card overflow */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#FAF0F6]">
         <img

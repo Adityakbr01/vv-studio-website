@@ -144,6 +144,26 @@ export const SERVICES_DATA: ServiceItem[] = [
     duration: '90 - 150 min',
     startingPrice: '₹2,499',
   },
+  {
+    id: 'luxury-spa-rituals',
+    title: 'Luxury Spa Rituals',
+    tagline: 'Soothe. Unwind. Glow.',
+    description: 'Aromatherapy full-body rituals, deep-tissue release therapy, rose-quartz glow facials and detoxifying steam sessions.',
+    image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80',
+    category: 'Spa Retreat',
+    duration: '60 - 120 min',
+    startingPrice: '₹1,999',
+  },
+  {
+    id: 'party-makeup',
+    title: 'Party Makeup',
+    tagline: 'Glam for Every Evening.',
+    description: 'Soft-glam to full-glam party looks with premium waterproof palettes, lash artistry and long-wear luminous finishing.',
+    image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80',
+    category: 'Glam Studio',
+    duration: '45 - 90 min',
+    startingPrice: '₹1,499',
+  },
 ];
 
 export const GALLERY_DATA: GalleryItem[] = [
@@ -189,6 +209,20 @@ export const GALLERY_DATA: GalleryItem[] = [
     image: '/images/gallery/gallery_bridal_glam.webp',
     aspect: 'aspect-[4/5]',
   },
+  {
+    id: 'gallery-7',
+    title: 'Signature Salon Interiors',
+    category: 'Salon Interior',
+    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80',
+    aspect: 'aspect-[4/5]',
+  },
+  {
+    id: 'gallery-8',
+    title: 'Gloss Manicure Artistry',
+    category: 'Nail Lounge',
+    image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=800&q=80',
+    aspect: 'aspect-[4/5]',
+  },
 ];
 
 export const TESTIMONIALS_DATA: TestimonialItem[] = [
@@ -219,6 +253,33 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
     treatment: 'Bridal Makeover Package',
     quote: 'Best salon in JP Nagar! From facials to hair care, everything is top notch. They made me feel like royalty on my wedding day. Truly worth every penny!',
   },
+  {
+    id: 'test-4',
+    name: 'Divya K.',
+    location: 'Whitefield, Bangalore',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80',
+    rating: 5,
+    treatment: 'Luxury Spa Ritual',
+    quote: 'The most relaxing spa hour I have had in years. Calm ambience, skilled therapists and the aromatherapy massage melted all my stress away.',
+  },
+  {
+    id: 'test-5',
+    name: 'Meera J.',
+    location: 'HSR Layout, Bangalore',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80',
+    rating: 5,
+    treatment: 'Party Makeup',
+    quote: 'My party makeup lasted all night and photographed beautifully. The artist understood exactly the soft-glam look I wanted.',
+  },
+  {
+    id: 'test-6',
+    name: 'Kavya N.',
+    location: 'Koramangala, Bangalore',
+    avatar: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?auto=format&fit=crop&w=200&q=80',
+    rating: 5,
+    treatment: 'Keratin Treatment',
+    quote: 'Frizzy to silky smooth in one sitting! Genuine products, transparent pricing and zero waiting time. My go-to salon from now on.',
+  },
 ];
 
 export const BLOG_DATA: BlogItem[] = [
@@ -248,6 +309,33 @@ export const BLOG_DATA: BlogItem[] = [
     date: 'April 15, 2024',
     excerpt: 'Your complete month-by-month countdown guide to looking effortlessly radiant on your special day.',
     image: '/images/blog/blog_bridal_checklist.webp',
+  },
+  {
+    id: 'blog-4',
+    title: 'Monsoon Hair Rescue Guide',
+    category: 'Hair Care',
+    readTime: '5 min read',
+    date: 'March 30, 2024',
+    excerpt: 'Fight frizz, dampness and hair fall with our stylist-approved rainy season rescue routine.',
+    image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 'blog-5',
+    title: 'Everyday Makeup Essentials',
+    category: 'Makeup',
+    readTime: '4 min read',
+    date: 'March 18, 2024',
+    excerpt: 'Five multitasking products for a fresh five-minute face that lasts through your workday.',
+    image: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 'blog-6',
+    title: 'At-Home Spa Night Ritual',
+    category: 'Wellness',
+    readTime: '6 min read',
+    date: 'March 02, 2024',
+    excerpt: 'Recreate the VV Studio calm at home with candles, oils and our step-by-step unwind ritual.',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
   },
 ];
 

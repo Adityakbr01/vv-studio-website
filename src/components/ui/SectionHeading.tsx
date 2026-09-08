@@ -9,6 +9,7 @@ export interface SectionHeadingProps {
   actionText?: string;
   actionHref?: string;
   onActionClick?: () => void;
+  controls?: React.ReactNode;
   centered?: boolean;
   theme?: 'light' | 'dark';
   className?: string;
@@ -21,6 +22,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   actionText,
   actionHref,
   onActionClick,
+  controls,
   centered = false,
   theme = 'light',
   className = '',
@@ -61,33 +63,35 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         )}
       </div>
 
-      {actionText && (
-        <div className={`shrink-0 ${centered ? 'mt-2' : 'md:pb-1'}`}>
-          {actionHref ? (
-            <Link
-              to={actionHref}
-              className={`group inline-flex items-center gap-1 text-[13px] font-semibold transition-colors duration-200 ${
-                isDark
-                  ? 'text-[#F8C1DE] hover:text-white'
-                  : 'text-[#D91A8A] hover:text-[#A80086]'
-              }`}
-            >
-              <span>{actionText}</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          ) : (
-            <button
-              onClick={onActionClick}
-              className={`group inline-flex items-center gap-1 text-[13px] font-semibold transition-colors duration-200 cursor-pointer ${
-                isDark
-                  ? 'text-[#F8C1DE] hover:text-white'
-                  : 'text-[#D91A8A] hover:text-[#A80086]'
-              }`}
-            >
-              <span>{actionText}</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
-          )}
+      {(actionText || controls) && (
+        <div className={`shrink-0 flex items-center gap-3 ${centered ? 'mt-2' : 'md:pb-1'}`}>
+          {actionText &&
+            (actionHref ? (
+              <Link
+                to={actionHref}
+                className={`group inline-flex items-center gap-1 text-[13px] font-semibold transition-colors duration-200 ${
+                  isDark
+                    ? 'text-[#F8C1DE] hover:text-white'
+                    : 'text-[#D91A8A] hover:text-[#A80086]'
+                }`}
+              >
+                <span>{actionText}</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            ) : (
+              <button
+                onClick={onActionClick}
+                className={`group inline-flex items-center gap-1 text-[13px] font-semibold transition-colors duration-200 cursor-pointer ${
+                  isDark
+                    ? 'text-[#F8C1DE] hover:text-white'
+                    : 'text-[#D91A8A] hover:text-[#A80086]'
+                }`}
+              >
+                <span>{actionText}</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+            ))}
+          {controls}
         </div>
       )}
     </div>
