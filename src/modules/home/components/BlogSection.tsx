@@ -43,6 +43,8 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onOpenBooking }) => {
         <Carousel
           ref={carouselRef}
           ariaLabel="Blog posts carousel"
+          autoplay
+          autoplayDelay={4000}
           onStateChange={setCarouselState}
           trackClassName="gap-6 sm:gap-7 pb-1"
           slideClassName="basis-[85%] sm:basis-[calc(50%-14px)] md:basis-[calc(33.3333%-18.6667px)]"

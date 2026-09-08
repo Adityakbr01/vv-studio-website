@@ -42,18 +42,46 @@ function statesEqual(a: CarouselState, b: CarouselState) {
   return a.canPrev === b.canPrev && a.canNext === b.canNext && a.page === b.page && a.pages === b.pages;
 }
 
-/** Real snap-stop positions: every slide start, clamped to max scroll, deduplicated. */
-function getSnapPositions(el: HTMLElement): { positions: number[]; maxScroll: number } {
-  const maxScroll = Math.max(0, el.scrollWidth - el.clientWidth);
-  const positions: number[] = [];
-  Array.from(el.children).forEach((child) => {
-    const p = Math.min((child as HTMLElement).offsetLeft, maxScroll);
-    if (positions.length === 0 || p - positions[positions.length - 1] > EPS) {
-      positions.push(p);
+interface CarouselLayout {
+  /** Exact scroll targets — slide starts plus the end, merged when too close. */
+  positions: number[];
+}
+
+/** Page stops: advance ~one viewport of slides at a time, always landing on a slide start. */
+function getLayout(el: HTMLElement): CarouselLayout {
+  const kids = Array.from(el.children) as HTMLElement[];
+  const W = el.clientWidth;
+  const maxScroll = Math.max(0, el.scrollWidth - W);
+  if (kids.length === 0 || W === 0 || maxScroll <= EPS) return { positions: [0] };
+  const starts = kids.map((k) => k.offsetLeft);
+  const pitch = kids.length > 1 ? Math.max(1, starts[1] - starts[0]) : W;
+  const spv = Math.max(1, Math.round(W / pitch)); // slides per view
+  const positions = [0];
+  let idx = 0;
+  while (idx + spv < kids.length) {
+    idx += spv;
+    positions.push(Math.min(starts[idx], maxScroll));
+  }
+  const last = positions[positions.length - 1];
+  if (last < maxScroll - EPS) {
+    // Merge when the tail is a sliver, otherwise append the true end.
+    if (maxScroll - last < W * 0.3) positions[positions.length - 1] = maxScroll;
+    else positions.push(maxScroll);
+  }
+  return { positions };
+}
+
+function activePage(el: HTMLElement, positions: number[]): number {
+  let page = 0;
+  let best = Infinity;
+  positions.forEach((p, i) => {
+    const d = Math.abs(p - el.scrollLeft);
+    if (d < best) {
+      best = d;
+      page = i;
     }
   });
-  if (positions.length === 0) positions.push(0);
-  return { positions, maxScroll };
+  return page;
 }
 
 export const Carousel = forwardRef<CarouselHandle, CarouselProps>(function Carousel(
@@ -63,7 +91,7 @@ export const Carousel = forwardRef<CarouselHandle, CarouselProps>(function Carou
     trackClassName,
     ariaLabel = 'Carousel',
     autoplay = false,
-    autoplayDelay = 4500,
+    autoplayDelay = 4000,
     showDots = true,
     onStateChange,
     className,
@@ -72,23 +100,26 @@ export const Carousel = forwardRef<CarouselHandle, CarouselProps>(function Carou
 ) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
+  const [navTick, setNavTick] = useState(0);
   const [state, setState] = useState<CarouselState>(INITIAL_STATE);
   const slideCount = React.Children.count(children);
+
+  const pauseAuto = useCallback(() => {
+    pausedRef.current = true;
+  }, []);
+
+  const resumeAuto = useCallback(() => {
+    pausedRef.current = false;
+  }, []);
 
   const measure = useCallback(() => {
     const el = viewportRef.current;
     if (!el || el.clientWidth === 0) return;
-    const { positions, maxScroll } = getSnapPositions(el);
-    const lastChild = el.children[el.children.length - 1] as HTMLElement | undefined;
-    const slideW = lastChild ? lastChild.getBoundingClientRect().width : el.clientWidth;
-    const threshold = Math.min(slideW * 0.35, el.clientWidth * 0.25);
-    let page = 0;
-    positions.forEach((p, i) => {
-      if (p <= el.scrollLeft + threshold + EPS) page = i;
-    });
+    const { positions } = getLayout(el);
+    const page = activePage(el, positions);
     const next: CarouselState = {
-      canPrev: el.scrollLeft > EPS,
-      canNext: el.scrollLeft < maxScroll - EPS,
+      canPrev: page > 0,
+      canNext: page < positions.length - 1,
       page,
       pages: positions.length,
     };
@@ -123,48 +154,56 @@ export const Carousel = forwardRef<CarouselHandle, CarouselProps>(function Carou
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [measure, slideCount]);
 
-  const step = useCallback((dir: 1 | -1) => {
+  const goTo = useCallback((page: number) => {
     const el = viewportRef.current;
     if (!el) return;
-    const { positions, maxScroll } = getSnapPositions(el);
-    const sl = el.scrollLeft;
-    let target: number;
-    if (dir > 0) {
-      target = positions.find((p) => p > sl + EPS) ?? maxScroll;
-    } else {
-      target = [...positions].reverse().find((p) => p < sl - EPS) ?? 0;
-    }
-    el.scrollTo({ left: target, behavior: 'smooth' });
-  }, []);
-
-  const scrollPrev = useCallback(() => step(-1), [step]);
-  const scrollNext = useCallback(() => step(1), [step]);
-
-  const scrollToPage = useCallback((page: number) => {
-    const el = viewportRef.current;
-    if (!el) return;
-    const { positions } = getSnapPositions(el);
+    const { positions } = getLayout(el);
     const target = positions[Math.max(0, Math.min(positions.length - 1, page))] ?? 0;
     el.scrollTo({ left: target, behavior: 'smooth' });
   }, []);
 
+  const step = useCallback(
+    (dir: 1 | -1) => {
+      const el = viewportRef.current;
+      if (!el) return;
+      const { positions } = getLayout(el);
+      const page = activePage(el, positions);
+      goTo(page + dir);
+    },
+    [goTo]
+  );
+
+  const scrollPrev = useCallback(() => {
+    setNavTick((n) => n + 1);
+    step(-1);
+  }, [step]);
+  const scrollNext = useCallback(() => {
+    setNavTick((n) => n + 1);
+    step(1);
+  }, [step]);
+  const scrollToPage = useCallback(
+    (page: number) => {
+      setNavTick((n) => n + 1);
+      goTo(page);
+    },
+    [goTo]
+  );
+
   useImperativeHandle(ref, () => ({ scrollPrev, scrollNext, scrollToPage }), [scrollPrev, scrollNext, scrollToPage]);
 
-  // Autoplay with rewind, paused on hover/touch, respects reduced motion
+  // Autoplay: advance a full page, rewind to start at the end. Paused on hover/touch.
   useEffect(() => {
     if (!autoplay) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const id = window.setInterval(() => {
       const el = viewportRef.current;
       if (!el || pausedRef.current || document.hidden) return;
-      if (el.scrollLeft >= el.scrollWidth - el.clientWidth - EPS) {
-        el.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        step(1);
-      }
+      const { positions } = getLayout(el);
+      const page = activePage(el, positions);
+      goTo(page >= positions.length - 1 ? 0 : page + 1);
     }, autoplayDelay);
     return () => window.clearInterval(id);
-  }, [autoplay, autoplayDelay, step]);
+  }, [autoplay, autoplayDelay, goTo, navTick]);
 
   return (
     <div className={className}>
@@ -174,10 +213,11 @@ export const Carousel = forwardRef<CarouselHandle, CarouselProps>(function Carou
         aria-roledescription="carousel"
         aria-label={ariaLabel}
         tabIndex={0}
-        onPointerEnter={() => (pausedRef.current = true)}
-        onPointerLeave={() => (pausedRef.current = false)}
-        onPointerDown={() => (pausedRef.current = true)}
-        onPointerUp={() => (pausedRef.current = false)}
+        onPointerEnter={pauseAuto}
+        onPointerLeave={resumeAuto}
+        onPointerDown={pauseAuto}
+        onPointerUp={resumeAuto}
+        onPointerCancel={resumeAuto}
         className={cn(
           'relative flex overflow-x-auto no-scrollbar snap-x snap-mandatory overscroll-x-contain focus:outline-none',
           trackClassName ?? 'gap-3 sm:gap-4'

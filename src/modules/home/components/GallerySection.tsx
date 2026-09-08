@@ -41,6 +41,8 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking })
         <Carousel
           ref={carouselRef}
           ariaLabel="Gallery carousel"
+          autoplay
+          autoplayDelay={4000}
           onStateChange={setCarouselState}
           trackClassName="gap-2.5 sm:gap-3.5 pb-1"
           slideClassName="basis-[calc(33.3333%-6.6667px)] sm:basis-[calc(33.3333%-9.3333px)] lg:basis-[calc(16.6667%-11.6667px)]"

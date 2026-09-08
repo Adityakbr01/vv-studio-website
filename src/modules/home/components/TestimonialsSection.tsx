@@ -43,7 +43,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onOpen
           ref={carouselRef}
           ariaLabel="Client testimonials carousel"
           autoplay
-          autoplayDelay={4500}
+          autoplayDelay={4000}
           onStateChange={setCarouselState}
           trackClassName="gap-6 md:gap-10 pb-1"
           slideClassName="basis-[85%] sm:basis-[calc(50%-12px)] md:basis-[calc(33.3333%-26.6667px)]"

@@ -47,6 +47,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         <Carousel
           ref={carouselRef}
           ariaLabel="Beauty services carousel"
+          autoplay
+          autoplayDelay={4000}
           onStateChange={setCarouselState}
           trackClassName="gap-3 sm:gap-4 pb-1"
           slideClassName="basis-[calc(50%-6px)] sm:basis-[calc(33.3333%-10.6667px)] lg:basis-[calc(16.6667%-13.3333px)]"
