@@ -14,7 +14,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   onOpenBooking,
 }) => {
   return (
-    <section id="services" className="py-12 bg-white relative">
+    <section id="services" className="py-10 sm:py-14 bg-[#FDF5FA] relative">
       <Container>
         <SectionHeading
           eyebrow="OUR SERVICES"
@@ -24,8 +24,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           onActionClick={onOpenBooking}
         />
 
-        {/* 6 Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {/* 6 boxed service cards — matches reference */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
           {SERVICES_DATA.map((service) => (
             <ServiceCard
               key={service.id}

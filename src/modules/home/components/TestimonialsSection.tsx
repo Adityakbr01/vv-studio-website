@@ -10,18 +10,17 @@ interface TestimonialsSectionProps {
 
 export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onOpenBooking }) => {
   return (
-    <section className="py-12  bg-white relative">
+    <section className="py-10 sm:py-14 bg-white relative">
       <Container>
         <SectionHeading
           eyebrow="TESTIMONIALS"
           title="What Our Clients Say"
-          subtitle="Real experiences from women who trust VV Studio for their everyday pampering and special milestone moments."
           actionText="View More Reviews"
           onActionClick={onOpenBooking}
         />
 
-        {/* 3 Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        {/* 3 quotes row — matches design */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
           {TESTIMONIALS_DATA.map((item) => (
             <TestimonialCard key={item.id} testimonial={item} />
           ))}

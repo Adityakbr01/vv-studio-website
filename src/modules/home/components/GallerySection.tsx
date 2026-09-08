@@ -9,39 +9,28 @@ interface GallerySectionProps {
 
 export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking }) => {
   return (
-    <section id="gallery" className="py-12  bg-[#FAF7F9] relative">
+    <section id="gallery" className="py-10 sm:py-14 bg-white relative">
       <Container>
         <SectionHeading
           eyebrow="OUR GALLERY"
           title="Moments of Beauty"
-          subtitle="A glimpse into the artistry, transformations, and rejuvenating experiences crafted at VV Studio."
           actionText="View Full Gallery"
           onActionClick={onOpenBooking}
         />
 
-        {/* 6 Gallery Cards Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 lg:gap-5">
+        {/* 6 rounded thumbnails in one row — matches design */}
+        <div className="grid grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3.5">
           {GALLERY_DATA.map((item) => (
             <div
               key={item.id}
-              className="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-card border border-[#E8DCE5] bg-white cursor-pointer"
+              className="group relative aspect-[3/4] rounded-[12px] overflow-hidden bg-[#FAF0F6] cursor-pointer"
             >
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
+                className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="lazy"
               />
-
-              {/* Gradient Backdrop on Hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2B002B]/90 via-[#3D003D]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3.5">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#F8C1DE] mb-0.5">
-                  {item.category}
-                </span>
-                <h3 className="text-xs sm:text-sm font-display font-medium text-white leading-tight">
-                  {item.title}
-                </h3>
-              </div>
             </div>
           ))}
         </div>

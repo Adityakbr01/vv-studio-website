@@ -1,6 +1,5 @@
 import React from 'react';
-import { Trophy, Users, Gem } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Trophy, Users, Gem, ArrowRight } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 
 interface AboutSectionProps {
@@ -9,123 +8,115 @@ interface AboutSectionProps {
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => {
   return (
-    <section id="about" className="py-12  bg-[#FAF7F9] overflow-hidden">
+    <section id="about" className="py-10 sm:py-14 bg-[#FFFDFE] overflow-hidden">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Brand Story & Philosophy */}
-          <div className="lg:col-span-6 flex flex-col justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Column: Copy */}
+          <div className="flex flex-col justify-center">
             {/* Eyebrow */}
-            <p className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#A80086] mb-3">
-              ABOUT <span className="text-[#D91A8A] font-bold">VV</span> STUDIO
+            <p className="text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#D91A8A] mb-1.5">
+              ABOUT VV STUDIO
             </p>
 
-            {/* Serif Heading */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-medium text-[#2C182A] leading-[1.18] tracking-tight mb-6">
-              More Than Just a Salon, <br />
-              <span className="font-serif italic font-normal text-[#85006F]">A Place for You</span>
+            {/* Serif Heading — matches design */}
+            <h2 className="font-display text-[28px] sm:text-[36px] lg:text-[40px] font-semibold text-[#2D0A2E] leading-[1.15] tracking-tight mb-3">
+              More Than Just a<br />
+              Salon, A Place for You
             </h2>
 
-            {/* Editorial Copy */}
-            <div className="space-y-4 text-sm sm:text-base text-[#40363F] leading-relaxed mb-8">
+            {/* Body copy — matches design wording */}
+            <div className="space-y-3 text-[13px] sm:text-sm text-[#5E525C] leading-relaxed mb-5 max-w-xl">
               <p>
-                At <strong className="font-semibold text-[#2C182A]">VV Studio</strong>, we believe beauty is more than just appearance — it's about self-care, confidence and feeling your absolute best.
+                At VV Studio, we believe beauty is more than just appearance — it's about
+                self-care, confidence and feeling your best.
               </p>
               <p>
-                Our master artisans and licensed aestheticians offer a comprehensive sanctuary of hair, skin, and bridal rituals using the world’s finest dermatological formulations and tailored attention.
+                Our expert team offers a wide range of salon and beauty treatments using
+                high-quality products and personalized care.
               </p>
-
+              <p>
+                Step into a space designed to relax, rejuvenate and bring out the best
+                version of you.
+              </p>
             </div>
 
-            {/* CTA Button */}
-            <div className="mb-10">
-              <Button
-                variant="primary"
-                size="md"
-                withArrow
+            {/* Text link CTA — matches design "Know More About Us →" */}
+            <div className="mb-7">
+              <button
                 onClick={onOpenBooking}
+                className="group inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#D91A8A] hover:text-[#A80086] transition-colors cursor-pointer"
               >
-                Know More About Us
-              </Button>
+                <span>Know More About Us</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
             </div>
 
-            {/* Trust Statistics Row */}
-            <div className="grid grid-cols-3 gap-4 pt-8 border-t border-[#E8DCE5]">
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2 mb-1">
-                  <Trophy className="w-4 h-4 text-[#D91A8A]" />
-                  <span className="text-xl sm:text-2xl font-bold font-display text-[#2C182A]">
+            {/* Trust stats row — matches design */}
+            <div className="grid grid-cols-3 gap-4 pt-5 border-t border-[#F1E2EC] max-w-xl">
+              <div className="flex items-start gap-2">
+                <Trophy className="w-5 h-5 text-[#D91A8A] shrink-0 mt-0.5" strokeWidth={1.8} />
+                <div>
+                  <p className="text-sm sm:text-base font-bold text-[#2D0A2E] leading-tight">
                     10+
-                  </span>
+                  </p>
+                  <p className="text-[11px] text-[#7A6A77] font-medium leading-tight">
+                    Years of Expertise
+                  </p>
                 </div>
-                <span className="text-xs text-[#766A73] font-medium leading-tight">
-                  Years of Expertise
-                </span>
               </div>
 
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2 mb-1">
-                  <Users className="w-4 h-4 text-[#D91A8A]" />
-                  <span className="text-xl sm:text-2xl font-bold font-display text-[#2C182A]">
+              <div className="flex items-start gap-2">
+                <Users className="w-5 h-5 text-[#D91A8A] shrink-0 mt-0.5" strokeWidth={1.8} />
+                <div>
+                  <p className="text-sm sm:text-base font-bold text-[#2D0A2E] leading-tight">
                     Thousands
-                  </span>
+                  </p>
+                  <p className="text-[11px] text-[#7A6A77] font-medium leading-tight">
+                    Happy Clients
+                  </p>
                 </div>
-                <span className="text-xs text-[#766A73] font-medium leading-tight">
-                  Happy Clients
-                </span>
               </div>
 
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2 mb-1">
-                  <Gem className="w-4 h-4 text-[#D91A8A]" />
-                  <span className="text-xl sm:text-2xl font-bold font-display text-[#2C182A]">
+              <div className="flex items-start gap-2">
+                <Gem className="w-5 h-5 text-[#D91A8A] shrink-0 mt-0.5" strokeWidth={1.8} />
+                <div>
+                  <p className="text-sm sm:text-base font-bold text-[#2D0A2E] leading-tight">
                     Premium
-                  </span>
+                  </p>
+                  <p className="text-[11px] text-[#7A6A77] font-medium leading-tight">
+                    Beauty Experience
+                  </p>
                 </div>
-                <span className="text-xs text-[#766A73] font-medium leading-tight">
-                  Beauty Experience
-                </span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: 3-Image Collage */}
-          <div className="lg:col-span-6 grid grid-cols-12 gap-3 sm:gap-4">
-            {/* Main Salon Reception with Real Neon Glow Sign ("Beauty Self Care Happiness") */}
-            <div className="col-span-7 relative rounded-2xl overflow-hidden shadow-card border border-[#E8DCE5] group aspect-[4/5] sm:aspect-auto sm:h-full">
+          {/* Right Column: 3-image collage — matches design */}
+          <div className="grid grid-cols-5 gap-2.5 sm:gap-3">
+            {/* Large salon interior */}
+            <div className="col-span-3 relative rounded-[14px] overflow-hidden group min-h-[280px] sm:min-h-[360px] lg:min-h-[420px]">
               <img
                 src="/images/home/about_salon_reception.webp"
-                alt="VV Studio modern salon reception and lounge"
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                alt="VV Studio salon lounge"
+                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-xs px-3 py-1 rounded-full text-[11px] font-medium text-[#3D003D] shadow-xs">
-                VV Studio Lounge
-              </div>
             </div>
 
-            {/* Two Stacked Images on Right */}
-            <div className="col-span-5 flex flex-col gap-3 sm:gap-4">
-              {/* Top: Facial Treatment */}
-              <div className="relative rounded-2xl overflow-hidden shadow-card border border-[#E8DCE5] aspect-square group">
+            {/* Two stacked images */}
+            <div className="col-span-2 flex flex-col gap-2.5 sm:gap-3">
+              <div className="relative rounded-[14px] overflow-hidden group flex-1 min-h-[136px] sm:min-h-[174px] lg:min-h-[204px]">
                 <img
                   src="/images/home/about_facial_treatment.webp"
-                  alt="Dermatological facial renewal at VV Studio"
-                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  alt="Facial treatment at VV Studio"
+                  className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                  <span className="text-white text-xs font-medium">Hydra Facial</span>
-                </div>
               </div>
-
-              {/* Bottom: Dimensional Hair Styling */}
-              <div className="relative rounded-2xl overflow-hidden shadow-card border border-[#E8DCE5] aspect-square group">
+              <div className="relative rounded-[14px] overflow-hidden group flex-1 min-h-[136px] sm:min-h-[174px] lg:min-h-[204px]">
                 <img
                   src="/images/home/about_hair_styling.webp"
-                  alt="Glossy balayage waves hairstyle at VV Studio"
-                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  alt="Hair styling at VV Studio"
+                  className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                  <span className="text-white text-xs font-medium">Balayage Artistry</span>
-                </div>
               </div>
             </div>
           </div>
