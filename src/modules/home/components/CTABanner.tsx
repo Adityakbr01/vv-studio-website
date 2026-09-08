@@ -33,7 +33,7 @@ export const CTABanner: React.FC<CTABannerProps> = ({ onOpenBooking }) => {
                 <Sparkles className="w-3 h-3" />
                 <span>Instant Online Scheduling</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl  ont-display font-medium text-white tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl   nt-display font-medium text-white tracking-tight leading-tight">
                 Ready to Experience the Best in Beauty?
               </h2>
               <p className="mt-1 text-sm sm:text-base text-white/85 font-light">
