@@ -9,7 +9,7 @@ interface CTABannerProps {
 
 export const CTABanner: React.FC<CTABannerProps> = ({ onOpenBooking }) => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-[#3D003D] via-[#85006F] to-[#D91A8A] py-12 sm:py-16 text-white">
+    <section className="relative overflow-hidden bg-gradient-to-r from-[#3D003D] via-[#85006F] to-[#D91A8A] py-12 text-white">
       {/* Decorative ambient radial light & floral watermark */}
       <div
         className="absolute inset-0 pointer-events-none opacity-20"
@@ -33,7 +33,7 @@ export const CTABanner: React.FC<CTABannerProps> = ({ onOpenBooking }) => {
                 <Sparkles className="w-3 h-3" />
                 <span>Instant Online Scheduling</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl   nt-display font-medium text-white tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-nowrap  font-display font-medium text-white tracking-tight leading-tight">
                 Ready to Experience the Best in Beauty?
               </h2>
               <p className="mt-1 text-sm sm:text-base text-white/85 font-light">

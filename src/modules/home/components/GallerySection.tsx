@@ -9,7 +9,7 @@ interface GallerySectionProps {
 
 export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking }) => {
   return (
-    <section id="gallery" className="py-16  bg-[#FAF7F9] relative">
+    <section id="gallery" className="py-12  bg-[#FAF7F9] relative">
       <Container>
         <SectionHeading
           eyebrow="OUR GALLERY"

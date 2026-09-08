@@ -9,7 +9,7 @@ interface AboutSectionProps {
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => {
   return (
-    <section id="about" className="py-16  bg-[#FAF7F9] overflow-hidden">
+    <section id="about" className="py-12  bg-[#FAF7F9] overflow-hidden">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Brand Story & Philosophy */}
