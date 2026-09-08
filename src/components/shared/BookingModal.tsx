@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { X, CheckCircle2, Calendar, Clock, User, Phone, Sparkles } from 'lucide-react';
+import { X, CheckCircle2, Calendar, Clock, User, Phone, Mail, Sparkles, Loader2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { SERVICES_DATA, type ServiceItem } from '@/data/salonData';
 import { getLenisInstance } from '@/lib/lenis';
+import { getUtmParams } from '@/lib/utm';
+import { useSubmitEnquiry } from '@/modules/home/hooks/useEnquiry';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -19,10 +21,24 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     initialService ? initialService.id : SERVICES_DATA[0].id
   );
   const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [bookingDate, setBookingDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('11:00 AM');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const { mutateAsync: submitEnquiry, isPending } = useSubmitEnquiry();
+
+  useEffect(() => {
+    if (isOpen && initialService) {
+      setSelectedService(initialService.id);
+    }
+    if (isOpen) {
+      setIsSubmitted(false);
+      setSubmitError(null);
+    }
+  }, [isOpen, initialService]);
 
   useEffect(() => {
     const lenis = getLenisInstance();
@@ -48,18 +64,39 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     '07:00 PM',
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const currentServiceObj = SERVICES_DATA.find((s) => s.id === selectedService);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName || !phoneNumber) return;
-    setIsSubmitted(true);
+    if (!fullName.trim() || !phoneNumber.trim() || !email.trim()) return;
+    setSubmitError(null);
+    const utm = getUtmParams();
+    try {
+      await submitEnquiry({
+        enquiryFullName: fullName.trim(),
+        enquiryEmail: email.trim(),
+        enquiryMobile: phoneNumber.trim(),
+        enquiryProduct: currentServiceObj ? `Booking - ${currentServiceObj.title}` : 'Website Enquiry',
+        enquiryMessage: [
+          currentServiceObj ? `Service: ${currentServiceObj.title} (${currentServiceObj.tagline})` : null,
+          bookingDate ? `Preferred Date: ${bookingDate}` : null,
+          selectedTime ? `Preferred Time: ${selectedTime}` : null,
+        ]
+          .filter(Boolean)
+          .join(' | '),
+        ...utm,
+      });
+      setIsSubmitted(true);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Failed to submit enquiry. Please try again.');
+    }
   };
 
   const resetAndClose = () => {
     setIsSubmitted(false);
+    setSubmitError(null);
     onClose();
   };
-
-  const currentServiceObj = SERVICES_DATA.find((s) => s.id === selectedService);
 
   return (
     <div
@@ -196,16 +233,46 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 </div>
               </div>
 
+              {/* Email */}
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-[#2C182A] mb-2 flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-[#A80086]" /> Email Address
+                </label>
+                <input
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#E8DCE5] text-sm text-[#40363F] focus:outline-none focus:ring-2 focus:ring-[#D91A8A]"
+                />
+              </div>
+
+              {submitError && (
+                <div className="flex items-start gap-2 rounded-xl bg-[#FDEAF4] border border-[#F8C1DE] px-3.5 py-2.5 text-xs sm:text-sm text-[#A80086]">
+                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                  <span>{submitError}</span>
+                </div>
+              )}
+
               {/* Submit CTA */}
               <div className="pt-2">
                 <Button
                   type="submit"
                   variant="primary"
                   size="lg"
-                  withArrow
+                  withArrow={!isPending}
+                  disabled={isPending}
                   className="w-full justify-center shadow-magenta"
                 >
-                  Confirm Reservation
+                  {isPending ? (
+                    <span className="inline-flex items-center gap-2">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Submitting...
+                    </span>
+                  ) : (
+                    'Confirm Reservation'
+                  )}
                 </Button>
                 <p className="text-[11px] text-center text-[#766A73] mt-2">
                   No advance payment needed • Instant confirmation via WhatsApp/SMS

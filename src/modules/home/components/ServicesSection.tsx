@@ -14,7 +14,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   onOpenBooking,
 }) => {
   return (
-    <section id="services" className="py-16 sm:py-20 lg:py-24 bg-white relative">
+    <section id="services" className="py-16 bg-white relative">
       <Container>
         <SectionHeading
           eyebrow="OUR SERVICES"

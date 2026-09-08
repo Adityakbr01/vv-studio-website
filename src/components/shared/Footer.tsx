@@ -155,34 +155,22 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Map & Directions Card (3 cols) from Screenshot */}
           <div className="lg:col-span-3">
-            <div className="rounded-2xl bg-white p-3 shadow-card border border-white/20 text-[#2C182A]">
-              {/* Map Preview Graphic */}
-              <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-[#F4EDF2] flex items-center justify-center mb-3">
-                {/* Stylized Google Map roads pattern */}
-                <div
-                  className="absolute inset-0 opacity-70"
-                  style={{
-                    backgroundImage: `radial-gradient(#D91A8A 0.75px, transparent 0.75px), radial-gradient(#68005F 0.75px, #F4EDF2 0.75px)`,
-                    backgroundSize: '20px 20px',
-                    backgroundPosition: '0 0, 10px 10px',
-                  }}
+            <div className="rounded-2xl  p-3 shadow-card text-[#2C182A]">
+              {/* Real Google Map */}
+              <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-[#F4EDF2] mb-3">
+                <iframe
+                  title="V V Studio location map - JP Nagar, Bangalore"
+                  src="https://www.google.com/maps?q=V%20V%20Studio%2C%20%235%2C%201st%20Floor%2C%2024th%20Main%2C%205th%20Phase%2C%20JP%20Nagar%2C%20Bangalore%20560078&output=embed"
+                  className="absolute inset-0 h-full w-full border-0"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
                 />
-                <div className="relative z-10 flex flex-col items-center text-center p-2">
-                  <div className="w-7 h-7 rounded-full bg-[#D91A8A] text-white flex items-center justify-center shadow-md animate-bounce">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <span className="text-[11px] font-bold text-[#2C182A] mt-1">
-                    V V Studio
-                  </span>
-                  <span className="text-[9px] text-[#766A73]">
-                    JP Nagar, Bangalore
-                  </span>
-                </div>
               </div>
 
               {/* Get Directions Button from Screenshot */}
               <a
-                href="https://maps.google.com/?q=JP+Nagar+Bangalore"
+                href="https://www.google.com/maps/dir/?api=1&destination=V%20V%20Studio%2C%20%235%2C%201st%20Floor%2C%2024th%20Main%2C%205th%20Phase%2C%20JP%20Nagar%2C%20Bangalore%20560078"
                 target="_blank"
                 rel="noreferrer"
                 className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-[#D91A8A] hover:bg-[#C21891] text-white text-xs font-semibold tracking-wide transition-all shadow-sm cursor-pointer"

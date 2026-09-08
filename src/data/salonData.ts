@@ -229,7 +229,7 @@ export const BLOG_DATA: BlogItem[] = [
     readTime: '4 min read',
     date: 'May 12, 2024',
     excerpt: 'Simple morning and night steps for healthier, brighter and deeply hydrated skin every single day.',
-    image: 'https://images.unsplash.com/photo-1556760544-74068565f05c?auto=format&fit=crop&w=800&q=80',
+    image: '/images/blog/blog_skincare_routine.webp',
   },
   {
     id: 'blog-2',
@@ -238,7 +238,7 @@ export const BLOG_DATA: BlogItem[] = [
     readTime: '5 min read',
     date: 'April 28, 2024',
     excerpt: 'Expert trichologist tips to protect your tresses from heat damage, pollution and humidity.',
-    image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80',
+    image: '/images/blog/blog_hair_care_tips.webp',
   },
   {
     id: 'blog-3',
@@ -247,7 +247,7 @@ export const BLOG_DATA: BlogItem[] = [
     readTime: '6 min read',
     date: 'April 15, 2024',
     excerpt: 'Your complete month-by-month countdown guide to looking effortlessly radiant on your special day.',
-    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80',
+    image: '/images/blog/blog_bridal_checklist.webp',
   },
 ];
 

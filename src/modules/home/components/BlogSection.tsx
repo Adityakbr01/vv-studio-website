@@ -10,7 +10,7 @@ interface BlogSectionProps {
 
 export const BlogSection: React.FC<BlogSectionProps> = ({ onOpenBooking }) => {
   return (
-    <section id="blog" className="py-16 sm:py-20 lg:py-24 bg-[#FAF7F9] relative">
+    <section id="blog" className="py-16  bg-[#FAF7F9] relative">
       <Container>
         <SectionHeading
           eyebrow="OUR BLOG"

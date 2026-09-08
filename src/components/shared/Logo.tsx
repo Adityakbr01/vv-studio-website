@@ -21,14 +21,14 @@ export const Logo: React.FC<LogoProps> = ({
       className={`inline-flex items-center gap-1.5 group transition-transform duration-200 hover:scale-[1.02] ${className}`}
       aria-label="VV Studio Home"
     >
-      {/* Vertical 'SONLY' text from screenshot */}
+      {/* Vertical 'VV' brand mark */}
       <span
         className={`text-[8px] font-bold tracking-[0.25em] uppercase select-none ${
           isDark ? 'text-white/70' : 'text-[#3D003D]/70'
         }`}
         style={{ writingMode: 'vertical-lr', transform: 'rotate(180deg)' }}
       >
-        SONLY
+        VV
       </span>
 
       {/* Stylized Double V Monogram & STUDIO text */}
