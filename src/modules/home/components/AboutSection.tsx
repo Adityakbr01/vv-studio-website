@@ -93,7 +93,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
             {/* Main Salon Reception with Real Neon Glow Sign ("Beauty Self Care Happiness") */}
             <div className="col-span-7 relative rounded-2xl overflow-hidden shadow-card border border-[#E8DCE5] group aspect-[4/5] sm:aspect-auto sm:h-full">
               <img
-                src="/images/home/about_salon_reception.png"
+                src="/images/home/about_salon_reception.webp"
                 alt="VV Studio modern salon reception and lounge"
                 className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
@@ -107,7 +107,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
               {/* Top: Facial Treatment */}
               <div className="relative rounded-2xl overflow-hidden shadow-card border border-[#E8DCE5] aspect-square group">
                 <img
-                  src="/images/home/about_facial_treatment.png"
+                  src="/images/home/about_facial_treatment.webp"
                   alt="Dermatological facial renewal at VV Studio"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
@@ -119,7 +119,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
               {/* Bottom: Dimensional Hair Styling */}
               <div className="relative rounded-2xl overflow-hidden shadow-card border border-[#E8DCE5] aspect-square group">
                 <img
-                  src="/images/home/about_hair_styling.png"
+                  src="/images/home/about_hair_styling.webp"
                   alt="Glossy balayage waves hairstyle at VV Studio"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
