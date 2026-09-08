@@ -1,6 +1,5 @@
 import React from 'react';
-import { Sparkles, Gift } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { ArrowRight } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 
 interface SpecialOffersProps {
@@ -16,90 +15,95 @@ export const SpecialOffersSection: React.FC<SpecialOffersProps> = ({ onOpenBooki
   ];
 
   return (
-    <section className="relative bg-gradient-to-r from-[#2B002B] via-[#3D003D] to-[#68005F] text-white py-16 sm:py-20 lg:py-24 overflow-hidden">
-      {/* Decorative ambient radial light */}
+    <section className="relative overflow-hidden bg-gradient-to-r from-[#9B0B68] via-[#68004C] to-[#2E002B] text-white  flex items-center">
+      {/* Subtle ambient decorative lighting & floral watermarks */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-30"
+        className="absolute inset-0 pointer-events-none opacity-25"
         aria-hidden="true"
         style={{
-          backgroundImage: `radial-gradient(circle at 80% 50%, rgba(217, 26, 138, 0.45) 0%, transparent 60%),
-                            radial-gradient(circle at 10% 30%, rgba(168, 0, 134, 0.35) 0%, transparent 50%)`,
+          backgroundImage: `radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 45%),
+                            radial-gradient(circle at 80% 50%, rgba(217, 26, 138, 0.35) 0%, transparent 55%)`,
         }}
       />
 
-      <Container className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* Left Column: Offer Details */}
-          <div className="lg:col-span-7 flex flex-col justify-center text-left">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <Gift className="w-4 h-4 text-[#F06AB9]" />
-              <p className="text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase text-[#F8C1DE]">
-                SPECIAL OFFERS
-              </p>
-            </div>
+      {/* Panoramic Model Asset from /images/home/special_offer_image.png */}
+      <div
+        className="hidden md:block absolute right-60 bottom-0 h-full w-[65%] lg:w-[58%] xl:w-[54%] pointer-events-none select-none z-10"
+        aria-hidden="true"
+      >
+        <img
+          src="/images/home/special_offer_image.png"
+          alt="VV Studio Special Offers"
+          draggable={false}
+          className="h-full w-full object-contain object-right-bottom"
+        />
+      </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-medium text-white tracking-tight leading-[1.15] mb-4">
+      <Container className="relative z-20 w-full">
+        <div className="flex flex-col lg:flex-row items-center justify-between">
+          {/* Left Editorial Content */}
+          <div className="w-full lg:max-w-[540px] xl:max-w-[580px] text-left py-6 lg:py-12">
+            <p className="text-xs sm:text-[13px] font-semibold tracking-[0.28em] uppercase text-[#F8C1DE] mb-2 sm:mb-3">
+              SPECIAL OFFERS
+            </p>
+
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] font-display font-medium text-white tracking-tight leading-[1.12] mb-3 sm:mb-4">
               Beauty Packages for Every You
             </h2>
 
-            {/* Tags / Subcategories from Screenshot */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-[#F8C1DE] font-medium mb-6">
+            {/* Tags Ribbon */}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-white/90 font-light mb-6 sm:mb-8">
               {offerTags.map((tag, index) => (
                 <React.Fragment key={tag}>
-                  <span className="hover:text-white transition-colors cursor-pointer">
+                  <span className="hover:text-white transition-colors">
                     {tag}
                   </span>
                   {index < offerTags.length - 1 && (
-                    <span className="text-white/40">|</span>
+                    <span className="text-white/40 font-normal">|</span>
                   )}
                 </React.Fragment>
               ))}
             </div>
 
-            <p className="text-sm sm:text-base text-white/80 max-w-xl font-light leading-relaxed mb-8">
-              Indulge in our curated packages that combine our most requested salon treatments at exceptional festive rates. Includes complimentary skin consultations.
-            </p>
-
+            {/* Discover Offers Button */}
             <div>
-              <Button
-                variant="primary"
-                size="lg"
-                withArrow
+              <button
+                type="button"
                 onClick={onOpenBooking}
-                className="shadow-[0_10px_25px_rgba(217,26,138,0.4)]"
+                className="group inline-flex items-center gap-2.5 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full bg-[#E8329D] hover:bg-[#D91A8A] text-white text-xs sm:text-sm font-medium tracking-wide shadow-[0_10px_25px_-5px_rgba(232,50,157,0.5)] hover:shadow-[0_14px_30px_-5px_rgba(232,50,157,0.7)] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 cursor-pointer"
               >
-                Discover Offers
-              </Button>
+                <span>Discover Offers</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
             </div>
           </div>
 
-          {/* Right Column: Model & Floating Script */}
-          <div className="lg:col-span-5 relative flex items-center justify-center">
-            <div className="relative w-full max-w-[380px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-white/20 group">
-              <img
-                src="https://images.unsplash.com/photo-1512290900672-1a613f9c65ee?auto=format&fit=crop&w=800&q=85"
-                alt="Special beauty offers at VV Studio"
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2B002B]/80 via-transparent to-transparent pointer-events-none" />
+          {/* Right Script Text: "Because You Deserve More" (aligned to the far right on large screens) */}
+          <div
+            className="hidden lg:block absolute right-4 xl:right-10 top-1/2 -translate-y-1/2 z-20 pointer-events-none select-none text-right"
+            aria-hidden="true"
+          >
+            <p className="font-script text-3xl lg:text-4xl xl:text-[44px] text-white/90 leading-[1.1] drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
+              Because <br />
+              <span className="text-[#F8C1DE]">You Deserve</span> <br />
+              More
+            </p>
+          </div>
+        </div>
 
-              {/* Decorative Flower */}
-              <div className="absolute bottom-4 right-4 pointer-events-none">
-                <Sparkles className="w-8 h-8 text-[#F06AB9] drop-shadow-md animate-pulse" />
-              </div>
-            </div>
-
-            {/* Script Text: "Because You Deserve More" */}
-            <div
-              className="absolute -top-4 -right-2 sm:right-2 lg:-right-4 z-20 transform rotate-[-6deg] pointer-events-none select-none text-right"
-              aria-hidden="true"
-            >
-              <p className="font-script text-3xl sm:text-4xl text-white/95 leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
-                Because <br />
-                <span className="text-[#F8C1DE]">You Deserve</span> <br />
-                More
-              </p>
-            </div>
+        {/* Mobile-only model view */}
+        <div className="md:hidden relative w-full h-[220px] sm:h-[260px] mt-2 overflow-hidden pointer-events-none select-none">
+          <img
+            src="/images/home/special_offer_image.png"
+            alt="VV Studio Special Offers"
+            className="absolute bottom-0 right-0 h-full w-auto object-contain object-right-bottom"
+          />
+          <div className="absolute top-2 right-2 text-right">
+            <p className="font-script text-2xl text-white/90 leading-tight drop-shadow-md">
+              Because <br />
+              <span className="text-[#F8C1DE]">You Deserve</span> <br />
+              More
+            </p>
           </div>
         </div>
       </Container>
