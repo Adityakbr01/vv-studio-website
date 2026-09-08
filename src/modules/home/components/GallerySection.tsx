@@ -9,7 +9,7 @@ interface GallerySectionProps {
 
 export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking }) => {
   return (
-    <section id="gallery" className="py-10 sm:py-14 bg-white relative">
+    <section id="gallery" className="py-10 sm:py-14 bg-[#FCFCFC] relative">
       <Container>
         <SectionHeading
           eyebrow="OUR GALLERY"
@@ -23,7 +23,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking })
           {GALLERY_DATA.map((item) => (
             <div
               key={item.id}
-              className="group relative aspect-[3/4] rounded-[12px] overflow-hidden bg-[#FAF0F6] cursor-pointer"
+              className="group relative aspect-[3/4] rounded-[12px] overflow-hidden bg-[#FAF0F6] border border-[#F1E4EE] shadow-[0_2px_14px_rgba(90,20,80,0.08)] hover:shadow-[0_10px_28px_rgba(90,20,80,0.14)] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
             >
               <img
                 src={item.image}

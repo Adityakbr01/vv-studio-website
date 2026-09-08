@@ -8,7 +8,7 @@ interface TestimonialCardProps {
 
 export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
   return (
-    <div className="flex flex-col h-full py-2">
+    <div className="flex flex-col h-full bg-white rounded-[14px] border border-[#F1E4EE] shadow-[0_2px_14px_rgba(90,20,80,0.08)] hover:shadow-[0_10px_28px_rgba(90,20,80,0.14)] hover:-translate-y-1 transition-all duration-300 p-5 sm:p-6">
       {/* Large serif quote mark — matches design */}
       <span
         aria-hidden="true"
@@ -23,7 +23,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial })
       </p>
 
       {/* Customer + stars */}
-      <div className="mt-auto flex items-center gap-2.5">
+      <div className="mt-auto pt-4 border-t border-[#F5EAF2] flex items-center gap-2.5">
         <img
           src={testimonial.avatar}
           alt={testimonial.name}

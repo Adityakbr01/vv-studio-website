@@ -35,7 +35,7 @@ export const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF7F9] text-[#40363F] flex flex-col antialiased selection:bg-[#D91A8A] selection:text-white">
+    <div className="min-h-screen bg-[#FCFCFC] text-[#40363F] flex flex-col antialiased selection:bg-[#D91A8A] selection:text-white">
       {/* Top Header */}
       <Header onOpenBooking={() => handleOpenBooking()} />
 

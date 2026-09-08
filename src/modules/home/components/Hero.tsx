@@ -94,7 +94,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
           </div>
 
           {/* Trust Badges */}
-          <div className="flex items-center gap-5 sm:gap-8 pt-6 border-t border-white/15 max-w-lg">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-4 sm:gap-8 pt-6 border-t border-white/15 max-w-lg">
             <div className="flex items-center gap-2.5 sm:gap-3">
               <div className="text-[#F8C1DE] shrink-0">
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

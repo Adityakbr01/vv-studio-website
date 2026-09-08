@@ -105,7 +105,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
     >
       <div
-        className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-lg max-h-[92vh] flex flex-col bg-white rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
@@ -133,7 +133,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-7 max-h-[80vh] overflow-y-auto" data-lenis-prevent>
+        <div className="p-6 sm:p-7 flex-1 min-h-0 overflow-y-auto" data-lenis-prevent>
           {isSubmitted ? (
             <div className="text-center py-6">
               <div className="w-16 h-16 rounded-full bg-[#FDEAF4] text-[#D91A8A] flex items-center justify-center mx-auto mb-4">

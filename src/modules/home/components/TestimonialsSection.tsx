@@ -10,7 +10,7 @@ interface TestimonialsSectionProps {
 
 export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onOpenBooking }) => {
   return (
-    <section className="py-10 sm:py-14 bg-white relative">
+    <section className="py-10 sm:py-14 bg-[#FCFCFC] relative">
       <Container>
         <SectionHeading
           eyebrow="TESTIMONIALS"

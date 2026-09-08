@@ -9,9 +9,9 @@ interface BlogCardProps {
 
 export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   return (
-    <article className="group flex flex-col">
-      {/* Image — matches design */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[12px] bg-[#FAF0F6]">
+    <article className="group flex flex-col bg-white rounded-[14px] border border-[#F1E4EE] shadow-[0_2px_14px_rgba(90,20,80,0.08)] hover:shadow-[0_10px_28px_rgba(90,20,80,0.14)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+      {/* Image — flush top, rounded via card overflow */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#FAF0F6]">
         <img
           src={blog.image}
           alt={blog.title}
@@ -20,8 +20,8 @@ export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
         />
       </div>
 
-      {/* Content — matches design */}
-      <div className="pt-3 px-0.5 flex flex-col flex-1">
+      {/* Content */}
+      <div className="p-5 flex flex-col flex-1">
         <h3 className="text-[14px] sm:text-[15px] font-bold text-[#2D0A2E] leading-snug group-hover:text-[#A80086] transition-colors">
           {blog.title}
         </h3>

@@ -8,7 +8,7 @@ interface AboutSectionProps {
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => {
   return (
-    <section id="about" className="py-10 sm:py-14 bg-[#FFFDFE] overflow-hidden">
+    <section id="about" className="py-10 sm:py-14 bg-[#FCFCFC] overflow-hidden">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Column: Copy */}
@@ -55,7 +55,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
             <div className="grid grid-cols-3 gap-4 pt-5 border-t border-[#F1E2EC] max-w-xl">
               <div className="flex items-start gap-2">
                 <Trophy className="w-5 h-5 text-[#D91A8A] shrink-0 mt-0.5" strokeWidth={1.8} />
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm sm:text-base font-bold text-[#2D0A2E] leading-tight">
                     10+
                   </p>
@@ -67,7 +67,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
 
               <div className="flex items-start gap-2">
                 <Users className="w-5 h-5 text-[#D91A8A] shrink-0 mt-0.5" strokeWidth={1.8} />
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm sm:text-base font-bold text-[#2D0A2E] leading-tight">
                     Thousands
                   </p>
@@ -79,7 +79,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
 
               <div className="flex items-start gap-2">
                 <Gem className="w-5 h-5 text-[#D91A8A] shrink-0 mt-0.5" strokeWidth={1.8} />
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm sm:text-base font-bold text-[#2D0A2E] leading-tight">
                     Premium
                   </p>
