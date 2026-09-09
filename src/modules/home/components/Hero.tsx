@@ -138,13 +138,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
         </div>
       </Container>
 
-      {/* Mobile model — fixed height strip pinned to bottom, no float gap */}
+      {/* Mobile model — right-anchored so the face stays visible on narrow screens */}
       <div className="lg:hidden relative w-full h-[300px] sm:h-[360px] mt-8 overflow-hidden pointer-events-none select-none">
         <img
           src="/images/home/home_top_banner.webp"
           alt="VV Studio Beauty Model with Pink Lilies"
           loading="eager"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-full w-auto max-w-none object-contain object-bottom"
+          className="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain object-right-bottom"
         />
         <div
           className="absolute top-[8%] left-4 rotate-[-4deg] pointer-events-none select-none text-left"

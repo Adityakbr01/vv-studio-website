@@ -59,7 +59,6 @@ export const HomePage: React.FC = () => {
         {/* Services Section */}
         <ServicesSection
           onSelectService={(service) => handleOpenBooking(service)}
-          onOpenBooking={() => handleOpenBooking()}
         />
 
         {/* Mid-page Promotional CTA Banner */}

@@ -81,6 +81,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     };
   }, [isOpen]);
 
+  // Dismiss on Escape
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const currentServiceObj = SERVICES_DATA.find((s) => s.id === selectedService);
@@ -138,7 +148,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
+      aria-label="Book an appointment"
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
+      onClick={resetAndClose}
     >
       <div
         className="relative w-full max-w-lg max-h-[92vh] flex flex-col bg-white rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
@@ -149,10 +161,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           <button
             type="button"
             onClick={resetAndClose}
-            className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white/90 hover:text-white transition-all cursor-pointer"
+            className="absolute top-4 right-4 sm:top-5 sm:right-5 min-w-[44px] min-h-[44px] p-2.5 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white/90 hover:text-white transition-all cursor-pointer"
             aria-label="Close booking modal"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
 
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#F8C1DE] mb-1">
