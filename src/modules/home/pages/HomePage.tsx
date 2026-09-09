@@ -54,7 +54,7 @@ export const HomePage: React.FC = () => {
         />
 
         {/* About Section */}
-        <AboutSection onOpenBooking={() => handleOpenBooking()} />
+        <AboutSection />
 
         {/* Services Section */}
         <ServicesSection

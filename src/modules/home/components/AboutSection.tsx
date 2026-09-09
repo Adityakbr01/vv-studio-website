@@ -1,12 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Trophy, Users, Gem, ArrowRight } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 
-interface AboutSectionProps {
-  onOpenBooking: () => void;
-}
-
-export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => {
+export const AboutSection: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <section id="about" className="py-10 sm:py-14 bg-[#FCFCFC] overflow-hidden">
       <Container>
@@ -40,10 +38,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenBooking }) => 
               </p>
             </div>
 
-            {/* Text link CTA — matches design "Know More About Us →" */}
+            {/* Text link CTA — goes to the About page */}
             <div className="mb-7">
               <button
-                onClick={onOpenBooking}
+                onClick={() => navigate('/about')}
                 className="group inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#D91A8A] hover:text-[#A80086] transition-colors cursor-pointer"
               >
                 <span>Know More About Us</span>
