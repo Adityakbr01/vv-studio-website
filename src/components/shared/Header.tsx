@@ -15,6 +15,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Render-phase state adjustment to close mobile menu on route change
+  const [prevPathname, setPrevPathname] = useState(location.pathname);
+  if (prevPathname !== location.pathname) {
+    setPrevPathname(location.pathname);
+    setMobileMenuOpen(false);
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -23,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on resize to desktop or route change
+  // Close mobile menu on resize to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -33,10 +40,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location.pathname]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
