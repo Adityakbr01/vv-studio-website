@@ -43,7 +43,7 @@ export const ExperienceDifferenceSection: React.FC<ExperienceDifferenceSectionPr
           <div className="lg:col-span-6 min-w-0">
             <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_16px_40px_rgba(80,0,70,0.12)] group border border-[#F2E1ED]">
               <img
-                src="/images/contact/salon_virtual_tour.jpg"
+                src="/images/contact/salon_virtual_tour.webp"
                 alt="V V Studio Luxury Salon Interior & Reception"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
@@ -149,7 +149,7 @@ export const ExperienceDifferenceSection: React.FC<ExperienceDifferenceSectionPr
             {/* Modal Content */}
             <div className="relative aspect-video w-full bg-black flex items-center justify-center">
               <img
-                src="/images/contact/salon_virtual_tour.jpg"
+                src="/images/contact/salon_virtual_tour.webp"
                 alt="Virtual tour view"
                 className="w-full h-full object-cover"
               />
