@@ -151,7 +151,6 @@ export const Carousel = forwardRef<CarouselHandle, CarouselProps>(function Carou
       window.removeEventListener('resize', measure);
       window.clearTimeout(t);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [measure, slideCount]);
 
   const goTo = useCallback((page: number) => {

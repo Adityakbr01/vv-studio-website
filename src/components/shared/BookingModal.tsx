@@ -57,17 +57,28 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
   const { mutateAsync: submitEnquiry, isPending } = useSubmitEnquiry();
 
-  useEffect(() => {
-    if (isOpen && initialService) {
-      setSelectedService(initialService.id);
-    }
+  // Render-phase state adjustment for modal open and initialService changes
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  const [prevInitialServiceId, setPrevInitialServiceId] = useState(initialService?.id);
+
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
     if (isOpen) {
       setIsSubmitted(false);
       setSubmitError(null);
       setPhoneError(null);
       setDateError(null);
+      if (initialService) {
+        setSelectedService(initialService.id);
+        setPrevInitialServiceId(initialService.id);
+      }
     }
-  }, [isOpen, initialService]);
+  } else if (isOpen && initialService?.id !== prevInitialServiceId) {
+    setPrevInitialServiceId(initialService?.id);
+    if (initialService) {
+      setSelectedService(initialService.id);
+    }
+  }
 
   useEffect(() => {
     const lenis = getLenisInstance();
