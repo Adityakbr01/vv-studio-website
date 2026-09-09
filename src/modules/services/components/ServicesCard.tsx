@@ -1,5 +1,4 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 import type { SalonService } from '@/data/servicesData';
 
 interface ServicesCardProps {
@@ -13,11 +12,11 @@ export const ServicesCard: React.FC<ServicesCardProps> = ({
 }) => {
   const renderIcon = (type: SalonService['iconName']) => {
     const strokeProps = {
-      className: 'w-6 h-6 text-[#E8329D] shrink-0',
+      className: 'w-8 h-8 text-[#EC008C] shrink-0',
       fill: 'none',
       viewBox: '0 0 24 24',
       stroke: 'currentColor',
-      strokeWidth: 1.6,
+      strokeWidth: 1.5,
       strokeLinecap: 'round' as const,
       strokeLinejoin: 'round' as const,
     };
@@ -144,44 +143,37 @@ export const ServicesCard: React.FC<ServicesCardProps> = ({
   return (
     <div
       onClick={() => onOpenBooking(service.title)}
-      className="group bg-white rounded-2xl border border-[#F2E6EE] overflow-hidden shadow-[0_4px_20px_rgba(80,0,70,0.04)] hover:shadow-[0_14px_38px_rgba(80,0,70,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col cursor-pointer"
+      className="group bg-white rounded-xl border border-[#F1F1F4] overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_14px_34px_rgba(80,0,70,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col cursor-pointer"
     >
       {/* Card Image */}
-      <div className="relative w-full h-[180px] sm:h-[195px] overflow-hidden bg-[#FAF7F9]">
+      <div className="relative w-full h-[140px] sm:h-[150px] overflow-hidden">
         <img
           src={service.image}
           alt={service.title}
           loading="lazy"
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-600 ease-out"
-        />
-        {/* Soft gradient sheen */}
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          aria-hidden="true"
+          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-600 ease-out"
         />
       </div>
 
-      {/* Card Content */}
-      <div className="p-5 sm:p-5 flex flex-col flex-1">
-        {/* Row with Icon + Title */}
-        <div className="flex items-center gap-3">
-          <div className="shrink-0">{renderIcon(service.iconName)}</div>
-          <h3 className="text-[15px] sm:text-[16px] font-bold text-[#2C182A] tracking-tight group-hover:text-[#D91A8A] transition-colors leading-snug">
+      {/* Card Content - icon left, text right like reference */}
+      <div className="p-4 sm:p-5 flex gap-3.5 flex-1">
+        <div className="shrink-0 pt-0.5">{renderIcon(service.iconName)}</div>
+        <div className="flex flex-col flex-1 min-w-0">
+          <h3 className="text-[15px] sm:text-base font-bold text-[#2E1B4E] tracking-tight leading-snug">
             {service.title}
           </h3>
-        </div>
 
-        {/* Description */}
-        <p className="text-[12.5px] sm:text-[13px] text-[#766A73] mt-2 mb-4 leading-relaxed flex-1">
-          {service.description}
-        </p>
+          <p className="text-[13px] text-[#6F6B7B] mt-1 leading-[1.55] flex-1">
+            {service.description}
+          </p>
 
-        {/* View Services Action */}
-        <div className="pt-1 mt-auto">
-          <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#E8329D] group-hover:text-[#D91A8A] transition-colors">
-            <span>View Services</span>
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </span>
+          {/* View Services Action */}
+          <div className="pt-3 mt-2">
+            <span className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#EC008C] group-hover:gap-2.5 transition-all">
+              <span>View Services</span>
+              <span aria-hidden="true">→</span>
+            </span>
+          </div>
         </div>
       </div>
     </div>

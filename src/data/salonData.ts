@@ -352,3 +352,23 @@ export const CONTACT_INFO = {
   website: 'www.varvadhustudio.com',
   hours: 'Tue - Sun: 10:00 AM - 8:00 PM (Monday Holiday)',
 };
+
+// Single source of truth for studio location — reuse everywhere
+export const STUDIO_ADDRESS = CONTACT_INFO.address;
+
+export const STUDIO_ADDRESS_SHORT =
+  '#5, 1st Floor, 24th Main, 5th Phase, JP Nagar, Bangalore 560078';
+
+export const STUDIO_ADDRESS_MULTILINE =
+  '#5, 1st Floor, 24th Main\n5th Phase, JP Nagar,\nBangalore 560078';
+
+export const STUDIO_MAP_COORDS = { lat: 12.9057, lng: 77.5858 };
+
+export const STUDIO_MAP_EMBED_SRC = `https://maps.google.com/maps?q=${STUDIO_MAP_COORDS.lat},${STUDIO_MAP_COORDS.lng}&z=17&output=embed`;
+
+export const STUDIO_FOOTER_MAP_EMBED_SRC = `https://maps.google.com/maps?q=${STUDIO_MAP_COORDS.lat},${STUDIO_MAP_COORDS.lng}&z=16&output=embed`;
+
+export const getStudioDirectionsUrl = (address: string = STUDIO_ADDRESS) =>
+  `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+
+export const STUDIO_DIRECTIONS_URL = getStudioDirectionsUrl();
