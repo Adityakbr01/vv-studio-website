@@ -73,24 +73,24 @@ export const ContactLocationAndForm: React.FC = () => {
   )}`;
 
   return (
-    <section id="location-and-form" className="py-12 lg:py-16 bg-[#FCFCFC]">
+    <section id="location-and-form" className="py-10 sm:py-12 lg:py-16 bg-[#FCFCFC]">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-start">
           {/* Left Column: Our Location */}
-          <div className="lg:col-span-6 flex flex-col justify-start">
-            <p className="text-xs font-bold tracking-[0.22em] uppercase text-[#D91A8A] mb-2">
+          <div className="lg:col-span-6 flex flex-col justify-start min-w-0">
+            <p className="text-[11px] sm:text-xs font-bold tracking-[0.22em] uppercase text-[#D91A8A] mb-2">
               FIND US
             </p>
-            <h2 className="font-display italic text-3xl sm:text-4xl text-[#2D0A2E] font-semibold tracking-tight leading-[1.15] mb-3">
+            <h2 className="font-display italic text-[26px] sm:text-4xl text-[#2D0A2E] font-semibold tracking-tight leading-[1.15] mb-2.5 sm:mb-3">
               Our Location
             </h2>
-            <p className="text-[#6D5D6A] text-sm sm:text-[15px] leading-relaxed mb-6">
+            <p className="text-[#6D5D6A] text-sm sm:text-[15px] leading-relaxed mb-5 sm:mb-6">
               We are conveniently located in the heart of JP Nagar, Bangalore.
               Step into our studio for a relaxing and rejuvenating beauty experience.
             </p>
 
             {/* Map Canvas with Floating Card */}
-            <div className="relative w-full h-[400px] sm:h-[460px] rounded-3xl overflow-hidden border border-[#EEDBEC] shadow-[0_8px_30px_rgba(80,0,70,0.06)] bg-[#F5ECF2]">
+            <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden border border-[#EEDBEC] shadow-[0_8px_30px_rgba(80,0,70,0.06)] bg-[#F5ECF2]">
               <iframe
                 title="V V Studio JP Nagar Map"
                 src="https://www.google.com/maps?q=V%20V%20Studio%2C%20%238%2C%201st%20Floor%2C%2024th%20Main%2C%205th%20Phase%2C%20JP%20Nagar%2C%20Bangalore%20560078&output=embed"
@@ -101,17 +101,17 @@ export const ContactLocationAndForm: React.FC = () => {
               />
 
               {/* Floating Overlay Card matching design */}
-              <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[90%] sm:w-[360px] bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-[0_12px_32px_rgba(0,0,0,0.14)] border border-[#F4E1EE] text-center flex flex-col items-center">
+              <div className="absolute top-3 sm:top-6 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] sm:w-[360px] max-w-[360px] bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-[0_12px_32px_rgba(0,0,0,0.14)] border border-[#F4E1EE] text-center flex flex-col items-center">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <div className="w-6 h-6 rounded-full bg-[#FFF0F7] flex items-center justify-center text-[#D91A8A]">
+                  <div className="w-6 h-6 rounded-full bg-[#FFF0F7] flex items-center justify-center text-[#D91A8A] shrink-0">
                     <MapPin className="w-4 h-4 fill-current text-[#D91A8A]" />
                   </div>
-                  <h3 className="font-bold text-[#2D0A2E] text-[15px]">
+                  <h3 className="font-bold text-[#2D0A2E] text-sm sm:text-[15px]">
                     V V Studio
                   </h3>
                 </div>
 
-                <p className="text-xs text-[#6B5C69] leading-relaxed mb-3.5 max-w-[280px]">
+                <p className="text-[11px] sm:text-xs text-[#6B5C69] leading-relaxed mb-3 sm:mb-3.5 max-w-[280px]">
                   #8, 1st Floor, 24th Main, 5th Phase, JP Nagar, Bangalore 560078
                 </p>
 
@@ -119,7 +119,7 @@ export const ContactLocationAndForm: React.FC = () => {
                   href={mapDirectionUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full bg-[#E8329D] hover:bg-[#D91A8A] text-white text-xs font-semibold px-5 py-2 transition-all shadow-[0_4px_14px_rgba(232,50,157,0.4)] hover:shadow-[0_6px_20px_rgba(232,50,157,0.55)] cursor-pointer"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#E8329D] hover:bg-[#D91A8A] text-white text-xs font-semibold px-5 py-2 sm:py-2 transition-all shadow-[0_4px_14px_rgba(232,50,157,0.4)] hover:shadow-[0_6px_20px_rgba(232,50,157,0.55)] cursor-pointer min-h-[36px]"
                 >
                   <Navigation className="w-3 h-3" />
                   <span>Get Directions</span>
@@ -130,12 +130,12 @@ export const ContactLocationAndForm: React.FC = () => {
           </div>
 
           {/* Right Column: Send Us a Message / Get In Touch Form */}
-          <div className="lg:col-span-6">
-            <div className="rounded-3xl bg-[#FFF5F9] border border-[#FCE1EE] p-6 sm:p-9 lg:p-10 shadow-[0_8px_32px_rgba(180,30,120,0.04)]">
-              <p className="text-xs font-bold tracking-[0.22em] uppercase text-[#D91A8A] mb-2">
+          <div className="lg:col-span-6 min-w-0">
+            <div className="rounded-2xl sm:rounded-3xl bg-[#FFF5F9] border border-[#FCE1EE] p-5 sm:p-8 lg:p-10 shadow-[0_8px_32px_rgba(180,30,120,0.04)]">
+              <p className="text-[11px] sm:text-xs font-bold tracking-[0.22em] uppercase text-[#D91A8A] mb-2">
                 SEND US A MESSAGE
               </p>
-              <h2 className="font-display italic text-3xl sm:text-4xl text-[#2D0A2E] font-semibold tracking-tight leading-[1.15] mb-2">
+              <h2 className="font-display italic text-[26px] sm:text-4xl text-[#2D0A2E] font-semibold tracking-tight leading-[1.15] mb-2">
                 Get in Touch
               </h2>
               <p className="text-[#6D5D6A] text-xs sm:text-[13px] leading-relaxed mb-6">
@@ -264,7 +264,7 @@ export const ContactLocationAndForm: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isPending}
-                    className="w-full py-3.5 px-6 rounded-full bg-[#E8329D] hover:bg-[#D91A8A] text-white font-medium text-sm transition-all duration-300 shadow-[0_8px_25px_rgba(232,50,157,0.45)] hover:shadow-[0_12px_30px_rgba(232,50,157,0.6)] cursor-pointer flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed"
+                    className="w-full py-3 sm:py-3.5 px-6 rounded-full bg-[#E8329D] hover:bg-[#D91A8A] text-white font-medium text-sm transition-all duration-300 shadow-[0_8px_25px_rgba(232,50,157,0.45)] hover:shadow-[0_12px_30px_rgba(232,50,157,0.6)] cursor-pointer flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed min-h-[48px]"
                   >
                     {isPending ? (
                       <>
