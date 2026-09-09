@@ -1,0 +1,69 @@
+import React, { useState, useEffect } from 'react';
+import { Header } from '@/components/shared/Header';
+import { Footer } from '@/components/shared/Footer';
+import { BookingModal } from '@/components/shared/BookingModal';
+import { SERVICES_DATA, type ServiceItem } from '@/data/salonData';
+import { ServicesHero } from '../components/ServicesHero';
+import { ServicesFeatureStrip } from '../components/ServicesFeatureStrip';
+import { ServicesGrid } from '../components/ServicesGrid';
+import { ServicesCTABanner } from '../components/ServicesCTABanner';
+
+export const ServicesPage: React.FC = () => {
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [initialService, setInitialService] = useState<ServiceItem | null>(null);
+
+  useEffect(() => {
+    // Scroll to top on page mount
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    document.title =
+      'Our Services | VV Studio - Complete Beauty Care Under One Roof, JP Nagar Bangalore';
+  }, []);
+
+  const handleOpenBooking = (serviceName?: string) => {
+    if (serviceName) {
+      const matched = SERVICES_DATA.find((s) =>
+        s.title.toLowerCase().includes(serviceName.toLowerCase()) ||
+        serviceName.toLowerCase().includes(s.title.toLowerCase())
+      );
+      setInitialService(matched || null);
+    } else {
+      setInitialService(null);
+    }
+    setIsBookingOpen(true);
+  };
+
+  return (
+    <div className="min-h-screen bg-[#FCFCFC] text-[#40363F] flex flex-col antialiased selection:bg-[#D91A8A] selection:text-white">
+      {/* Top Header - untouched style */}
+      <Header onOpenBooking={() => handleOpenBooking()} />
+
+      {/* Main Content Sections */}
+      <main className="flex-1">
+        {/* Hero Section with common girl & diamond geometry */}
+        <ServicesHero />
+
+        {/* 4 Feature Badges Strip */}
+        <ServicesFeatureStrip />
+
+        {/* 12 Services Card Grid */}
+        <ServicesGrid onOpenBooking={handleOpenBooking} />
+
+        {/* Bottom CTA Banner before Footer */}
+        <ServicesCTABanner onOpenBooking={() => handleOpenBooking()} />
+      </main>
+
+      {/* Signature Footer - untouched style */}
+      <Footer />
+
+      {/* Booking Modal */}
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => {
+          setIsBookingOpen(false);
+          setInitialService(null);
+        }}
+        initialService={initialService}
+      />
+    </div>
+  );
+};

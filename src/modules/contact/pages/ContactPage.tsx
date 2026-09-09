@@ -37,7 +37,7 @@ export const ContactPage: React.FC = () => {
       </main>
 
       {/* Signature Dark Plum Footer matching design */}
-      <Footer variant="dark" showTaglineCallout={true} />
+      <Footer />
 
       {/* Booking Modal */}
       <BookingModal

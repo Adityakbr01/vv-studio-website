@@ -63,14 +63,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
   const navLinks = [
     { name: 'Home', to: '/' },
     { name: 'About', to: '/#about' },
-    { name: 'Services', to: '/#services' },
+    { name: 'Services', to: '/services' },
     { name: 'Gallery', to: '/#gallery' },
     { name: 'Blog', to: '/#blog' },
     { name: 'Contact', to: '/contact' },
   ];
 
   const handleNavClick = (to: string) => {
-    if (to === '/contact') {
+    if (to === '/contact' || to === '/services') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (to.includes('#')) {
       const id = to.split('#')[1];
@@ -84,6 +84,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
   const isLinkActive = (link: { name: string; to: string }) => {
     if (link.to === '/contact') {
       return location.pathname === '/contact';
+    }
+    if (link.to === '/services') {
+      return location.pathname === '/services';
     }
     if (link.name === 'Home') {
       return location.pathname === '/' && !location.hash;

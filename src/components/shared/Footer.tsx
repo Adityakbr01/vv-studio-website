@@ -4,7 +4,6 @@ import {
   MapPin,
   Phone,
   Mail,
-  Globe,
   Navigation,
 } from 'lucide-react';
 import { Logo } from './Logo';
@@ -15,7 +14,7 @@ export const Footer: React.FC = () => {
   const quickLinks = [
     { name: 'Home', to: '/' },
     { name: 'About', to: '/#about' },
-    { name: 'Services', to: '/#services' },
+    { name: 'Services', to: '/services' },
     { name: 'Gallery', to: '/#gallery' },
     { name: 'Blog', to: '/#blog' },
     { name: 'Contact', to: '/contact' },
