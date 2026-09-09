@@ -4,11 +4,14 @@ import {
   MapPin,
   Phone,
   Mail,
-  Navigation,
 } from 'lucide-react';
 import { Logo } from './Logo';
 import { Container } from '@/components/ui/Container';
-import { CONTACT_INFO } from '@/data/salonData';
+import {
+  CONTACT_INFO,
+  STUDIO_DIRECTIONS_URL,
+  STUDIO_FOOTER_MAP_EMBED_SRC,
+} from '@/data/salonData';
 
 export const Footer: React.FC = () => {
   const quickLinks = [
@@ -135,30 +138,47 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Map & Directions card (3 cols) */}
           <div className="lg:col-span-3">
-            <div className="rounded-2xl border border-[#F1E4EE] bg-[#FCFCFC] p-3 shadow-[0_2px_14px_rgba(90,20,80,0.08)]">
-              {/* Map */}
-              <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-[#F4EDF2] mb-3">
+            <div className="relative rounded-xl overflow-hidden border border-white/60 shadow-[0_4px_20px_rgba(0,0,0,0.12)] bg-[#EDE6EB]">
+              {/* Map background - coords query so no native place card */}
+              <div className="relative aspect-[16/10] w-full">
                 <iframe
                   title="V V Studio location map - JP Nagar, Bangalore"
-                  src="https://www.google.com/maps?q=V%20V%20Studio%2C%20%235%2C%201st%20Floor%2C%2024th%20Main%2C%205th%20Phase%2C%20JP%20Nagar%2C%20Bangalore%20560078&output=embed"
-                  className="absolute inset-0 h-full w-full border-0"
+                  src={STUDIO_FOOTER_MAP_EMBED_SRC}
+                  className="absolute inset-0 h-full w-full border-0 pointer-events-none"
                   loading="lazy"
-                  allowFullScreen
                   referrerPolicy="no-referrer-when-downgrade"
+                />
+                {/* soft white fade for label readability */}
+                <div
+                  className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/90 via-white/60 to-transparent pointer-events-none"
+                  aria-hidden="true"
                 />
               </div>
 
-              {/* Get Directions Button */}
-              <a
-                href="https://www.google.com/maps/dir/?api=1&destination=V%20V%20Studio%2C%20%235%2C%201st%20Floor%2C%2024th%20Main%2C%205th%20Phase%2C%20JP%20Nagar%2C%20Bangalore%20560078"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-[#E8329D] hover:bg-[#D91A8A] text-white text-xs font-semibold tracking-wide transition-all shadow-sm cursor-pointer"
-              >
-                <Navigation className="w-3.5 h-3.5" />
-                <span>Get Directions</span>
-                <span aria-hidden="true">→</span>
-              </a>
+              {/* Top label overlay - no custom pin, Google already shows pin */}
+              <div className="absolute top-2.5 inset-x-0 flex justify-center pointer-events-none px-3">
+                <span className="text-center leading-tight">
+                  <span className="block text-[15px] font-bold text-[#2D0A2E]">
+                    V V Studio
+                  </span>
+                  <span className="block text-[13px] text-[#5E525C]">
+                    JP Nagar, Bangalore
+                  </span>
+                </span>
+              </div>
+
+              {/* Bottom CTA overlay */}
+              <div className="absolute bottom-3.5 inset-x-0 flex justify-center px-4">
+                <a
+                  href={STUDIO_DIRECTIONS_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 py-2.5 px-7 rounded-full bg-[#E8329D] hover:bg-[#D91A8A] text-white text-sm font-semibold tracking-wide transition-all shadow-[0_6px_20px_rgba(232,50,157,0.5)] cursor-pointer"
+                >
+                  <span>Get Directions</span>
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

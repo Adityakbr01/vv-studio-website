@@ -15,6 +15,11 @@ import {
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { SERVICES_DATA } from '@/data/salonData';
+import {
+  STUDIO_ADDRESS_SHORT,
+  STUDIO_DIRECTIONS_URL,
+  STUDIO_MAP_EMBED_SRC,
+} from '@/data/salonData';
 import { useSubmitEnquiry } from '@/modules/home/hooks/useEnquiry';
 import { getUtmParams } from '@/lib/utm';
 
@@ -68,9 +73,7 @@ export const ContactLocationAndForm: React.FC = () => {
     }
   };
 
-  const mapDirectionUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-    'V V Studio, #8, 1st Floor, 24th Main, 5th Phase, JP Nagar, Bangalore 560078'
-  )}`;
+  const mapDirectionUrl = STUDIO_DIRECTIONS_URL;
 
   return (
     <section id="location-and-form" className="py-10 sm:py-12 lg:py-16 bg-[#FCFCFC]">
@@ -93,7 +96,7 @@ export const ContactLocationAndForm: React.FC = () => {
             <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden border border-[#EEDBEC] shadow-[0_8px_30px_rgba(80,0,70,0.06)] bg-[#F5ECF2]">
               <iframe
                 title="V V Studio JP Nagar Map"
-                src="https://www.google.com/maps?q=V%20V%20Studio%2C%20%238%2C%201st%20Floor%2C%2024th%20Main%2C%205th%20Phase%2C%20JP%20Nagar%2C%20Bangalore%20560078&output=embed"
+                src={STUDIO_MAP_EMBED_SRC}
                 className="w-full h-full border-0"
                 loading="lazy"
                 allowFullScreen
@@ -112,7 +115,7 @@ export const ContactLocationAndForm: React.FC = () => {
                 </div>
 
                 <p className="text-[11px] sm:text-xs text-[#6B5C69] leading-relaxed mb-3 sm:mb-3.5 max-w-[280px]">
-                  #8, 1st Floor, 24th Main, 5th Phase, JP Nagar, Bangalore 560078
+                  {STUDIO_ADDRESS_SHORT}
                 </p>
 
                 <a

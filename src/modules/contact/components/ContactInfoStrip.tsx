@@ -2,6 +2,10 @@ import React from 'react';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { WhatsAppIcon } from '@/components/shared/WhatsAppIcon';
+import {
+  STUDIO_ADDRESS_MULTILINE,
+  STUDIO_DIRECTIONS_URL,
+} from '@/data/salonData';
 
 export const ContactInfoStrip: React.FC = () => {
   const iconCls = 'w-6 h-6 sm:w-7 sm:h-7 text-[#E8329D]';
@@ -34,8 +38,8 @@ export const ContactInfoStrip: React.FC = () => {
     {
       id: 'visit',
       title: 'Visit Us',
-      primary: '#8, 1st Floor, 24th Main\n5th Phase, JP Nagar,\nBangalore 560078',
-      href: 'https://www.google.com/maps/dir/?api=1&destination=V%20V%20Studio%2C%20%238%2C%201st%20Floor%2C%2024th%20Main%2C%205th%20Phase%2C%20JP%20Nagar%2C%20Bangalore%20560078',
+      primary: STUDIO_ADDRESS_MULTILINE,
+      href: STUDIO_DIRECTIONS_URL,
       subtitle: 'Come say hello!',
       icon: <MapPin className={iconCls} strokeWidth={iconStroke} />,
     },

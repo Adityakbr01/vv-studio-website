@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Play, X, Flower2, Gem, Users, Heart } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
+import { STUDIO_ADDRESS_SHORT } from '@/data/salonData';
 
 interface ExperienceDifferenceSectionProps {
   onOpenBooking: () => void;
@@ -16,32 +17,32 @@ export const ExperienceDifferenceSection: React.FC<ExperienceDifferenceSectionPr
     {
       id: 'ambience',
       label: 'Relaxing Ambience',
-      icon: <Flower2 className="w-6 h-6 text-[#D91A8A] stroke-[1.6]" />,
+      icon: <Flower2 className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 text-[#D91A8A] stroke-[1.5]" />,
     },
     {
       id: 'hygiene',
       label: 'Hygienic & Safe Environment',
-      icon: <Gem className="w-6 h-6 text-[#D91A8A] stroke-[1.6]" />,
+      icon: <Gem className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 text-[#D91A8A] stroke-[1.5]" />,
     },
     {
       id: 'professionals',
       label: 'Trained Professionals',
-      icon: <Users className="w-6 h-6 text-[#D91A8A] stroke-[1.6]" />,
+      icon: <Users className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 text-[#D91A8A] stroke-[1.5]" />,
     },
     {
       id: 'care',
       label: 'Personalized Care',
-      icon: <Heart className="w-6 h-6 text-[#D91A8A] stroke-[1.6]" />,
+      icon: <Heart className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 text-[#D91A8A] stroke-[1.5]" />,
     },
   ];
 
   return (
-    <section className="py-10 sm:py-14 lg:py-20 bg-white border-t border-[#F5EAF2]">
+    <section className="py-8 sm:py-12 lg:py-16 bg-white">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Left Column: Salon Interior with Virtual Tour Play Trigger */}
-          <div className="lg:col-span-6 min-w-0">
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_16px_40px_rgba(80,0,70,0.12)] group border border-[#F2E1ED]">
+          <div className="min-w-0">
+            <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_12px_32px_rgba(80,0,70,0.14)] group">
               <img
                 src="/images/contact/salon_virtual_tour.webp"
                 alt="V V Studio Luxury Salon Interior & Reception"
@@ -50,22 +51,22 @@ export const ExperienceDifferenceSection: React.FC<ExperienceDifferenceSectionPr
 
               {/* Gradient Scrim for Contrast */}
               <div
-                className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none"
+                className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent pointer-events-none"
                 aria-hidden="true"
               />
 
-              {/* Interactive Virtual Tour Play Button Overlay */}
+              {/* Centered Virtual Tour Trigger - exact as design */}
               <button
                 type="button"
                 onClick={() => setIsTourOpen(true)}
-                className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 flex items-center gap-2.5 sm:gap-3.5 bg-black/40 hover:bg-black/60 backdrop-blur-md py-1.5 sm:py-2 pl-1.5 sm:pl-4 pr-3 sm:pr-4 rounded-full border border-white/20 transition-all duration-300 group/btn cursor-pointer max-w-[calc(100%-1.5rem)]"
+                className="absolute bottom-5 right-[-70%] sm:bottom-6 inset-x-0 mx-auto flex flex-col items-center justify-end gap-1.5 cursor-pointer group/btn w-fit pb-1"
                 aria-label="Take a Virtual Tour of VV Studio"
               >
-                <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#E8329D] flex items-center justify-center text-white shadow-[0_4px_16px_rgba(232,50,157,0.6)] group-hover/btn:scale-110 group-hover/btn:bg-[#D91A8A] transition-all shrink-0">
+                <span className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#E8329D] flex items-center justify-center text-white shadow-[0_4px_18px_rgba(232,50,157,0.65)] ring-2 ring-white/30 group-hover/btn:scale-110 group-hover/btn:bg-[#D91A8A] transition-all">
                   <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
-                  <span className="absolute inset-0 rounded-full bg-[#E8329D] animate-ping opacity-35 pointer-events-none" />
-                </div>
-                <span className="text-white! font-medium text-xs sm:text-sm tracking-wide drop-shadow-sm pr-1 truncate">
+                  <span className="absolute inset-0 rounded-full bg-[#E8329D] animate-ping opacity-30 pointer-events-none" />
+                </span>
+                <span className="text-white text-[11px] sm:text-xs font-medium tracking-wide drop-shadow-md leading-none">
                   Take a Virtual Tour
                 </span>
               </button>
@@ -73,48 +74,47 @@ export const ExperienceDifferenceSection: React.FC<ExperienceDifferenceSectionPr
           </div>
 
           {/* Right Column: Experience Details & Highlights */}
-          <div className="lg:col-span-6 flex flex-col justify-center min-w-0">
-            <p className="text-[11px] sm:text-xs font-bold tracking-[0.22em] uppercase text-[#D91A8A] mb-2">
+          <div className="flex flex-col justify-center min-w-0 py-2 lg:py-6">
+            <p className="text-xs sm:text-sm font-bold tracking-[0.22em] uppercase text-[#D91A8A] mb-2 sm:mb-3">
               VISIT OUR STUDIO
             </p>
 
-            <h2 className="font-display italic text-[26px] sm:text-4xl lg:text-[42px] text-[#2D0A2E] font-semibold tracking-tight leading-[1.15] mb-2.5 sm:mb-3">
+            <h2 className="font-display italic text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] text-[#2D0A2E] font-semibold tracking-tight leading-[1.08] mb-3 sm:mb-4">
               Experience the Difference
             </h2>
 
-            <p className="text-[#6D5D6A] text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 max-w-lg">
+            <p className="text-[#6D5D6A] text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8 lg:mb-10 max-w-xl">
               A modern, comfortable and welcoming space designed to make you feel relaxed,
               confident and beautiful.
             </p>
 
-            {/* 4 Feature Points in responsive row / grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-3 mb-7 sm:mb-9">
+            {/* 4 Feature Points - plain icon + label, no cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-6 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-10">
               {features.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-col items-center text-center p-3 sm:p-2.5 rounded-2xl bg-[#FFFDFE] hover:bg-[#FFF5F9] border border-[#F5E6F0] transition-colors"
+                  className="flex flex-col items-center text-center"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#FFF0F7] border border-[#FCD6E8] flex items-center justify-center mb-2.5 shrink-0">
+                  <div className="flex items-center justify-center mb-2.5 sm:mb-3">
                     {item.icon}
                   </div>
-                  <p className="text-xs font-semibold text-[#3D1E3A] leading-tight max-w-[120px]">
+                  <p className="text-xs sm:text-sm lg:text-[15px] font-medium text-[#3D1E3A] leading-snug max-w-[150px]">
                     {item.label}
                   </p>
                 </div>
               ))}
             </div>
 
-            {/* Book Appointment CTA */}
-            <div>
-              <Button
-                variant="primary"
-                size="md"
-                withArrow
+            {/* Book Appointment CTA - pill button as per design */}
+            <div className="flex sm:justify-start">
+              <button
+                type="button"
                 onClick={onOpenBooking}
-                className="bg-[#E8329D] hover:bg-[#D91A8A] shadow-[0_8px_25px_rgba(232,50,157,0.45)] px-7 py-3 text-sm w-full sm:w-auto justify-center"
+                className="inline-flex items-center gap-2 rounded-full bg-[#C2147F] hover:bg-[#D91A8A] text-white  text-sm sm:text-base font-semibold px-6 sm:px-7 py-2.5 sm:py-3 transition-all cursor-pointer"
               >
                 Book Appointment
-              </Button>
+                <span aria-hidden="true">→</span>
+              </button>
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ export const ExperienceDifferenceSection: React.FC<ExperienceDifferenceSectionPr
                   Welcome to V V Studio
                 </h4>
                 <p className="text-white/80 text-xs sm:text-sm max-w-md mb-4">
-                  #8, 1st Floor, 24th Main, 5th Phase, JP Nagar, Bangalore
+                  {STUDIO_ADDRESS_SHORT}
                 </p>
                 <Button
                   variant="primary"
