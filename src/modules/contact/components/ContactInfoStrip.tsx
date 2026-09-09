@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
+import { WhatsAppIcon } from '@/components/shared/WhatsAppIcon';
 
 export const ContactInfoStrip: React.FC = () => {
   const iconCls = 'w-6 h-6 sm:w-7 sm:h-7 text-[#E8329D]';
@@ -20,13 +21,7 @@ export const ContactInfoStrip: React.FC = () => {
       primary: '8310782820',
       href: 'https://wa.me/918310782820',
       subtitle: 'Quick response',
-      icon: (
-        <svg className={iconCls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={iconStroke} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-          <path d="M12 8.5c-1.9 0-3.5 1.6-3.5 3.5 0 .8.3 1.4.7 2l-.4 1.6 1.6-.4c.5.3 1 .5 1.6.5 1.9 0 3.5-1.6 3.5-3.5S13.9 8.5 12 8.5z" />
-          <path d="M11 11.2c.2-.3 1-1.1 1.4-1.1.2 0 .4.1.5.3l.7 1c.1.2.1.4 0 .6l-.4.5c-.1.2-.1.4 0 .6l.7.9c.2.2.4.3.6.2l.6-.3c.2-.1.4 0 .6.2" />
-        </svg>
-      ),
+      icon: <WhatsAppIcon className={iconCls} />,
     },
     {
       id: 'email',

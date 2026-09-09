@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 
@@ -22,7 +23,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on resize to desktop
+  // Close mobile menu on resize to desktop or route change
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -32,6 +33,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -43,6 +48,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
     return () => {
       document.body.style.overflow = '';
     };
+  }, [mobileMenuOpen]);
+
+  // Close on Escape
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [mobileMenuOpen]);
 
   const navLinks = [
@@ -77,15 +92,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
   };
 
   return (
+    <>
     <header
-      className={`fixed top-0 left-0 py-5 right-0 z-40 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 py-3 sm:py-5 right-0 z-40 transition-all duration-300 ${
+        isScrolled || mobileMenuOpen
           ? 'bg-[#3D003D]/95 backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.3)]'
-          : 'bg-transparent'
+          : 'bg-gradient-to-b from-black/35 to-transparent'
       }`}
     >
       <Container>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between min-h-[48px]">
           {/* Brand Logo */}
           <Logo theme="dark" size="md" />
 
@@ -132,10 +148,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
               <span className="text-white/30 mx-1">|</span>
 
               {/* WhatsApp Icon */}
-              <svg className="w-3.5 h-3.5 fill-current text-white/90 shrink-0" viewBox="0 0 24 24">
-                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.586 1.83.899 2.796.899 3.183 0 5.769-2.586 5.77-5.766.001-3.18-2.585-5.766-5.77-5.766zm3.385 8.163c-.143.402-.832.748-1.161.797-.306.046-.693.076-2.18-.541-1.897-.788-3.116-2.73-3.21-2.857-.095-.127-.768-1.021-.768-1.947 0-.927.487-1.381.66-1.571.173-.19.378-.238.504-.238.127 0 .254.002.365.007.117.006.273-.044.427.327.159.381.54 1.317.587 1.412.048.096.079.207.016.334-.064.127-.096.206-.191.317-.095.111-.2.248-.286.334-.095.095-.195.198-.083.39.111.191.494.814 1.059 1.318.729.649 1.343.85 1.534.945.191.095.302.079.413-.048.111-.127.476-.556.603-.746.127-.19.254-.159.428-.095.175.063 1.111.524 1.302.619.19.095.317.143.365.222.048.079.048.46-.095.862z" />
-                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.965-1.397A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.25c-1.637 0-3.167-.47-4.464-1.282l-.32-.2-3.272.921.936-3.2-.213-.339A8.212 8.212 0 0 1 3.75 12c0-4.549 3.701-8.25 8.25-8.25 4.549 0 8.25 3.701 8.25 8.25 0 4.549-3.701 8.25-8.25 8.25z" />
-              </svg>
+              <WhatsAppIcon className="w-3.5 h-3.5 text-white/90 shrink-0" />
               <a
                 href="https://wa.me/918310782820"
                 target="_blank"
@@ -198,18 +211,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           </div>
 
           {/* Mobile Menu & Quick Book Button */}
-          <div className="flex lg:hidden items-center gap-3">
+          <div className="flex lg:hidden items-center gap-2">
             <button
               type="button"
               onClick={onOpenBooking}
-              className="text-xs bg-[#E8329D] hover:bg-[#D91A8A] text-white px-3.5 py-1.5 rounded-full font-medium active:scale-95 transition-transform"
+              className="inline-flex items-center gap-1 text-[13px] bg-[#E8329D] hover:bg-[#D91A8A] text-white pl-4 pr-3.5 py-2 rounded-full font-semibold active:scale-95 transition-all shadow-[0_4px_14px_rgba(232,50,157,0.5)] min-h-[38px]"
             >
               Book
+              <span aria-hidden="true">→</span>
             </button>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-white hover:text-[#F8C1DE] focus:outline-none focus:ring-2 focus:ring-white/30 rounded-lg cursor-pointer"
+              className="flex items-center justify-center min-w-[44px] min-h-[44px] p-2.5 text-white hover:text-[#F8C1DE] hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-xl cursor-pointer transition-colors"
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={mobileMenuOpen}
             >
@@ -218,54 +232,102 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           </div>
         </div>
       </Container>
+    </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Sidebar — slides in from the right */}
       {mobileMenuOpen && (
         <div
           role="dialog"
           aria-modal="true"
-          className="lg:hidden fixed inset-0 top-[65px] bg-[#2B002B]/95 backdrop-blur-xl border-t border-white/10 p-6 flex flex-col justify-between z-50 animate-in fade-in slide-in-from-top-4 duration-300"
+          aria-label="Mobile navigation"
+          className="lg:hidden fixed inset-0 z-50"
         >
-          <div className="flex flex-col gap-5 pt-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.to}
+          {/* Scrim — tap to close */}
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => setMobileMenuOpen(false)}
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-default animate-in fade-in duration-300"
+          />
+          <aside className="absolute top-0 right-0 h-full w-[85%] max-w-[340px] flex flex-col bg-[#2B002B] border-l border-white/10 shadow-2xl animate-in slide-in-from-right duration-300">
+            {/* Sidebar header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
+              <Logo theme="dark" size="sm" />
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center min-w-[44px] min-h-[44px] p-2.5 text-white hover:text-[#F8C1DE] hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-xl cursor-pointer transition-colors"
+                aria-label="Close Menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <nav aria-label="Mobile" className="flex-1 overflow-y-auto p-3 sm:p-4">
+              {navLinks.map((link, i) => {
+                const active = isLinkActive(link);
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.to}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      handleNavClick(link.to);
+                    }}
+                    style={{ transitionDelay: `${i * 30}ms` }}
+                    className={`flex items-center justify-between gap-3 px-4 py-3.5 rounded-xl text-[17px] font-medium transition-all animate-in fade-in slide-in-from-right-4 duration-300 ${
+                      active
+                        ? 'bg-[#E8329D]/15 text-white'
+                        : 'text-white/85 hover:bg-white/5 hover:text-white active:bg-white/10'
+                    }`}
+                  >
+                    <span className="flex items-center gap-3">
+                      {link.name}
+                      {active && (
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#E8329D]" aria-hidden="true" />
+                      )}
+                    </span>
+                    <span aria-hidden="true" className="text-white/30">→</span>
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <div className="shrink-0 p-4 sm:p-5 border-t border-white/10 bg-white/[0.02] flex flex-col gap-3">
+              <div className="grid grid-cols-2 gap-2">
+                <a
+                  href="tel:08048531999"
+                  className="flex items-center justify-center gap-1.5 rounded-xl border border-white/15 text-white/90 text-xs font-semibold px-2 py-3 min-h-[48px] whitespace-nowrap hover:bg-white/5 active:bg-white/10 transition-colors"
+                >
+                  <Phone className="w-4 h-4 text-[#F06AB9] shrink-0" />
+                  080-48531999
+                </a>
+                <a
+                  href="https://wa.me/918310782820"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-1.5 rounded-xl border border-white/15 text-white/90 text-xs font-semibold px-2 py-3 min-h-[48px] whitespace-nowrap hover:bg-white/5 active:bg-white/10 transition-colors"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-[#F06AB9] shrink-0" />
+                  WhatsApp
+                </a>
+              </div>
+
+              <Button
+                variant="primary"
+                size="lg"
+                withArrow
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  handleNavClick(link.to);
+                  onOpenBooking();
                 }}
-                className="text-xl font-display text-white/90 hover:text-[#F06AB9] border-b border-white/5 pb-3 transition-colors"
+                className="w-full justify-center bg-[#E8329D] hover:bg-[#D91A8A] min-h-[52px] text-[15px]"
               >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-
-          <div className="pt-6 border-t border-white/10 flex flex-col gap-4">
-            <div className="flex items-center gap-3 text-sm text-white/80">
-              <Phone className="w-4 h-4 text-[#F06AB9]" />
-              <div className="flex flex-col">
-                <a href="tel:08046531999">080-46531999</a>
-                <a href="tel:8310782820">8310782820</a>
-              </div>
+                Book Appointment Now
+              </Button>
             </div>
-
-            <Button
-              variant="primary"
-              size="lg"
-              withArrow
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenBooking();
-              }}
-              className="w-full justify-center bg-[#E8329D]"
-            >
-              Book Appointment Now
-            </Button>
-          </div>
+          </aside>
         </div>
       )}
-    </header>
+    </>
   );
 };

@@ -346,7 +346,7 @@ export const STATS_DATA = [
 ];
 
 export const CONTACT_INFO = {
-  address: '#8, 1st Floor, 24th Main, 5th Phase, JP Nagar, Bangalore 560078',
+  address: 'V V Studio, #5, 1st Floor, 24th Main, 5th Phase, JP Nagar, Bangalore 560078',
   phones: ['080-48531999', '8310782820'],
   email: 'info@varvadhustudio.com',
   website: 'www.varvadhustudio.com',
