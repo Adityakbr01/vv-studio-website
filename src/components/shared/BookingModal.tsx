@@ -6,6 +6,30 @@ import { getLenisInstance } from '@/lib/lenis';
 import { getUtmParams } from '@/lib/utm';
 import { useSubmitEnquiry } from '@/modules/home/hooks/useEnquiry';
 
+/** Digits only, capped at 10. */
+const normalizePhone = (raw: string): string => raw.replace(/\D/g, '').slice(0, 10);
+
+/** Indian 10-digit mobile validation (starts 6-9). */
+const isValidPhone = (raw: string): boolean => /^[6-9]\d{9}$/.test(normalizePhone(raw));
+
+/** Convert "HH:MM" (24h) from <input type="time"> to "h:MM AM/PM". */
+const to12h = (hhmm: string): string => {
+  const [hStr, mStr] = hhmm.split(':');
+  const h = Number(hStr);
+  if (!hhmm || Number.isNaN(h)) return hhmm;
+  const suffix = h >= 12 ? 'PM' : 'AM';
+  const h12 = h % 12 === 0 ? 12 : h % 12;
+  return `${h12}:${mStr ?? '00'} ${suffix}`;
+};
+
+/** Today's date as local YYYY-MM-DD for <input type="date" min={...}> comparisons. */
+const todayISO = (): string => {
+  const d = new Date();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${d.getFullYear()}-${m}-${day}`;
+};
+
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -24,9 +48,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [bookingDate, setBookingDate] = useState('');
-  const [selectedTime, setSelectedTime] = useState('11:00 AM');
+  const [selectedTime, setSelectedTime] = useState('11:00');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
+  const [dateError, setDateError] = useState<string | null>(null);
+  const today = todayISO();
 
   const { mutateAsync: submitEnquiry, isPending } = useSubmitEnquiry();
 
@@ -37,6 +64,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     if (isOpen) {
       setIsSubmitted(false);
       setSubmitError(null);
+      setPhoneError(null);
+      setDateError(null);
     }
   }, [isOpen, initialService]);
 
@@ -54,33 +83,40 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
   if (!isOpen) return null;
 
-  const timeSlots = [
-    '10:30 AM',
-    '11:30 AM',
-    '01:00 PM',
-    '02:30 PM',
-    '04:00 PM',
-    '05:30 PM',
-    '07:00 PM',
-  ];
-
   const currentServiceObj = SERVICES_DATA.find((s) => s.id === selectedService);
+
+  /** Live input guard: digits only, hard stop at 10. */
+  const handlePhoneChange = (raw: string) => {
+    const digits = raw.replace(/\D/g, '').slice(0, 10);
+    setPhoneNumber(digits);
+    if (phoneError && isValidPhone(digits)) setPhoneError(null);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName.trim() || !phoneNumber.trim() || !email.trim()) return;
+    if (!isValidPhone(phoneNumber)) {
+      setPhoneError('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+    if (!bookingDate || bookingDate < today) {
+      setDateError('Please choose today or a future date.');
+      return;
+    }
+    setPhoneError(null);
+    setDateError(null);
     setSubmitError(null);
     const utm = getUtmParams();
     try {
       await submitEnquiry({
         enquiryFullName: fullName.trim(),
         enquiryEmail: email.trim(),
-        enquiryMobile: phoneNumber.trim(),
+        enquiryMobile: normalizePhone(phoneNumber),
         enquiryProduct: currentServiceObj ? `Booking - ${currentServiceObj.title}` : 'Website Enquiry',
         enquiryMessage: [
           currentServiceObj ? `Service: ${currentServiceObj.title} (${currentServiceObj.tagline})` : null,
           bookingDate ? `Preferred Date: ${bookingDate}` : null,
-          selectedTime ? `Preferred Time: ${selectedTime}` : null,
+          selectedTime ? `Preferred Time: ${to12h(selectedTime)}` : null,
         ]
           .filter(Boolean)
           .join(' | '),
@@ -178,27 +214,33 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   <input
                     type="date"
                     required
+                    min={today}
                     value={bookingDate}
-                    onChange={(e) => setBookingDate(e.target.value)}
-                    className="w-full px-3.5 py-2 rounded-xl border border-[#E8DCE5] text-sm text-[#40363F] focus:outline-none focus:ring-2 focus:ring-[#D91A8A]"
+                    onChange={(e) => {
+                      setBookingDate(e.target.value);
+                      if (e.target.value && e.target.value >= today) setDateError(null);
+                    }}
+                    className={`w-full px-3.5 py-2 rounded-xl border text-sm text-[#40363F] focus:outline-none focus:ring-2 ${
+                      dateError ? 'border-[#E11D48] focus:ring-[#E11D48]' : 'border-[#E8DCE5] focus:ring-[#D91A8A]'
+                    }`}
                   />
+                  {dateError && <p className="mt-1.5 text-xs text-[#E11D48]">{dateError}</p>}
                 </div>
 
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-[#2C182A] mb-2 flex items-center gap-1.5">
                     <Clock className="w-3.5 h-3.5 text-[#A80086]" /> Preferred Time
                   </label>
-                  <select
+                  <input
+                    type="time"
+                    required
                     value={selectedTime}
+                    min="10:00"
+                    max="20:30"
+                    step={1800}
                     onChange={(e) => setSelectedTime(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-[#E8DCE5] text-sm text-[#40363F] focus:outline-none focus:ring-2 focus:ring-[#D91A8A] bg-white cursor-pointer"
-                  >
-                    {timeSlots.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
-                      </option>
-                    ))}
-                  </select>
+                  />
                 </div>
               </div>
 
@@ -225,11 +267,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   <input
                     type="tel"
                     required
+                    inputMode="numeric"
+                    maxLength={10}
                     placeholder="98765 43210"
                     value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#E8DCE5] text-sm text-[#40363F] focus:outline-none focus:ring-2 focus:ring-[#D91A8A]"
+                    onChange={(e) => handlePhoneChange(e.target.value)}
+                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm text-[#40363F] focus:outline-none focus:ring-2 ${
+                      phoneError ? 'border-[#E11D48] focus:ring-[#E11D48]' : 'border-[#E8DCE5] focus:ring-[#D91A8A]'
+                    }`}
                   />
+                  {phoneError && <p className="mt-1.5 text-xs text-[#E11D48]">{phoneError}</p>}
                 </div>
               </div>
 

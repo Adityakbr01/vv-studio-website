@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Container } from '@/components/ui/Container';
 import { Carousel, CarouselControls, type CarouselHandle, type CarouselState } from '@/components/ui/Carousel';
+import { GalleryLightbox } from './GalleryLightbox';
 import { GALLERY_DATA } from '@/data/salonData';
 
 interface GallerySectionProps {
@@ -10,6 +11,7 @@ interface GallerySectionProps {
 
 export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking }) => {
   const carouselRef = useRef<CarouselHandle>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [carouselState, setCarouselState] = useState<CarouselState>({
     canPrev: false,
     canNext: false,
@@ -47,9 +49,10 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking })
           trackClassName="gap-2.5 sm:gap-3.5 pb-1"
           slideClassName="basis-[calc(33.3333%-6.6667px)] sm:basis-[calc(33.3333%-9.3333px)] lg:basis-[calc(16.6667%-11.6667px)]"
         >
-          {GALLERY_DATA.map((item) => (
+          {GALLERY_DATA.map((item, i) => (
             <div
               key={item.id}
+              onClick={() => setLightboxIndex(i)}
               className="group relative aspect-[3/4] rounded-[12px] overflow-hidden bg-[#FAF0F6] border border-[#F1E4EE] shadow-[0_2px_14px_rgba(90,20,80,0.08)] hover:shadow-[0_10px_28px_rgba(90,20,80,0.14)] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
             >
               <img
@@ -62,6 +65,15 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking })
           ))}
         </Carousel>
       </Container>
+
+      {lightboxIndex !== null && (
+        <GalleryLightbox
+          items={GALLERY_DATA}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onNavigate={setLightboxIndex}
+        />
+      )}
     </section>
   );
 };

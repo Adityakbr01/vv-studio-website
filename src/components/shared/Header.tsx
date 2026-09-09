@@ -51,11 +51,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
     { name: 'Services', to: '/#services' },
     { name: 'Gallery', to: '/#gallery' },
     { name: 'Blog', to: '/#blog' },
-    { name: 'Contact', to: '/#contact' },
+    { name: 'Contact', to: '/contact' },
   ];
 
   const handleNavClick = (to: string) => {
-    if (to.includes('#')) {
+    if (to === '/contact') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (to.includes('#')) {
       const id = to.split('#')[1];
       const el = document.getElementById(id);
       el?.scrollIntoView({ behavior: 'smooth' });
@@ -64,11 +66,21 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
     }
   };
 
+  const isLinkActive = (link: { name: string; to: string }) => {
+    if (link.to === '/contact') {
+      return location.pathname === '/contact';
+    }
+    if (link.name === 'Home') {
+      return location.pathname === '/' && !location.hash;
+    }
+    return false;
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 py-5 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#3D003D]/95 backdrop-blur-md  shadow-[0_4px_25px_rgba(0,0,0,0.3)]'
+          ? 'bg-[#3D003D]/95 backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.3)]'
           : 'bg-transparent'
       }`}
     >
@@ -83,21 +95,21 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             className="hidden lg:flex items-center gap-7 text-[13px] font-medium tracking-wide text-white/90"
           >
             {navLinks.map((link) => {
-              const isHomeActive = link.name === 'Home' && location.pathname === '/' && !location.hash;
+              const active = isLinkActive(link);
               return (
                 <Link
                   key={link.name}
                   to={link.to}
                   onClick={() => handleNavClick(link.to)}
                   className={`relative py-1 transition-colors duration-200 hover:text-white ${
-                    isHomeActive ? 'text-white font-semibold' : 'text-white/85'
+                    active ? 'text-white font-semibold' : 'text-white/85'
                   }`}
                 >
                   <span>{link.name}</span>
                   {/* Pink underline active indicator matching reference */}
                   <span
                     className={`absolute bottom-[-2px] left-0 right-0 h-[2px] bg-[#E8329D] rounded-full transition-all duration-300 ${
-                      isHomeActive ? 'opacity-100' : 'opacity-0 hover:opacity-100'
+                      active ? 'opacity-100' : 'opacity-0 hover:opacity-100'
                     }`}
                   />
                 </Link>
@@ -105,19 +117,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             })}
           </nav>
 
-          {/* Contact Numbers & Book Appointment CTA on Right */}
-          <div className="hidden lg:flex items-center gap-6">
+          {/* Contact Numbers, Socials & Book Appointment CTA on Right */}
+          <div className="hidden lg:flex items-center gap-5">
             {/* Phone & WhatsApp Contacts */}
             <div className="flex items-center gap-2 text-[12px] font-medium text-white/90">
               <Phone className="w-3.5 h-3.5 text-white/90 shrink-0" />
               <a
-                href="tel:08046531999"
+                href="tel:08048531999"
                 className="hover:text-white transition-colors duration-200 tracking-wider"
               >
-                080-46531999
+                080-48531999
               </a>
 
-              <span className="text-white/30 mx-1.5">|</span>
+              <span className="text-white/30 mx-1">|</span>
 
               {/* WhatsApp Icon */}
               <svg className="w-3.5 h-3.5 fill-current text-white/90 shrink-0" viewBox="0 0 24 24">
@@ -125,10 +137,51 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                 <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.965-1.397A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.25c-1.637 0-3.167-.47-4.464-1.282l-.32-.2-3.272.921.936-3.2-.213-.339A8.212 8.212 0 0 1 3.75 12c0-4.549 3.701-8.25 8.25-8.25 4.549 0 8.25 3.701 8.25 8.25 0 4.549-3.701 8.25-8.25 8.25z" />
               </svg>
               <a
-                href="tel:8310782820"
+                href="https://wa.me/918310782820"
+                target="_blank"
+                rel="noreferrer"
                 className="hover:text-white transition-colors duration-200 tracking-wider"
               >
                 8310782820
+              </a>
+            </div>
+
+            {/* Social Icons matching design */}
+            <div className="flex items-center gap-2.5 text-white/85">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="hover:text-[#F8C1DE] transition-colors"
+              >
+                <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+                className="hover:text-[#F8C1DE] transition-colors"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube"
+                className="hover:text-[#F8C1DE] transition-colors"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
               </a>
             </div>
 

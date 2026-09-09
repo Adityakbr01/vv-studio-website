@@ -346,9 +346,9 @@ export const STATS_DATA = [
 ];
 
 export const CONTACT_INFO = {
-  address: 'V V Studio, #5, 1st Floor, 24th Main, 5th Phase, JP Nagar, Bangalore 560078',
-  phones: ['080-48531909', '8310782820'],
-  email: 'info@vanvadhostudio.com',
-  website: 'www.vanvadhostudio.com',
-  hours: 'Mon - Sun: 10:00 AM - 8:30 PM',
+  address: '#8, 1st Floor, 24th Main, 5th Phase, JP Nagar, Bangalore 560078',
+  phones: ['080-48531999', '8310782820'],
+  email: 'info@varvadhustudio.com',
+  website: 'www.varvadhustudio.com',
+  hours: 'Tue - Sun: 10:00 AM - 8:00 PM (Monday Holiday)',
 };

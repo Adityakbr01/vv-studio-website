@@ -1,0 +1,112 @@
+import React from 'react';
+import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Container } from '@/components/ui/Container';
+
+export const ContactInfoStrip: React.FC = () => {
+  const iconCls = 'w-7 h-7 text-[#E8329D]';
+  const iconStroke = 1.5;
+  const contactCards = [
+    {
+      id: 'call',
+      title: 'Call Us',
+      primary: '080-48531999',
+      href: 'tel:08048531999',
+      subtitle: "We're happy to help",
+      icon: <Phone className={iconCls} strokeWidth={iconStroke} />,
+    },
+    {
+      id: 'whatsapp',
+      title: 'WhatsApp Us',
+      primary: '8310782820',
+      href: 'https://wa.me/918310782820',
+      subtitle: 'Quick response',
+      icon: (
+        <svg className={iconCls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={iconStroke} strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+          <path d="M12 8.5c-1.9 0-3.5 1.6-3.5 3.5 0 .8.3 1.4.7 2l-.4 1.6 1.6-.4c.5.3 1 .5 1.6.5 1.9 0 3.5-1.6 3.5-3.5S13.9 8.5 12 8.5z" />
+          <path d="M11 11.2c.2-.3 1-1.1 1.4-1.1.2 0 .4.1.5.3l.7 1c.1.2.1.4 0 .6l-.4.5c-.1.2-.1.4 0 .6l.7.9c.2.2.4.3.6.2l.6-.3c.2-.1.4 0 .6.2" />
+        </svg>
+      ),
+    },
+    {
+      id: 'email',
+      title: 'Email Us',
+      primary: 'info@varvadhustudio.com',
+      href: 'mailto:info@varvadhustudio.com',
+      subtitle: "We'll get back to you soon",
+      icon: <Mail className={iconCls} strokeWidth={iconStroke} />,
+    },
+    {
+      id: 'visit',
+      title: 'Visit Us',
+      primary: '#8, 1st Floor, 24th Main\n5th Phase, JP Nagar,\nBangalore 560078',
+      href: 'https://www.google.com/maps/dir/?api=1&destination=V%20V%20Studio%2C%20%238%2C%201st%20Floor%2C%2024th%20Main%2C%205th%20Phase%2C%20JP%20Nagar%2C%20Bangalore%20560078',
+      subtitle: 'Come say hello!',
+      icon: <MapPin className={iconCls} strokeWidth={iconStroke} />,
+    },
+    {
+      id: 'hours',
+      title: 'Working Hours',
+      primary: 'Tue - Sun\n10:00 AM - 8:00 PM',
+      href: null,
+      subtitle: 'Monday Holiday!',
+      icon: <Clock className={iconCls} strokeWidth={iconStroke} />,
+    },
+  ];
+
+  return (
+    <section className="relative z-10 bg-[#FCFCFC] pt-8">
+      <Container>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-3 items-stretch">
+          {contactCards.map((card) => {
+            const Content = (
+              <div className="h-full flex flex-col items-center text-center px-4 py-6 sm:p-6 bg-[#FFFAFD] rounded-2xl border border-[#F8D9E8] shadow-[0_6px_24px_rgba(80,0,70,0.05)] hover:shadow-[0_14px_38px_rgba(80,0,70,0.12)] hover:-translate-y-1 transition-all duration-300 group">
+                {/* Bare thin pink icon — no circle badge, like reference */}
+                <div className="mb-3 flex items-center justify-center shrink-0">
+                  {card.icon}
+                </div>
+
+                {/* Title — normal case, dark */}
+                <h3 className="text-[14px] font-semibold text-[#2D0A2E] mb-1">
+                  {card.title}
+                </h3>
+
+                {/* Primary Detail — bold black */}
+                <div className="flex-1 flex items-start justify-center w-full">
+                  <p className="text-[13px] sm:text-[13.5px] font-bold text-black leading-[1.55] whitespace-pre-line break-words max-w-full">
+                    {card.primary}
+                  </p>
+                </div>
+
+                {/* Subtitle — small grey, pinned to bottom so all cards align */}
+                <p className="text-[11.5px] text-[#8A7A88] mt-auto pt-3 leading-snug">
+                  {card.subtitle}
+                </p>
+              </div>
+            );
+
+            if (card.href) {
+              return (
+                <a
+                  key={card.id}
+                  href={card.href}
+                  target={card.href.startsWith('http') ? '_blank' : undefined}
+                  rel={card.href.startsWith('http') ? 'noreferrer' : undefined}
+                  className="block h-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D91A8A]/30 rounded-2xl"
+                >
+                  {Content}
+                </a>
+              );
+            }
+
+            return (
+              <div key={card.id} className="h-full">
+                {Content}
+              </div>
+            );
+          })}
+        </div>
+      </Container>
+    </section>
+  );
+};

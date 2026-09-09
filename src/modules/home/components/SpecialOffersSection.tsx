@@ -26,13 +26,13 @@ export const SpecialOffersSection: React.FC<SpecialOffersProps> = ({ onOpenBooki
         }}
       />
 
-      {/* Panoramic Model Asset from /images/home/special_offer_image.webp */}
+      {/* Panoramic Model Asset from /images/common/girl_common.webp */}
       <div
         className="hidden md:block absolute right-60 bottom-0 h-full w-[65%] lg:w-[58%] xl:w-[54%] pointer-events-none select-none z-10"
         aria-hidden="true"
       >
         <img
-          src="/images/home/special_offer_image.webp"
+          src="/images/common/girl_common.webp"
           alt="VV Studio Special Offers"
           draggable={false}
           className="h-full w-full object-contain object-right-bottom"
@@ -94,7 +94,7 @@ export const SpecialOffersSection: React.FC<SpecialOffersProps> = ({ onOpenBooki
         {/* Mobile-only model view — script left, model right, no empty void */}
         <div className="md:hidden relative w-full h-[170px] sm:h-[200px] overflow-hidden pointer-events-none select-none">
           <img
-            src="/images/home/special_offer_image.webp"
+            src="/images/common/girl_common.webp"
             alt="VV Studio Special Offers"
             className="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain object-right-bottom"
           />
