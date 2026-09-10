@@ -5,6 +5,18 @@ import { Carousel, CarouselControls, type CarouselHandle, type CarouselState } f
 import { GalleryLightbox } from './GalleryLightbox';
 import { GALLERY_DATA } from '@/data/salonData';
 
+// Gallery image SEO from the on-page audit.
+const GALLERY_SEO: Record<string, { alt: string; title: string }> = {
+  'gallery-1': { alt: 'Dewy skin facial treatment at VV Studio', title: 'VV Studio Dewy Skin Facial' },
+  'gallery-2': { alt: 'Floral hair updo styling at VV Studio', title: 'VV Studio Floral Hair Updo' },
+  'gallery-3': { alt: 'Rose quartz nail art at VV Studio', title: 'VV Studio Rose Quartz Nail Art' },
+  'gallery-4': { alt: 'Luxury salon ambience at VV Studio', title: 'VV Studio Luxury Salon Ambience' },
+  'gallery-5': { alt: 'Balayage waves hairstyle at VV Studio', title: 'VV Studio Balayage Hair Waves' },
+  'gallery-6': { alt: 'Bridal glam makeup at VV Studio', title: 'VV Studio Bridal Glam Makeup' },
+  'gallery-7': { alt: 'Luxury salon interior at VV Studio', title: 'VV Studio Luxury Salon Interior' },
+  'gallery-8': { alt: 'Professional manicure service at VV Studio', title: 'VV Studio Professional Manicure' },
+};
+
 interface GallerySectionProps {
   onOpenBooking: () => void;
 }
@@ -57,7 +69,8 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking })
             >
               <img
                 src={item.image}
-                alt={item.title}
+                alt={GALLERY_SEO[item.id]?.alt ?? `${item.title} at VV Studio`}
+                title={GALLERY_SEO[item.id]?.title ?? `VV Studio ${item.title}`}
                 className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="lazy"
               />

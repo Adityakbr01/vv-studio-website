@@ -7,6 +7,45 @@ interface ServiceCardProps {
 }
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onSelect }) => {
+  // Per-page image SEO from the on-page audit (ALT descriptive, title branded).
+  const seoById: Record<string, { alt: string; title: string }> = {
+    'skin-facials': {
+      alt: 'Skin and facial treatments at VV Studio',
+      title: 'VV Studio Skin and Facial Treatments',
+    },
+    'hair-care': {
+      alt: 'Professional hair care services at VV Studio',
+      title: 'VV Studio Professional Hair Care',
+    },
+    'waxing-threading': {
+      alt: 'Waxing and threading services at VV Studio',
+      title: 'VV Studio Waxing and Threading Services',
+    },
+    'makeup-bridal': {
+      alt: 'Bridal makeup and beauty services at VV Studio',
+      title: 'VV Studio Bridal Makeup Services',
+    },
+    'hand-feet-care': {
+      alt: 'Hand and feet care services at VV Studio',
+      title: 'VV Studio Hand and Feet Care',
+    },
+    'hair-treatments': {
+      alt: 'Hair treatments at VV Studio salon',
+      title: 'VV Studio Hair Treatment Services',
+    },
+    'luxury-spa-rituals': {
+      alt: 'Luxury spa treatment at VV Studio',
+      title: 'VV Studio Luxury Spa Treatment',
+    },
+    'party-makeup': {
+      alt: 'Professional party makeup at VV Studio',
+      title: 'VV Studio Party Makeup',
+    },
+  };
+  const seo = seoById[service.id] ?? {
+    alt: `${service.title} at VV Studio`,
+    title: `VV Studio ${service.title}`,
+  };
   return (
     <article
       onClick={() => onSelect(service)}
@@ -16,7 +55,8 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onSelect }) =
       <div className="relative aspect-square w-full overflow-hidden bg-[#FAF0F6]">
         <img
           src={service.image}
-          alt={service.title}
+          alt={seo.alt}
+          title={seo.title}
           className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
         />

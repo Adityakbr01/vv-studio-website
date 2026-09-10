@@ -39,7 +39,8 @@ export const ContactHero: React.FC = () => {
       >
         <img
           src="/images/common/girl_common.webp"
-          alt=""
+          alt="VV Studio Beauty Model with Pink Lilies"
+          title="VV Studio Beauty Model with Pink Lilies"
           draggable={false}
           className="absolute bottom-0 right-[12%]  h-[85%] w-auto max-w-none object-contain object-right-bottom"
         />
@@ -82,6 +83,7 @@ export const ContactHero: React.FC = () => {
         <img
           src="/images/common/girl_common.webp"
           alt="VV Studio Beauty Model with Pink Lilies"
+          title="VV Studio Beauty Model with Pink Lilies"
           loading="eager"
           className="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain object-right-bottom"
         />

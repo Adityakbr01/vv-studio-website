@@ -33,7 +33,8 @@ export const SpecialOffersSection: React.FC<SpecialOffersProps> = ({ onOpenBooki
       >
         <img
           src="/images/common/girl_common.webp"
-          alt="VV Studio Special Offers"
+          alt="VV Studio special salon offers"
+          title="VV Studio Special Offers"
           draggable={false}
           className="h-full w-full object-contain object-right-bottom"
         />
@@ -95,7 +96,8 @@ export const SpecialOffersSection: React.FC<SpecialOffersProps> = ({ onOpenBooki
         <div className="md:hidden relative w-full h-[170px] sm:h-[200px] overflow-hidden pointer-events-none select-none">
           <img
             src="/images/common/girl_common.webp"
-            alt="VV Studio Special Offers"
+            alt="VV Studio special salon offers"
+            title="VV Studio Special Offers"
             className="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain object-right-bottom"
           />
           <p className="absolute left-1 top-1/2 -translate-y-1/2 font-script text-[26px] sm:text-3xl text-white/90 leading-[1.15] drop-shadow-md">

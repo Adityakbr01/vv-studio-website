@@ -26,13 +26,15 @@ export const Logo: React.FC<LogoProps> = ({
   return (
     <Link
       to="/"
+      title="VV Studio Luxury Salon & Spa"
       className={`inline-flex flex-col items-start gap-1 group transition-transform duration-200 hover:scale-[1.02] ${className}`}
       aria-label="VV Studio Home"
     >
       {/* Brand logo (optimized WebP). White artwork: darkened via filter on light backgrounds */}
       <img
         src="/logo.webp"
-        alt="VV Studio"
+        alt="VV Studio luxury salon and spa logo"
+        title="VV Studio Luxury Salon and Spa"
         width={308}
         height={149}
         className={`${sizeClasses[size]} w-auto drop-shadow-sm ${isDark ? '' : 'brightness-0'}`}

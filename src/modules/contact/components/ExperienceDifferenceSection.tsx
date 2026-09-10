@@ -45,7 +45,8 @@ export const ExperienceDifferenceSection: React.FC<ExperienceDifferenceSectionPr
             <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_12px_32px_rgba(80,0,70,0.14)] group">
               <img
                 src="/images/contact/salon_virtual_tour.webp"
-                alt="V V Studio Luxury Salon Interior & Reception"
+                alt="VV Studio luxury salon interior and reception"
+                title="VV Studio Luxury Salon Interior and Reception"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
 
@@ -150,7 +151,8 @@ export const ExperienceDifferenceSection: React.FC<ExperienceDifferenceSectionPr
             <div className="relative aspect-video w-full bg-black flex items-center justify-center">
               <img
                 src="/images/contact/salon_virtual_tour.webp"
-                alt="Virtual tour view"
+                alt="VV Studio salon interior virtual tour view"
+                title="VV Studio Luxury Salon Interior and Reception"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-6">

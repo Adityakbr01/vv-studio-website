@@ -95,7 +95,8 @@ export const AboutSection: React.FC = () => {
             <div className="col-span-3 relative rounded-[14px] overflow-hidden group min-h-[280px] sm:min-h-[360px] lg:min-h-[420px]">
               <img
                 src="/images/home/about_salon_reception.webp"
-                alt="VV Studio salon lounge"
+                alt="Luxury salon lounge at VV Studio"
+                title="VV Studio Luxury Salon Lounge"
                 className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
             </div>
@@ -105,14 +106,16 @@ export const AboutSection: React.FC = () => {
               <div className="relative rounded-[14px] overflow-hidden group flex-1 min-h-[136px] sm:min-h-[174px] lg:min-h-[204px]">
                 <img
                   src="/images/home/about_facial_treatment.webp"
-                  alt="Facial treatment at VV Studio"
+                  alt="Facial treatment at VV Studio salon"
+                  title="Facial Treatment at VV Studio"
                   className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <div className="relative rounded-[14px] overflow-hidden group flex-1 min-h-[136px] sm:min-h-[174px] lg:min-h-[204px]">
                 <img
                   src="/images/home/about_hair_styling.webp"
-                  alt="Hair styling at VV Studio"
+                  alt="Professional hair styling at VV Studio"
+                  title="Professional Hair Styling at VV Studio"
                   className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
               </div>

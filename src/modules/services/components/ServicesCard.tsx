@@ -10,6 +10,25 @@ export const ServicesCard: React.FC<ServicesCardProps> = ({
   service,
   onOpenBooking,
 }) => {
+  // Image SEO from the on-page audit: descriptive ALT + branded title.
+  const imageSeoById: Record<string, { alt: string; title: string }> = {
+    threading: { alt: 'Threading at VV Studio', title: 'VV Studio Waxing and Threading Services' },
+    'skin-facials': { alt: 'Skin & Facials at VV Studio', title: 'VV Studio Skin and Facial Treatments' },
+    waxing: { alt: 'Waxing at VV Studio', title: 'VV Studio Waxing Services' },
+    'makeup-bridal': { alt: 'Makeup & Bridal at VV Studio', title: 'VV Studio Bridal Makeup Services' },
+    'hair-care-styling': { alt: 'Hair Care & Styling at VV Studio', title: 'VV Studio Hair Care and Styling' },
+    'hand-feet-care': { alt: 'Hand & Feet Care at VV Studio', title: 'VV Studio Hand and Feet Care Services' },
+    'hair-treatments': { alt: 'Hair Treatments at VV Studio', title: 'VV Studio Hair Treatment Services' },
+    'hair-color-highlights': { alt: 'Hair Color & Highlights at VV Studio', title: 'VV Studio Hair Color and Highlights' },
+    'hair-scalp-treatments': { alt: 'Hair & Scalp Treatments at VV Studio', title: 'VV Studio Hair and Scalp Treatments' },
+    makeovers: { alt: 'Makeovers at VV Studio', title: 'VV Studio Beauty Makeover Services' },
+    'special-packages': { alt: 'Special Packages at VV Studio', title: 'VV Studio Special Beauty Packages' },
+    'beauty-products': { alt: 'Beauty Products at VV Studio', title: 'VV Studio Beauty Products' },
+  };
+  const imageSeo = imageSeoById[service.id] ?? {
+    alt: `${service.title} at VV Studio`,
+    title: `VV Studio ${service.title}`,
+  };
   const renderIcon = (type: SalonService['iconName']) => {
     const strokeProps = {
       className: 'w-8 h-8 text-[#EC008C] shrink-0',
@@ -149,7 +168,8 @@ export const ServicesCard: React.FC<ServicesCardProps> = ({
       <div className="relative w-full h-[140px] sm:h-[150px] overflow-hidden">
         <img
           src={service.image}
-          alt={service.title}
+          alt={imageSeo.alt}
+          title={imageSeo.title}
           loading="lazy"
           className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-600 ease-out"
         />

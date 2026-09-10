@@ -44,6 +44,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
 
             return (
               <Link
+                title={cat.name}
                 key={cat.id}
                 to="/#services"
                 onClick={() => {

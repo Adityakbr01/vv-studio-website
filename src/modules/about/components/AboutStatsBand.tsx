@@ -22,6 +22,7 @@ export const AboutStatsBand: React.FC = () => {
           <img
             src="/images/gallery/gallery_dewy_skin_facial.webp"
             alt="Relaxing facial treatment at VV Studio"
+            title="Relaxing Facial Treatment at VV Studio"
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />

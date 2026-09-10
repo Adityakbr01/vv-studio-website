@@ -16,6 +16,7 @@ export const ContactInfoStrip: React.FC = () => {
       title: 'Call Us',
       primary: '080-48531999',
       href: 'tel:08048531999',
+      linkTitle: 'Call VV Studio – 080-48531999',
       subtitle: "We're happy to help",
       icon: <Phone className={iconCls} strokeWidth={iconStroke} />,
     },
@@ -24,6 +25,7 @@ export const ContactInfoStrip: React.FC = () => {
       title: 'WhatsApp Us',
       primary: '8310782820',
       href: 'https://wa.me/918310782820',
+      linkTitle: 'Chat with VV Studio on WhatsApp',
       subtitle: 'Quick response',
       icon: <WhatsAppIcon className={iconCls} />,
     },
@@ -32,6 +34,7 @@ export const ContactInfoStrip: React.FC = () => {
       title: 'Email Us',
       primary: 'info@varvadhustudio.com',
       href: 'mailto:info@varvadhustudio.com',
+      linkTitle: 'Email VV Studio',
       subtitle: "We'll get back to you soon",
       icon: <Mail className={iconCls} strokeWidth={iconStroke} />,
     },
@@ -40,6 +43,7 @@ export const ContactInfoStrip: React.FC = () => {
       title: 'Visit Us',
       primary: STUDIO_ADDRESS_MULTILINE,
       href: STUDIO_DIRECTIONS_URL,
+      linkTitle: 'Get Directions to VV Studio',
       subtitle: 'Come say hello!',
       icon: <MapPin className={iconCls} strokeWidth={iconStroke} />,
     },
@@ -93,6 +97,7 @@ export const ContactInfoStrip: React.FC = () => {
                 <a
                   key={card.id}
                   href={card.href}
+                  title={(card as { linkTitle?: string }).linkTitle ?? card.title}
                   target={card.href.startsWith('http') ? '_blank' : undefined}
                   rel={card.href.startsWith('http') ? 'noreferrer' : undefined}
                   className={`${spanCls} cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D91A8A]/30 rounded-2xl`}
