@@ -1,10 +1,29 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "lenis/dist/lenis.css";
-@import "@fontsource-variable/geist";
+// NOTE: lenis CSS ships with the deferred SmoothScroll chunk, and the unused
+// Geist variable font was dropped — neither belongs in the critical bundle.
 
 @custom-variant dark (&:is(.dark *));
+
+/* Metric-matched fallback for Plus Jakarta Sans (Windows Segoe UI).
+ * Measured on this stack: fallback advances are ~112.6% narrower at weight
+ * 300 and ~104% at 400+ than the webfont, so the swap reflows the hero
+ * subtitle from 1 line to 2 (section +22.7px → CLS 0.245). These overrides
+ * make the fallback wrap identically, so the swap is shift-free.
+ * Non-Segoe UI systems fall through to system-ui (status quo ante). */
+@font-face {
+  font-family: "Plus Jakarta Sans Fallback";
+  src: local("Segoe UI");
+  font-weight: 300;
+  size-adjust: 112.63%;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans Fallback";
+  src: local("Segoe UI");
+  font-weight: 400 800;
+  size-adjust: 104%;
+}
 
 @theme {
   --color-brand-50: #FDEAF4;
@@ -61,8 +80,8 @@
 @theme inline {
   --font-heading: "Playfair Display", Georgia, serif;
   --font-display: "Playfair Display", Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Plus Jakarta Sans Fallback", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Plus Jakarta Sans", "Plus Jakarta Sans Fallback", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-script: "Alex Brush", cursive;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);

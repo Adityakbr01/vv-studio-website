@@ -35,8 +35,8 @@ export const Logo: React.FC<LogoProps> = ({
         src="/logo.webp"
         alt="VV Studio luxury salon and spa logo"
         title="VV Studio Luxury Salon and Spa"
-        width={308}
-        height={149}
+        width={480}
+        height={232}
         className={`${sizeClasses[size]} w-auto drop-shadow-sm ${isDark ? '' : 'brightness-0'}`}
       />
       {showTagline && (

@@ -1,44 +1,68 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Lenis from 'lenis';
 import { setLenisInstance, getLenisInstance } from '@/lib/lenis';
+import type { LenisLike } from '@/lib/lenis';
+import { onIdle } from '@/lib/idle';
+// Lenis CSS travels with this lazy chunk — never in the critical CSS bundle.
+import 'lenis/dist/lenis.css';
 
+/**
+ * Smooth-scroll runtime. Loaded lazily via DeferredSmoothScroll and
+ * initialized only once the main thread is idle, so `lenis` never blocks
+ * first paint. Bypassed entirely for reduced-motion users and coarse
+ * (touch) pointers, where native scrolling is the better experience.
+ */
 export function SmoothScroll() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Initialize Lenis with tuned inertia and easing for premium, lag-free feel
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-    });
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
 
-    setLenisInstance(lenis);
+    let cancelled = false;
+    let rafId = 0;
+    let lenis: LenisLike | null = null;
 
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
+    const init = async () => {
+      // Dynamic import keeps `lenis` in its own chunk, off first paint.
+      const { default: Lenis } = await import('lenis');
+      if (cancelled) return;
+      // Initialize Lenis with tuned inertia and easing for premium, lag-free feel
+      const instance: LenisLike = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+      });
+      lenis = instance;
+      setLenisInstance(instance);
+
+      const raf = (time: number) => {
+        lenis?.raf(time);
+        rafId = requestAnimationFrame(raf);
+      };
       rafId = requestAnimationFrame(raf);
-    }
+    };
 
-    rafId = requestAnimationFrame(raf);
+    const cancelIdle = onIdle(() => void init(), 2500);
 
     return () => {
+      cancelled = true;
+      cancelIdle();
       cancelAnimationFrame(rafId);
-      lenis.destroy();
+      lenis?.destroy();
       setLenisInstance(null);
     };
   }, []);
 
-  // Handle smooth route & hash scrolling with header offset
+  // Handle smooth route & hash scrolling with header offset.
+  // Falls back to native scrolling until Lenis has initialized.
   useEffect(() => {
     const lenis = getLenisInstance();
-    if (!lenis) return;
 
     if (hash) {
       const targetId = hash.replace('#', '');
@@ -46,19 +70,26 @@ export function SmoothScroll() {
       if (element) {
         // Slight timeout allows layout to settle
         const timer = setTimeout(() => {
-          lenis.scrollTo(element, {
-            offset: -75, // offset for sticky luxury header
-            duration: 1.2,
-            immediate: false,
-          });
+          const current = getLenisInstance();
+          if (current) {
+            current.scrollTo(element, {
+              offset: -75, // offset for sticky luxury header
+              duration: 1.2,
+              immediate: false,
+            });
+          } else {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
         }, 60);
         return () => clearTimeout(timer);
       }
-    } else {
+    } else if (lenis) {
       lenis.scrollTo(0, {
         duration: 1.0,
         immediate: false,
       });
+    } else {
+      window.scrollTo({ top: 0 });
     }
   }, [pathname, hash]);
 

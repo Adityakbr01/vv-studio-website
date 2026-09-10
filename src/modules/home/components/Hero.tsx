@@ -1,11 +1,18 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
+import { LOCAL_IMAGE_BASE } from '@/lib/seo';
 
 interface HeroProps {
   onOpenBooking: () => void;
   onExploreServices: () => void;
 }
+
+// LCP hero: responsive variants (768/1280/1440 + original as 1920w).
+// MUST stay identical to the preload imagesrcset in index.html.
+const HERO_SRC = `${LOCAL_IMAGE_BASE}/home/home_top_banner.webp`;
+const HERO_SRCSET = `${LOCAL_IMAGE_BASE}/home/home_top_banner-768.webp 768w, ${LOCAL_IMAGE_BASE}/home/home_top_banner-1280.webp 1280w, ${LOCAL_IMAGE_BASE}/home/home_top_banner-1440.webp 1440w, ${LOCAL_IMAGE_BASE}/home/home_top_banner.webp 1920w`;
+const HERO_SIZES = '100vw';
 
 export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) => {
   return (
@@ -41,11 +48,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
           seamlessly over the plum backdrop — no overlay gradient (that caused
           the visible vertical seam). */}
       <div
-        className="hidden lg:block absolute bottom-0 right-0 h-full w-[60%] xl:w-[56%] pointer-events-none select-none"
+        className="hidden lg:block absolute bottom-0 right-0 h-full w-[60%] xl:w-[56%] pointer-events-none select-none bg-[#3D003D]"
         aria-hidden="true"
       >
         <img
-          src="/images/home/home_top_banner.webp"
+          src={HERO_SRC}
+          srcSet={HERO_SRCSET}
+          sizes={HERO_SIZES}
+          width={1762}
+          height={893}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
           alt="VV Studio luxury beauty salon in JP Nagar Bangalore"
           title="VV Studio Luxury Salon in JP Nagar"
           draggable={false}
@@ -140,12 +154,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
       </Container>
 
       {/* Mobile model — right-anchored so the face stays visible on narrow screens */}
-      <div className="lg:hidden relative w-full h-[300px] sm:h-[360px] mt-8 overflow-hidden pointer-events-none select-none">
+      <div className="lg:hidden relative w-full h-[300px] sm:h-[360px] mt-8 overflow-hidden pointer-events-none select-none bg-[#3D003D]">
         <img
-          src="/images/home/home_top_banner.webp"
+          src={HERO_SRC}
+          srcSet={HERO_SRCSET}
+          sizes={HERO_SIZES}
+          width={1762}
+          height={893}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
           alt="VV Studio beauty model with pink lilies"
           title="VV Studio Beauty Model with Pink Lilies"
-          loading="eager"
           className="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain object-right-bottom"
         />
         <div

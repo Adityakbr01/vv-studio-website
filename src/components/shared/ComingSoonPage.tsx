@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, ArrowRight, ArrowLeft, BookOpen, Heart, Sparkle } from 'lucide-react';
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
-import { BookingModal } from '@/components/shared/BookingModal';
 import { Container } from '@/components/ui/Container';
 import { useSEO, type SEO_CONFIG } from '@/lib/seo';
+
+// Heavy booking form: code-split and never mounted until first open.
+const BookingModal = lazy(() =>
+  import('@/components/shared/BookingModal').then((m) => ({
+    default: m.BookingModal,
+  })),
+);
 
 export interface PreviewTopic {
   title: string;
@@ -252,11 +258,15 @@ export const ComingSoonPage: React.FC<ComingSoonPageProps> = ({
       {/* Signature Footer */}
       <Footer />
 
-      {/* Booking Modal */}
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-      />
+      {/* Booking Modal — gated: null until first open + code-split. */}
+      {isBookingOpen && (
+        <Suspense fallback={null}>
+          <BookingModal
+            isOpen={isBookingOpen}
+            onClose={() => setIsBookingOpen(false)}
+          />
+        </Suspense>
+      )}
     </div>
   );
 };

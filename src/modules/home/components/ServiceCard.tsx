@@ -46,6 +46,17 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onSelect }) =
     alt: `${service.title} at VV Studio`,
     title: `VV Studio ${service.title}`,
   };
+  // Intrinsic dims for local assets (1200x896); remote Unsplash URLs omit
+  // dims (unknown aspect) — the aspect-square wrapper reserves space instead.
+  const dimsById: Record<string, { width: number; height: number }> = {
+    'skin-facials': { width: 1200, height: 896 },
+    'hair-care': { width: 1200, height: 896 },
+    'waxing-threading': { width: 1200, height: 896 },
+    'makeup-bridal': { width: 1200, height: 896 },
+    'hand-feet-care': { width: 1200, height: 896 },
+    'hair-treatments': { width: 1200, height: 896 },
+  };
+  const dims = dimsById[service.id];
   return (
     <article
       onClick={() => onSelect(service)}
@@ -57,8 +68,12 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onSelect }) =
           src={service.image}
           alt={seo.alt}
           title={seo.title}
+          width={dims?.width}
+          height={dims?.height}
           className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
+          decoding="async"
+          fetchPriority="low"
         />
       </div>
 

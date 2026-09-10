@@ -12,6 +12,15 @@ import { useEffect } from 'react';
 export const SITE_URL = 'https://vvs.agsdemo.in';
 export const SITE_NAME = 'VV Studio';
 
+/** Same-origin local image base. OG/crawler tags must stay absolute (see absoluteUrl). */
+export const LOCAL_IMAGE_BASE = '/images';
+
+/** Crawlers need absolute URLs — absolutize "/"-rooted paths via the site URL. */
+export function absoluteUrl(path: string): string {
+  if (/^https?:\/\//i.test(path)) return path;
+  return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
 export interface PageSEO {
   title: string;
   description: string;
@@ -29,7 +38,7 @@ const base = {
   author: 'VV Studio',
   publisher: 'VV Studio',
   ogType: 'website',
-  ogImage: `${SITE_URL}/images/home/home_top_banner.webp`,
+  ogImage: absoluteUrl(`${LOCAL_IMAGE_BASE}/home/home_top_banner.webp`),
 };
 
 export const SEO_CONFIG: Record<string, PageSEO> = {
@@ -167,7 +176,7 @@ export function injectLocalBusinessSchema() {
     '@id': `${SITE_URL}/#business`,
     name: 'VV Studio',
     url: `${SITE_URL}/`,
-    image: `${SITE_URL}/images/home/home_top_banner.webp`,
+    image: absoluteUrl(`${LOCAL_IMAGE_BASE}/home/home_top_banner.webp`),
     telephone: '+91-80-48531999',
     email: 'info@varvadhustudio.com',
     priceRange: '₹₹',

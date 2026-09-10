@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
-import { BookingModal } from '@/components/shared/BookingModal';
 import { ContactHero } from '../components/ContactHero';
 import { ContactInfoStrip } from '../components/ContactInfoStrip';
 import { ContactLocationAndForm } from '../components/ContactLocationAndForm';
 import { ExperienceDifferenceSection } from '../components/ExperienceDifferenceSection';
 import { useSEO } from '@/lib/seo';
+
+// Heavy booking form: code-split and never mounted until first open.
+const BookingModal = lazy(() =>
+  import('@/components/shared/BookingModal').then((m) => ({
+    default: m.BookingModal,
+  })),
+);
 
 export const ContactPage: React.FC = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -36,11 +42,15 @@ export const ContactPage: React.FC = () => {
       {/* Signature Dark Plum Footer matching design */}
       <Footer />
 
-      {/* Booking Modal */}
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-      />
+      {/* Booking Modal — gated: null until first open + code-split. */}
+      {isBookingOpen && (
+        <Suspense fallback={null}>
+          <BookingModal
+            isOpen={isBookingOpen}
+            onClose={() => setIsBookingOpen(false)}
+          />
+        </Suspense>
+      )}
     </div>
   );
 };

@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
-import { BookingModal } from '@/components/shared/BookingModal';
 import { SERVICES_DATA, type ServiceItem } from '@/data/salonData';
 import { ServicesHero } from '../components/ServicesHero';
 import { ServicesFeatureStrip } from '../components/ServicesFeatureStrip';
 import { ServicesGrid } from '../components/ServicesGrid';
 import { ServicesCTABanner } from '../components/ServicesCTABanner';
 import { useSEO } from '@/lib/seo';
+
+// Heavy booking form: code-split and never mounted until first open.
+const BookingModal = lazy(() =>
+  import('@/components/shared/BookingModal').then((m) => ({
+    default: m.BookingModal,
+  })),
+);
 
 export const ServicesPage: React.FC = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -51,15 +57,19 @@ export const ServicesPage: React.FC = () => {
       {/* Signature Footer - untouched style */}
       <Footer />
 
-      {/* Booking Modal */}
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => {
-          setIsBookingOpen(false);
-          setInitialService(null);
-        }}
-        initialService={initialService}
-      />
+      {/* Booking Modal — gated: null until first open + code-split. */}
+      {isBookingOpen && (
+        <Suspense fallback={null}>
+          <BookingModal
+            isOpen={isBookingOpen}
+            onClose={() => {
+              setIsBookingOpen(false);
+              setInitialService(null);
+            }}
+            initialService={initialService}
+          />
+        </Suspense>
+      )}
     </div>
   );
 };

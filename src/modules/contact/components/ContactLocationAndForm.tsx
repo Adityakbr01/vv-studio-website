@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@/lib/queryClient';
 import {
   MapPin,
   Navigation,
@@ -23,7 +25,15 @@ import {
 import { useSubmitEnquiry } from '@/modules/home/hooks/useEnquiry';
 import { getUtmParams } from '@/lib/utm';
 
-export const ContactLocationAndForm: React.FC = () => {
+export const ContactLocationAndForm: React.FC = () => (
+  // Own provider over the shared singleton client (see main.tsx): the query
+  // runtime loads with the contact route chunk, never with the critical path.
+  <QueryClientProvider client={queryClient}>
+    <ContactLocationAndFormInner />
+  </QueryClientProvider>
+);
+
+const ContactLocationAndFormInner: React.FC = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');

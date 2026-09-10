@@ -97,6 +97,11 @@ export const AboutSection: React.FC = () => {
                 src="/images/home/about_salon_reception.webp"
                 alt="Luxury salon lounge at VV Studio"
                 title="VV Studio Luxury Salon Lounge"
+                width={1536}
+                height={1024}
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
                 className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
             </div>
@@ -108,6 +113,11 @@ export const AboutSection: React.FC = () => {
                   src="/images/home/about_facial_treatment.webp"
                   alt="Facial treatment at VV Studio salon"
                   title="Facial Treatment at VV Studio"
+                  width={1536}
+                  height={1024}
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                   className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
@@ -116,6 +126,11 @@ export const AboutSection: React.FC = () => {
                   src="/images/home/about_hair_styling.webp"
                   alt="Professional hair styling at VV Studio"
                   title="Professional Hair Styling at VV Studio"
+                  width={1330}
+                  height={1182}
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                   className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
