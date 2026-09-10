@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
 import { BookingModal } from '@/components/shared/BookingModal';
@@ -6,15 +6,12 @@ import { ContactHero } from '../components/ContactHero';
 import { ContactInfoStrip } from '../components/ContactInfoStrip';
 import { ContactLocationAndForm } from '../components/ContactLocationAndForm';
 import { ExperienceDifferenceSection } from '../components/ExperienceDifferenceSection';
+import { useSEO } from '@/lib/seo';
 
 export const ContactPage: React.FC = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  useEffect(() => {
-    // Scroll to top on page mount
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    document.title = 'Contact Us | VV Studio - Luxury Salon & Spa in JP Nagar, Bangalore';
-  }, []);
+  useSEO('contact');
 
   return (
     <div className="min-h-screen bg-[#FCFCFC] text-[#40363F] flex flex-col antialiased selection:bg-[#D91A8A] selection:text-white">

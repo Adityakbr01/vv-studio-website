@@ -46,7 +46,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
       >
         <img
           src="/images/home/home_top_banner.webp"
-          alt=""
+          alt="VV Studio luxury beauty salon in JP Nagar Bangalore"
+          title="VV Studio Luxury Salon in JP Nagar"
           draggable={false}
           className="absolute bottom-0 right-0 h-[85%] w-auto max-w-none object-contain object-right-bottom"
         />
@@ -142,7 +143,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreServices }) 
       <div className="lg:hidden relative w-full h-[300px] sm:h-[360px] mt-8 overflow-hidden pointer-events-none select-none">
         <img
           src="/images/home/home_top_banner.webp"
-          alt="VV Studio Beauty Model with Pink Lilies"
+          alt="VV Studio beauty model with pink lilies"
+          title="VV Studio Beauty Model with Pink Lilies"
           loading="eager"
           className="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain object-right-bottom"
         />

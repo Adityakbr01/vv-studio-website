@@ -122,6 +122,7 @@ export const ContactLocationAndForm: React.FC = () => {
                   href={mapDirectionUrl}
                   target="_blank"
                   rel="noreferrer"
+                  title="Get Directions to VV Studio"
                   className="inline-flex items-center gap-1.5 rounded-full bg-[#E8329D] hover:bg-[#D91A8A] text-white text-xs font-semibold px-5 py-2 sm:py-2 transition-all shadow-[0_4px_14px_rgba(232,50,157,0.4)] hover:shadow-[0_6px_20px_rgba(232,50,157,0.55)] cursor-pointer min-h-[36px]"
                 >
                   <Navigation className="w-3 h-3" />

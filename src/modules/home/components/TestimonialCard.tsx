@@ -26,7 +26,8 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial })
       <div className="mt-auto pt-4 border-t border-[#F5EAF2] flex items-center gap-2.5">
         <img
           src={testimonial.avatar}
-          alt={testimonial.name}
+          alt={`VV Studio client after ${testimonial.treatment}`}
+          title="VV Studio client testimonial photo"
           className="w-9 h-9 rounded-full object-cover"
           loading="lazy"
         />

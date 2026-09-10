@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
 import { BookingModal } from '@/components/shared/BookingModal';
@@ -7,15 +7,12 @@ import { AboutStory } from '../components/AboutStory';
 import { AboutHighlights } from '../components/AboutHighlights';
 import { AboutStatsBand } from '../components/AboutStatsBand';
 import { AboutCTA } from '../components/AboutCTA';
+import { useSEO } from '@/lib/seo';
 
 export const AboutPage: React.FC = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  useEffect(() => {
-    // Scroll to top on page mount
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    document.title = 'About Us | VV Studio - Beauty With A Deeper Purpose, JP Nagar Bangalore';
-  }, []);
+  useSEO('about');
 
   const handleOpenBooking = () => setIsBookingOpen(true);
 

@@ -61,6 +61,7 @@ export const AboutStory: React.FC<AboutStoryProps> = ({ onOpenBooking }) => {
               <img
                 src="/images/home/about_salon_reception.webp"
                 alt="VV Studio salon reception and lounge"
+                title="VV Studio Salon Reception and Lounge"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
@@ -72,6 +73,7 @@ export const AboutStory: React.FC<AboutStoryProps> = ({ onOpenBooking }) => {
                 <img
                   src="/images/home/about_facial_treatment.webp"
                   alt="Facial treatment at VV Studio"
+                  title="Facial Treatment at VV Studio"
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
@@ -80,6 +82,7 @@ export const AboutStory: React.FC<AboutStoryProps> = ({ onOpenBooking }) => {
                 <img
                   src="/images/home/about_hair_styling.webp"
                   alt="Hair styling at VV Studio"
+                  title="Hair Styling at VV Studio"
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />

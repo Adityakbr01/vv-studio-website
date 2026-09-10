@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
 import { BookingModal } from '@/components/shared/BookingModal';
@@ -7,17 +7,13 @@ import { ServicesHero } from '../components/ServicesHero';
 import { ServicesFeatureStrip } from '../components/ServicesFeatureStrip';
 import { ServicesGrid } from '../components/ServicesGrid';
 import { ServicesCTABanner } from '../components/ServicesCTABanner';
+import { useSEO } from '@/lib/seo';
 
 export const ServicesPage: React.FC = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [initialService, setInitialService] = useState<ServiceItem | null>(null);
 
-  useEffect(() => {
-    // Scroll to top on page mount
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    document.title =
-      'Our Services | VV Studio - Complete Beauty Care Under One Roof, JP Nagar Bangalore';
-  }, []);
+  useSEO('services');
 
   const handleOpenBooking = (serviceName?: string) => {
     if (serviceName) {

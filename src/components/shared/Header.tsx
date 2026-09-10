@@ -64,16 +64,22 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'Home', to: '/' },
-    { name: 'About', to: '/about' },
-    { name: 'Services', to: '/services' },
-    { name: 'Gallery', to: '/#gallery' },
-    { name: 'Blog', to: '/#blog' },
-    { name: 'Contact', to: '/contact' },
+    { name: 'Home', to: '/', title: 'VV Studio Luxury Salon & Spa' },
+    { name: 'About', to: '/about', title: 'About VV Studio Luxury Salon & Spa' },
+    { name: 'Services', to: '/services', title: 'VV Studio Beauty & Spa Services' },
+    { name: 'Gallery', to: '/gallery', title: 'VV Studio Salon & Beauty Gallery' },
+    { name: 'Blog', to: '/blog', title: 'VV Studio Beauty & Wellness Blog' },
+    { name: 'Contact', to: '/contact', title: 'VV Studio Contact Information' },
   ];
 
   const handleNavClick = (to: string) => {
-    if (to === '/contact' || to === '/about') {
+    if (
+      to === '/contact' ||
+      to === '/about' ||
+      to === '/services' ||
+      to === '/blog' ||
+      to === '/gallery'
+    ) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (to.includes('#')) {
       const id = to.split('#')[1];
@@ -93,6 +99,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
     }
     if (link.to === '/services') {
       return location.pathname === '/services';
+    }
+    if (link.to === '/gallery') {
+      return location.pathname === '/gallery';
+    }
+    if (link.to === '/blog') {
+      return location.pathname === '/blog';
     }
     if (link.name === 'Home') {
       return location.pathname === '/' && !location.hash;
@@ -124,6 +136,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                   <Link
                     key={link.name}
                     to={link.to}
+                    title={link.title}
                     onClick={() => handleNavClick(link.to)}
                     className={`relative py-1 transition-colors duration-200 hover:text-white ${active ? 'text-white font-semibold' : 'text-white/85'
                       }`}
@@ -145,6 +158,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                 <Phone className="w-3.5 h-3.5 text-white/90 shrink-0" />
                 <a
                   href="tel:08048531999"
+                  title="Call VV Studio – 080-48531999"
                   className="hover:text-white transition-colors duration-200 tracking-wider"
                 >
                   080-48531999
@@ -156,6 +170,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                 <WhatsAppIcon className="w-3.5 h-3.5 text-white/90 shrink-0" />
                 <a
                   href="https://wa.me/918310782820"
+                  title="Chat with VV Studio on WhatsApp"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-white transition-colors duration-200 tracking-wider"
@@ -171,6 +186,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                     href="https://instagram.com"
                     target="_blank"
                     rel="noreferrer"
+                    title="VV Studio on Instagram"
                     aria-label="VV Studio on Instagram"
                     className="text-white/85 hover:text-white transition-colors"
                   >
@@ -184,6 +200,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                     href="https://facebook.com"
                     target="_blank"
                     rel="noreferrer"
+                    title="VV Studio on Facebook"
                     aria-label="VV Studio on Facebook"
                     className="text-white/85 hover:text-white transition-colors"
                   >
@@ -195,6 +212,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                     href="https://x.com"
                     target="_blank"
                     rel="noreferrer"
+                    title="VV Studio on X"
                     aria-label="VV Studio on X"
                     className="text-white/85 hover:text-white transition-colors"
                   >
@@ -206,6 +224,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                     href="https://youtube.com"
                     target="_blank"
                     rel="noreferrer"
+                    title="VV Studio on YouTube"
                     aria-label="VV Studio on YouTube"
                     className="text-white/85 hover:text-white transition-colors"
                   >
@@ -286,6 +305,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                   <Link
                     key={link.name}
                     to={link.to}
+                    title={link.title}
                     onClick={() => {
                       setMobileMenuOpen(false);
                       handleNavClick(link.to);
@@ -312,6 +332,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
               <div className="grid grid-cols-2 gap-2">
                 <a
                   href="tel:08048531999"
+                  title="Call VV Studio – 080-48531999"
                   className="flex items-center justify-center gap-1.5 rounded-xl border border-white/15 text-white/90 text-xs font-semibold px-2 py-3 min-h-[48px] whitespace-nowrap hover:bg-white/5 active:bg-white/10 transition-colors"
                 >
                   <Phone className="w-4 h-4 text-[#F06AB9] shrink-0" />
@@ -319,6 +340,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                 </a>
                 <a
                   href="https://wa.me/918310782820"
+                  title="Chat with VV Studio on WhatsApp"
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center justify-center gap-1.5 rounded-xl border border-white/15 text-white/90 text-xs font-semibold px-2 py-3 min-h-[48px] whitespace-nowrap hover:bg-white/5 active:bg-white/10 transition-colors"

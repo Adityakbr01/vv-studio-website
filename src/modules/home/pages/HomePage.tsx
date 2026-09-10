@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
 import { BookingModal } from '@/components/shared/BookingModal';
@@ -12,11 +12,32 @@ import { TestimonialsSection } from '../components/TestimonialsSection';
 import { BlogSection } from '../components/BlogSection';
 import { SpecialOffersSection } from '../components/SpecialOffersSection';
 import type { ServiceItem } from '@/data/salonData';
+import { useSEO, type SEO_CONFIG } from '@/lib/seo';
 
-export const HomePage: React.FC = () => {
+interface HomePageProps {
+  seoKey?: keyof typeof SEO_CONFIG;
+  scrollToId?: string;
+}
+
+export const HomePage: React.FC<HomePageProps> = ({
+  seoKey = 'home',
+  scrollToId,
+}) => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('skin-facials');
+
+  useSEO(seoKey);
+
+  useEffect(() => {
+    if (scrollToId) {
+      // Let the page paint first so the anchor section exists.
+      const t = window.setTimeout(() => {
+        document.getElementById(scrollToId)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return () => window.clearTimeout(t);
+    }
+  }, [scrollToId]);
 
   const handleOpenBooking = (service?: ServiceItem) => {
     if (service) {

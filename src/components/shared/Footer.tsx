@@ -15,12 +15,12 @@ import {
 
 export const Footer: React.FC = () => {
   const quickLinks = [
-    { name: 'Home', to: '/' },
-    { name: 'About', to: '/about' },
-    { name: 'Services', to: '/services' },
-    { name: 'Gallery', to: '/#gallery' },
-    { name: 'Blog', to: '/#blog' },
-    { name: 'Contact', to: '/contact' },
+    { name: 'Home', to: '/', title: 'VV Studio Luxury Salon & Spa' },
+    { name: 'About', to: '/about', title: 'About VV Studio Luxury Salon & Spa' },
+    { name: 'Services', to: '/services', title: 'VV Studio Beauty & Spa Services' },
+    { name: 'Gallery', to: '/gallery', title: 'VV Studio Salon & Beauty Gallery' },
+    { name: 'Blog', to: '/blog', title: 'VV Studio Beauty & Wellness Blog' },
+    { name: 'Contact', to: '/contact', title: 'VV Studio Contact Information' },
   ];
 
   return (
@@ -42,6 +42,7 @@ export const Footer: React.FC = () => {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noreferrer"
+                title="VV Studio on Facebook"
                 aria-label="VV Studio on Facebook"
                 className="text-[#3D003D] hover:text-[#D91A8A] transition-colors duration-300"
               >
@@ -53,6 +54,7 @@ export const Footer: React.FC = () => {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
+                title="VV Studio on Instagram"
                 aria-label="VV Studio on Instagram"
                 className="text-[#3D003D] hover:text-[#D91A8A] transition-colors duration-300"
               >
@@ -66,6 +68,7 @@ export const Footer: React.FC = () => {
                 href="https://youtube.com"
                 target="_blank"
                 rel="noreferrer"
+                title="VV Studio on YouTube"
                 aria-label="VV Studio on YouTube"
                 className="text-[#3D003D] hover:text-[#D91A8A] transition-colors duration-300"
               >
@@ -86,6 +89,7 @@ export const Footer: React.FC = () => {
                 <li key={link.name}>
                   <Link
                     to={link.to}
+                    title={link.title}
                     onClick={() => {
                       if (link.to.includes('#')) {
                         const id = link.to.split('#')[1];
@@ -116,19 +120,19 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#3D003D] shrink-0" />
-                <a href={`tel:${CONTACT_INFO.phones[1]}`} className="hover:text-[#D91A8A] transition-colors">
+                <a href={`tel:${CONTACT_INFO.phones[1]}`} title="Call VV Studio – 8310782820" className="hover:text-[#D91A8A] transition-colors">
                   {CONTACT_INFO.phones[1]}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#3D003D] shrink-0" />
-                <a href={`tel:${CONTACT_INFO.phones[0]}`} className="hover:text-[#D91A8A] transition-colors">
+                <a href={`tel:${CONTACT_INFO.phones[0]}`} title="Call VV Studio – 080-48531999" className="hover:text-[#D91A8A] transition-colors">
                   {CONTACT_INFO.phones[0]}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#3D003D] shrink-0" />
-                <a href={`mailto:${CONTACT_INFO.email}`} className="hover:text-[#D91A8A] transition-colors break-all">
+                <a href={`mailto:${CONTACT_INFO.email}`} title="Email VV Studio" className="hover:text-[#D91A8A] transition-colors break-all">
                   {CONTACT_INFO.email}
                 </a>
               </li>
@@ -173,6 +177,7 @@ export const Footer: React.FC = () => {
                   href={STUDIO_DIRECTIONS_URL}
                   target="_blank"
                   rel="noreferrer"
+                  title="Get Directions to VV Studio"
                   className="inline-flex items-center justify-center gap-2 py-2.5 px-7 rounded-full bg-[#E8329D] hover:bg-[#D91A8A] text-white text-sm font-semibold tracking-wide transition-all shadow-[0_6px_20px_rgba(232,50,157,0.5)] cursor-pointer"
                 >
                   <span>Get Directions</span>
@@ -189,11 +194,11 @@ export const Footer: React.FC = () => {
         <Container className="py-4 flex flex-col sm:flex-row items-center justify-between text-xs gap-2">
           <p>© 2024 V V Studio. All Rights Reserved.</p>
           <div className="flex items-center gap-4">
-            <Link to="/#privacy" className="hover:text-white transition-colors">
+            <Link to="/#privacy" title="VV Studio Privacy Policy" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>
             <span className="text-white/30">|</span>
-            <Link to="/#terms" className="hover:text-white transition-colors">
+            <Link to="/#terms" title="VV Studio Terms & Conditions" className="hover:text-white transition-colors">
               Terms & Conditions
             </Link>
           </div>

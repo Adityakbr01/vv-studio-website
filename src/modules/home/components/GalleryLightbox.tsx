@@ -19,6 +19,8 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
   const touchStartX = useRef<number | null>(null);
   const total = items.length;
   const current = items[((index % total) + total) % total];
+  const currentAlt = `${current.title} at VV Studio`;
+  const currentTitle = `VV Studio ${current.title}`;
 
   const goPrev = useCallback(() => {
     onNavigate((index - 1 + total) % total);
@@ -86,7 +88,8 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
         <img
           key={current.id}
           src={current.image}
-          alt={current.title}
+          alt={currentAlt}
+          title={currentTitle}
           className="max-h-full max-w-full w-auto h-auto object-contain rounded-[12px] shadow-2xl animate-in zoom-in-95 duration-200"
           draggable={false}
         />

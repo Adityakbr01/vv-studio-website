@@ -39,6 +39,7 @@ export const ServicesHero: React.FC = () => {
         <img
           src="/images/common/girl_common.webp"
           alt="VV Studio Beauty Model with Pink Lilies"
+          title="VV Studio Beauty Model with Pink Lilies"
           draggable={false}
           className="absolute bottom-0 right-[8%] xl:right-[12%] h-[90%] w-auto max-w-none object-contain object-right-bottom"
         />
@@ -76,7 +77,7 @@ export const ServicesHero: React.FC = () => {
 
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-[13px] sm:text-[14px] mt-5 sm:mt-7 font-medium">
-            <Link to="/" className="text-white/80 hover:text-white transition-colors">
+            <Link to="/" title="VV Studio Luxury Salon & Spa" className="text-white/80 hover:text-white transition-colors">
               Home
             </Link>
             <span className="text-[#E8329D] font-bold">›</span>
@@ -90,6 +91,7 @@ export const ServicesHero: React.FC = () => {
         <img
           src="/images/common/girl_common.webp"
           alt="VV Studio Beauty Model with Pink Lilies"
+          title="VV Studio Beauty Model with Pink Lilies"
           loading="eager"
           className="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain object-right-bottom"
         />
