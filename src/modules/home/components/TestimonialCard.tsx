@@ -28,8 +28,12 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial })
           src={testimonial.avatar}
           alt={`VV Studio client after ${testimonial.treatment}`}
           title="VV Studio client testimonial photo"
+          width={72}
+          height={72}
           className="w-9 h-9 rounded-full object-cover"
           loading="lazy"
+          decoding="async"
+          fetchPriority="low"
         />
         <div className="min-w-0">
           <h4 className="text-[13px] font-bold text-[#2D0A2E] leading-tight truncate">

@@ -225,6 +225,28 @@ export const GALLERY_DATA: GalleryItem[] = [
   },
 ];
 
+// Gallery image SEO from the on-page audit (shared by home + gallery page).
+export const GALLERY_SEO: Record<string, { alt: string; title: string }> = {
+  'gallery-1': { alt: 'Dewy skin facial treatment at VV Studio', title: 'VV Studio Dewy Skin Facial' },
+  'gallery-2': { alt: 'Floral hair updo styling at VV Studio', title: 'VV Studio Floral Hair Updo' },
+  'gallery-3': { alt: 'Rose quartz nail art at VV Studio', title: 'VV Studio Rose Quartz Nail Art' },
+  'gallery-4': { alt: 'Luxury salon ambience at VV Studio', title: 'VV Studio Luxury Salon Ambience' },
+  'gallery-5': { alt: 'Balayage waves hairstyle at VV Studio', title: 'VV Studio Balayage Hair Waves' },
+  'gallery-6': { alt: 'Bridal glam makeup at VV Studio', title: 'VV Studio Bridal Glam Makeup' },
+  'gallery-7': { alt: 'Luxury salon interior at VV Studio', title: 'VV Studio Luxury Salon Interior' },
+  'gallery-8': { alt: 'Professional manicure service at VV Studio', title: 'VV Studio Professional Manicure' },
+};
+
+// Local gallery assets are 896x1200; remote Unsplash items omit dims.
+export const GALLERY_DIMS: Record<string, { width: number; height: number }> = {
+  'gallery-1': { width: 896, height: 1200 },
+  'gallery-2': { width: 896, height: 1200 },
+  'gallery-3': { width: 896, height: 1200 },
+  'gallery-4': { width: 896, height: 1200 },
+  'gallery-5': { width: 896, height: 1200 },
+  'gallery-6': { width: 896, height: 1200 },
+};
+
 export const TESTIMONIALS_DATA: TestimonialItem[] = [
   {
     id: 'test-1',
@@ -338,6 +360,23 @@ export const BLOG_DATA: BlogItem[] = [
     image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
   },
 ];
+
+// Blog image SEO from the on-page audit (shared by home + blog page).
+export const BLOG_SEO: Record<string, { alt: string; title: string }> = {
+  'blog-1': { alt: 'Skincare routine for glowing skin', title: 'Skincare Routine for Glowing Skin' },
+  'blog-2': { alt: 'Hair care tips for healthy hair', title: 'Hair Care Tips for Healthy Hair' },
+  'blog-3': { alt: 'Bridal beauty checklist for wedding preparation', title: 'Bridal Beauty Checklist' },
+  'blog-4': { alt: 'Monsoon hair care and hair rescue guide', title: 'Monsoon Hair Rescue Guide' },
+  'blog-5': { alt: 'Everyday makeup essentials and beauty tips', title: 'Everyday Makeup Essentials' },
+  'blog-6': { alt: 'At-home spa night relaxation ritual', title: 'At-Home Spa Night Ritual' },
+};
+
+// Intrinsic dims for local assets (1200x750); remote Unsplash URLs omit dims.
+export const BLOG_DIMS: Record<string, { width: number; height: number }> = {
+  'blog-1': { width: 1200, height: 750 },
+  'blog-2': { width: 1200, height: 750 },
+  'blog-3': { width: 1200, height: 750 },
+};
 
 export const STATS_DATA = [
   { value: '10+', label: 'Years of Expertise' },

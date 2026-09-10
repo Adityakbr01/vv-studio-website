@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, Calendar, Clock, User, Phone, Mail, Sparkles, Loader2, AlertCircle } from 'lucide-react';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@/lib/queryClient';
 import { Button } from '@/components/ui/Button';
 import { SERVICES_DATA, type ServiceItem } from '@/data/salonData';
 import { getLenisInstance } from '@/lib/lenis';
@@ -36,7 +38,15 @@ interface BookingModalProps {
   initialService?: ServiceItem | null;
 }
 
-export const BookingModal: React.FC<BookingModalProps> = ({
+export const BookingModal: React.FC<BookingModalProps> = (props) => (
+  // Own provider over the shared singleton client (see main.tsx): the query
+  // runtime loads with this lazy chunk, never with the critical path.
+  <QueryClientProvider client={queryClient}>
+    <BookingModalForm {...props} />
+  </QueryClientProvider>
+);
+
+const BookingModalForm: React.FC<BookingModalProps> = ({
   isOpen,
   onClose,
   initialService,

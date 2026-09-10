@@ -3,25 +3,9 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Container } from '@/components/ui/Container';
 import { Carousel, CarouselControls, type CarouselHandle, type CarouselState } from '@/components/ui/Carousel';
 import { GalleryLightbox } from './GalleryLightbox';
-import { GALLERY_DATA } from '@/data/salonData';
+import { GALLERY_DATA, GALLERY_SEO, GALLERY_DIMS } from '@/data/salonData';
 
-// Gallery image SEO from the on-page audit.
-const GALLERY_SEO: Record<string, { alt: string; title: string }> = {
-  'gallery-1': { alt: 'Dewy skin facial treatment at VV Studio', title: 'VV Studio Dewy Skin Facial' },
-  'gallery-2': { alt: 'Floral hair updo styling at VV Studio', title: 'VV Studio Floral Hair Updo' },
-  'gallery-3': { alt: 'Rose quartz nail art at VV Studio', title: 'VV Studio Rose Quartz Nail Art' },
-  'gallery-4': { alt: 'Luxury salon ambience at VV Studio', title: 'VV Studio Luxury Salon Ambience' },
-  'gallery-5': { alt: 'Balayage waves hairstyle at VV Studio', title: 'VV Studio Balayage Hair Waves' },
-  'gallery-6': { alt: 'Bridal glam makeup at VV Studio', title: 'VV Studio Bridal Glam Makeup' },
-  'gallery-7': { alt: 'Luxury salon interior at VV Studio', title: 'VV Studio Luxury Salon Interior' },
-  'gallery-8': { alt: 'Professional manicure service at VV Studio', title: 'VV Studio Professional Manicure' },
-};
-
-interface GallerySectionProps {
-  onOpenBooking: () => void;
-}
-
-export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking }) => {
+export const GallerySection: React.FC = () => {
   const carouselRef = useRef<CarouselHandle>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [carouselState, setCarouselState] = useState<CarouselState>({
@@ -38,7 +22,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking })
           eyebrow="OUR GALLERY"
           title="Moments of Beauty"
           actionText="View Full Gallery"
-          onActionClick={onOpenBooking}
+          actionHref="/gallery"
           controls={
             carouselState.pages > 1 ? (
               <CarouselControls
@@ -71,8 +55,12 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBooking })
                 src={item.image}
                 alt={GALLERY_SEO[item.id]?.alt ?? `${item.title} at VV Studio`}
                 title={GALLERY_SEO[item.id]?.title ?? `VV Studio ${item.title}`}
+                width={GALLERY_DIMS[item.id]?.width}
+                height={GALLERY_DIMS[item.id]?.height}
                 className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="lazy"
+                decoding="async"
+                fetchPriority="low"
               />
             </div>
           ))}

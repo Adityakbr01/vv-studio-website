@@ -1,11 +1,9 @@
 import React, { Suspense, lazy, useState } from 'react';
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
-import { AboutHero } from '../components/AboutHero';
-import { AboutStory } from '../components/AboutStory';
-import { AboutHighlights } from '../components/AboutHighlights';
-import { AboutStatsBand } from '../components/AboutStatsBand';
-import { AboutCTA } from '../components/AboutCTA';
+import { BlogHero } from '../components/BlogHero';
+import { BlogGrid } from '../components/BlogGrid';
+import { CTABanner } from '@/modules/home/components/CTABanner';
 import { useSEO } from '@/lib/seo';
 
 // Heavy booking form: code-split and never mounted until first open.
@@ -15,10 +13,10 @@ const BookingModal = lazy(() =>
   })),
 );
 
-export const AboutPage: React.FC = () => {
+export const BlogPage: React.FC = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  useSEO('about');
+  useSEO('blog');
 
   const handleOpenBooking = () => setIsBookingOpen(true);
 
@@ -30,19 +28,13 @@ export const AboutPage: React.FC = () => {
       {/* Main Content Sections */}
       <main className="flex-1">
         {/* Hero Section */}
-        <AboutHero />
+        <BlogHero />
 
-        {/* Story: More Than Just a Salon + image collage */}
-        <AboutStory onOpenBooking={handleOpenBooking} />
+        {/* Full journal grid — same card design as the home blog section */}
+        <BlogGrid />
 
-        {/* 4 Highlights with dividers */}
-        <AboutHighlights />
-
-        {/* Stats band */}
-        <AboutStatsBand />
-
-        {/* Closing CTA */}
-        <AboutCTA onOpenBooking={handleOpenBooking} />
+        {/* Booking CTA */}
+        <CTABanner onOpenBooking={handleOpenBooking} />
       </main>
 
       {/* Signature Footer */}

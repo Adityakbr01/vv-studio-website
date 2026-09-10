@@ -5,11 +5,7 @@ import { Carousel, CarouselControls, type CarouselHandle, type CarouselState } f
 import { BlogCard } from './BlogCard';
 import { BLOG_DATA } from '@/data/salonData';
 
-interface BlogSectionProps {
-  onOpenBooking: () => void;
-}
-
-export const BlogSection: React.FC<BlogSectionProps> = ({ onOpenBooking }) => {
+export const BlogSection: React.FC = () => {
   const carouselRef = useRef<CarouselHandle>(null);
   const [carouselState, setCarouselState] = useState<CarouselState>({
     canPrev: false,
@@ -26,7 +22,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onOpenBooking }) => {
           title="Beauty Tips, Trends & More"
           subtitle="Expert advice, self-care tips and the latest in beauty & wellness."
           actionText="View All Blogs"
-          onActionClick={onOpenBooking}
+          actionHref="/blog"
           controls={
             carouselState.pages > 1 ? (
               <CarouselControls

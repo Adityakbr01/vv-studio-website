@@ -2,22 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import type { BlogItem } from '@/data/salonData';
+import { BLOG_SEO, BLOG_DIMS } from '@/data/salonData';
 
 interface BlogCardProps {
   blog: BlogItem;
 }
 
 export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
-  // Blog image SEO from the on-page audit.
-  const imageSeoById: Record<string, { alt: string; title: string }> = {
-    'blog-1': { alt: 'Skincare routine for glowing skin', title: 'Skincare Routine for Glowing Skin' },
-    'blog-2': { alt: 'Hair care tips for healthy hair', title: 'Hair Care Tips for Healthy Hair' },
-    'blog-3': { alt: 'Bridal beauty checklist for wedding preparation', title: 'Bridal Beauty Checklist' },
-    'blog-4': { alt: 'Monsoon hair care and hair rescue guide', title: 'Monsoon Hair Rescue Guide' },
-    'blog-5': { alt: 'Everyday makeup essentials and beauty tips', title: 'Everyday Makeup Essentials' },
-    'blog-6': { alt: 'At-home spa night relaxation ritual', title: 'At-Home Spa Night Ritual' },
-  };
-  const imageSeo = imageSeoById[blog.id] ?? { alt: blog.title, title: blog.title };
+  const imageSeo = BLOG_SEO[blog.id] ?? { alt: blog.title, title: blog.title };
+  const dims = BLOG_DIMS[blog.id];
   return (
     <article className="group flex flex-col h-full bg-white rounded-[14px] border border-[#F1E4EE] shadow-[0_2px_14px_rgba(90,20,80,0.08)] hover:shadow-[0_10px_28px_rgba(90,20,80,0.14)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
       {/* Image — flush top, rounded via card overflow */}
@@ -26,8 +19,12 @@ export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
           src={blog.image}
           alt={imageSeo.alt}
           title={imageSeo.title}
+          width={dims?.width}
+          height={dims?.height}
           className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
+          decoding="async"
+          fetchPriority="low"
         />
       </div>
 
