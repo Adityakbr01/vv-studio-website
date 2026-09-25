@@ -6,7 +6,7 @@ import { AboutStory } from '../components/AboutStory';
 import { AboutHighlights } from '../components/AboutHighlights';
 import { AboutStatsBand } from '../components/AboutStatsBand';
 import { AboutCTA } from '../components/AboutCTA';
-import { useSEO } from '@/lib/seo';
+import { useSEO } from '@/seo/seo';
 
 // Heavy booking form: code-split and never mounted until first open.
 const BookingModal = lazy(() =>

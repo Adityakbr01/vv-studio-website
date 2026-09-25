@@ -3,7 +3,7 @@ import React, { Suspense, useEffect } from 'react';
 import { DeferredSmoothScroll } from '@/components/shared/DeferredSmoothScroll';
 import { ErrorBoundary } from '@/components/shared/ErrorBoundary';
 import { LoadingFallback } from '@/components/shared/LoadingFallback';
-import { injectLocalBusinessSchema } from '@/lib/seo';
+import { injectLocalBusinessSchema } from '@/seo/seo';
 import { connectionAllowsPreload, onIdle } from '@/lib/idle';
 
 const HomePage = React.lazy(() =>

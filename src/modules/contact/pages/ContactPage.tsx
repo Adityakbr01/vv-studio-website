@@ -5,7 +5,7 @@ import { ContactHero } from '../components/ContactHero';
 import { ContactInfoStrip } from '../components/ContactInfoStrip';
 import { ContactLocationAndForm } from '../components/ContactLocationAndForm';
 import { ExperienceDifferenceSection } from '../components/ExperienceDifferenceSection';
-import { useSEO } from '@/lib/seo';
+import { useSEO } from '@/seo/seo';
 
 // Heavy booking form: code-split and never mounted until first open.
 const BookingModal = lazy(() =>

@@ -6,7 +6,7 @@ import { ServicesHero } from '../components/ServicesHero';
 import { ServicesFeatureStrip } from '../components/ServicesFeatureStrip';
 import { ServicesGrid } from '../components/ServicesGrid';
 import { ServicesCTABanner } from '../components/ServicesCTABanner';
-import { useSEO } from '@/lib/seo';
+import { useSEO } from '@/seo/seo';
 
 // Heavy booking form: code-split and never mounted until first open.
 const BookingModal = lazy(() =>

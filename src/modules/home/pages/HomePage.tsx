@@ -3,7 +3,7 @@ import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
 import { Hero } from '../components/Hero';
 import type { ServiceItem } from '@/data/salonData';
-import { useSEO, type SEO_CONFIG } from '@/lib/seo';
+import { useSEO, type SEO_CONFIG } from '@/seo/seo';
 
 // Below-fold sections: lazy, revealed together in one Suspense so the
 // critical path ships Hero only.

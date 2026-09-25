@@ -4,7 +4,7 @@ import { Footer } from '@/components/shared/Footer';
 import { GalleryHero } from '../components/GalleryHero';
 import { GalleryGrid } from '../components/GalleryGrid';
 import { CTABanner } from '@/modules/home/components/CTABanner';
-import { useSEO } from '@/lib/seo';
+import { useSEO } from '@/seo/seo';
 
 // Heavy booking form: code-split and never mounted until first open.
 const BookingModal = lazy(() =>
